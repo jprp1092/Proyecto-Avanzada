@@ -20,7 +20,7 @@ body {
     width: 100%;
     border-radius: 12px;
     padding: 20px 30px 120px;
-    background: #6ee339;
+    background: #7ec94e;
     box-shadow: 0 5px 10px rgba( 0, 0, 0, 0.1 );
     overflow: hidden;
 }
@@ -134,16 +134,16 @@ form
   text-decoration: underline;
 }
 form
-  input[type="submit"] {
-  margin-top: 15px;
-  padding: none;
-  font-size: 18px;
-  font-weight: 500;
-  cursor: pointer;
+input[type="submit"] {
+    margin-top: 15px;
+    /*padding: none;*/
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
 }
 .form.login
 input[type="submit"] {
-    background: #6ee339;
+    background: #7ec94e;
     color: #fff;
     border: none;
 }
