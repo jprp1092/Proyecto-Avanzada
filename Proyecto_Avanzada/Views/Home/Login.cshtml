@@ -1,5 +1,32 @@
-﻿@{
+﻿@model Proyecto_Avanzada.Entities.UsuarioEnt
+
+@{
     ViewBag.Title = "Home Page";
     Layout = "~/Views/Shared/_Layout_Login.cshtml";
 }
 
+<section class="wrapper">
+    <div class="form signup">
+        <header>Signup</header>
+        <form action="#">
+            <input type="text" placeholder="Full name" required />
+            <input type="text" placeholder="Email address" required />
+            <input type="password" placeholder="Password" required />
+            <div class="checkbox">
+                <input type="checkbox" id="signupCheck" />
+                <label for="signupCheck">I accept all terms & conditions</label>
+            </div>
+            <input type="submit" value="Signup" />
+        </form>
+    </div>
+
+
+    @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @class = "form login" }))
+    {
+        <header>Login</header>
+        @Html.TextBoxFor(Model => Model.CorreoElectronico, new { @placeholder = "Correo Electrónico", @required = true })
+        @Html.TextBoxFor(Model => Model.Contrasenna, new { @placeholder = "Contraseña", @type = "Password", @required = true })
+        <a href="@Url.Action("RecuperarContrasenna", "Home")" class="text-primary">¿Olvidó su contraseña?</a>
+        <input type="submit" value="Login" />
+     }
+    </section>

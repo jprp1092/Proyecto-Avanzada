@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ProyectoWeb_KN_BDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BITACORAS">
+          <Key>
+            <PropertyRef Name="ConsecutivoError" />
+          </Key>
+          <Property Name="ConsecutivoError" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DescripcionError" Type="varchar(max)" Nullable="false" />
+          <Property Name="FechaHora" Type="datetime" Nullable="false" />
+          <Property Name="Origen" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ERRORES">
+          <Key>
+            <PropertyRef Name="ConsecutivoError" />
+          </Key>
+          <Property Name="ConsecutivoError" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DescripcionError" Type="varchar(max)" Nullable="false" />
+          <Property Name="FechaHora" Type="datetime" Nullable="false" />
+          <Property Name="ConsecutivoUsuario" Type="bigint" Nullable="false" />
+          <Property Name="Origen" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USUARIOS">
+          <Key>
+            <PropertyRef Name="ConsecutivoUsuario" />
+          </Key>
+          <Property Name="ConsecutivoUsuario" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CorreoElectronico" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="Contrasenna" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ERRORES_USUARIOS">
+          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="1" />
+          <End Role="ERRORES" Type="Self.ERRORES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIOS">
+              <PropertyRef Name="ConsecutivoUsuario" />
+            </Principal>
+            <Dependent Role="ERRORES">
+              <PropertyRef Name="ConsecutivoUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="RegistrarBitacora" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Descripcion" Type="varchar(max)" Mode="In" />
+          <Parameter Name="Origen" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ValidarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CorreoElectronico" Type="varchar" Mode="In" />
+          <Parameter Name="Contrasenna" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="ProyectoWeb_KN_BDModelStoreContainer">
+          <EntitySet Name="BITACORAS" EntityType="Self.BITACORAS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ERRORES" EntityType="Self.ERRORES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ERRORES_USUARIOS" Association="Self.FK_ERRORES_USUARIOS">
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+            <End Role="ERRORES" EntitySet="ERRORES" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ProyectoWeb_KN_BDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BITACORAS">
+          <Key>
+            <PropertyRef Name="ConsecutivoError" />
+          </Key>
+          <Property Name="ConsecutivoError" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DescripcionError" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FechaHora" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Origen" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ERRORES">
+          <Key>
+            <PropertyRef Name="ConsecutivoError" />
+          </Key>
+          <Property Name="ConsecutivoError" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DescripcionError" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FechaHora" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ConsecutivoUsuario" Type="Int64" Nullable="false" />
+          <Property Name="Origen" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="USUARIOS" Relationship="Self.FK_ERRORES_USUARIOS" FromRole="ERRORES" ToRole="USUARIOS" />
+        </EntityType>
+        <EntityType Name="USUARIOS">
+          <Key>
+            <PropertyRef Name="ConsecutivoUsuario" />
+          </Key>
+          <Property Name="ConsecutivoUsuario" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CorreoElectronico" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Contrasenna" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ERRORES" Relationship="Self.FK_ERRORES_USUARIOS" FromRole="USUARIOS" ToRole="ERRORES" />
+        </EntityType>
+        <Association Name="FK_ERRORES_USUARIOS">
+          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="1" />
+          <End Role="ERRORES" Type="Self.ERRORES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIOS">
+              <PropertyRef Name="ConsecutivoUsuario" />
+            </Principal>
+            <Dependent Role="ERRORES">
+              <PropertyRef Name="ConsecutivoUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ProyectoWeb_KN_BDEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BITACORAS" EntityType="Self.BITACORAS" />
+          <EntitySet Name="ERRORES" EntityType="Self.ERRORES" />
+          <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" />
+          <AssociationSet Name="FK_ERRORES_USUARIOS" Association="Self.FK_ERRORES_USUARIOS">
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+            <End Role="ERRORES" EntitySet="ERRORES" />
+          </AssociationSet>
+          <FunctionImport Name="RegistrarBitacora">
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="Origen" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ValidarUsuario" ReturnType="Collection(ProyectoWeb_KN_BDModel.ValidarUsuario_Result)">
+            <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
+            <Parameter Name="Contrasenna" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="ValidarUsuario_Result">
+          <Property Type="Int64" Name="ConsecutivoUsuario" Nullable="false" />
+          <Property Type="String" Name="CorreoElectronico" Nullable="false" MaxLength="70" />
+          <Property Type="Boolean" Name="Estado" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ProyectoWeb_KN_BDModelStoreContainer" CdmEntityContainer="ProyectoWeb_KN_BDEntities">
+          <EntitySetMapping Name="BITACORAS">
+            <EntityTypeMapping TypeName="ProyectoWeb_KN_BDModel.BITACORAS">
+              <MappingFragment StoreEntitySet="BITACORAS">
+                <ScalarProperty Name="ConsecutivoError" ColumnName="ConsecutivoError" />
+                <ScalarProperty Name="DescripcionError" ColumnName="DescripcionError" />
+                <ScalarProperty Name="FechaHora" ColumnName="FechaHora" />
+                <ScalarProperty Name="Origen" ColumnName="Origen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ERRORES">
+            <EntityTypeMapping TypeName="ProyectoWeb_KN_BDModel.ERRORES">
+              <MappingFragment StoreEntitySet="ERRORES">
+                <ScalarProperty Name="ConsecutivoError" ColumnName="ConsecutivoError" />
+                <ScalarProperty Name="DescripcionError" ColumnName="DescripcionError" />
+                <ScalarProperty Name="FechaHora" ColumnName="FechaHora" />
+                <ScalarProperty Name="ConsecutivoUsuario" ColumnName="ConsecutivoUsuario" />
+                <ScalarProperty Name="Origen" ColumnName="Origen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USUARIOS">
+            <EntityTypeMapping TypeName="ProyectoWeb_KN_BDModel.USUARIOS">
+              <MappingFragment StoreEntitySet="USUARIOS">
+                <ScalarProperty Name="ConsecutivoUsuario" ColumnName="ConsecutivoUsuario" />
+                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+                <ScalarProperty Name="Contrasenna" ColumnName="Contrasenna" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="RegistrarBitacora" FunctionName="ProyectoWeb_KN_BDModel.Store.RegistrarBitacora" />
+          <FunctionImportMapping FunctionImportName="ValidarUsuario" FunctionName="ProyectoWeb_KN_BDModel.Store.ValidarUsuario">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProyectoWeb_KN_BDModel.ValidarUsuario_Result">
+                <ScalarProperty Name="ConsecutivoUsuario" ColumnName="ConsecutivoUsuario" />
+                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
