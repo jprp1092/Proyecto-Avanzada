@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cc9bb8c0949a4b33940e4910cd3b0748" Name="Diagram1" ZoomLevel="86">
+        <EntityTypeShape EntityType="ProyectoW_BDModel.ERRORES" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoW_BDModel.USUARIOS" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="ProyectoW_BDModel.FK_ConsecutivoUsuario" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ProyectoW_BDModel.BITACORA" Width="1.5" PointX="0.75" PointY="3.625" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

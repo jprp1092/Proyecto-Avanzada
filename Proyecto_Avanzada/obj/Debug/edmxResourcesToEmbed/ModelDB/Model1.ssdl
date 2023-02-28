@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProyectoW_BDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="BITACORA">
+    <Key>
+      <PropertyRef Name="ConsecutivoError" />
+    </Key>
+    <Property Name="ConsecutivoError" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DescripcionError" Type="varchar(max)" Nullable="false" />
+    <Property Name="FechaHora" Type="datetime" Nullable="false" />
+    <Property Name="Origen" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ERRORES">
+    <Key>
+      <PropertyRef Name="ConsecutivoError" />
+    </Key>
+    <Property Name="ConsecutivoError" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DescripcionError" Type="varchar(max)" Nullable="false" />
+    <Property Name="FechaHora" Type="datetime" Nullable="false" />
+    <Property Name="ConsecutivoUsuario" Type="bigint" Nullable="false" />
+    <Property Name="Origen" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="USUARIOS">
+    <Key>
+      <PropertyRef Name="ConsecutivoUsuario" />
+    </Key>
+    <Property Name="ConsecutivoUsuario" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CorreoElectronico" Type="varchar" MaxLength="70" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="Apellidos" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="Contrasenna" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Estado" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_ConsecutivoUsuario">
+    <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="1" />
+    <End Role="ERRORES" Type="Self.ERRORES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIOS">
+        <PropertyRef Name="ConsecutivoUsuario" />
+      </Principal>
+      <Dependent Role="ERRORES">
+        <PropertyRef Name="ConsecutivoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="RegistrarBitacora" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Descripcion" Type="varchar(max)" Mode="In" />
+    <Parameter Name="Origen" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="ValidarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CorreoElectronico" Type="varchar" Mode="In" />
+    <Parameter Name="Contrasenna" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="ProyectoW_BDModelStoreContainer">
+    <EntitySet Name="BITACORA" EntityType="Self.BITACORA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ERRORES" EntityType="Self.ERRORES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_ConsecutivoUsuario" Association="Self.FK_ConsecutivoUsuario">
+      <End Role="USUARIOS" EntitySet="USUARIOS" />
+      <End Role="ERRORES" EntitySet="ERRORES" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

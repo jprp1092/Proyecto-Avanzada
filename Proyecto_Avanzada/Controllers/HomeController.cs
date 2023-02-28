@@ -37,10 +37,60 @@ namespace Proyecto_Avanzada.Controllers
             }
             catch (Exception ex)
             {
+                model.RegistrarBitacora("Home-Principal", ex.Message);
                 ViewBag.mensajeError = "Sus credenciales no fueron validadas";
-                return View();
+                return View("Index");
             }
         }
+
+
+        //Método de Registrar Usuario
+
+        [HttpGet]
+        public ActionResult RegistrarUsuario()
+        {
+            try
+            {
+                return View();
+            }
+            catch (Exception ex)
+            {
+                model.RegistrarBitacora("Home-RegistrarUsuario", ex.Message);
+                return View("Index");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult BuscarCorreo(string correo)
+        {
+            try
+            {
+                var resultado = model.BuscarCorreo(correo);
+                return Json(resultado, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                model.RegistrarBitacora("Home-BuscarCorreo", ex.Message);
+                return Json(null, JsonRequestBehavior.DenyGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult RegistrarUsuario(UsuarioEnt entidad)
+        {
+            try
+            {
+                model.RegistrarUsuario(entidad);
+                return View("Index");
+            }
+            catch (Exception ex)
+            {
+                model.RegistrarBitacora("Home-RegistrarUsuario", ex.Message);
+                return View("Index");
+            }
+        }
+
+
 
         public ActionResult About()
         {
