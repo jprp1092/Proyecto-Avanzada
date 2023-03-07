@@ -9,6 +9,7 @@ namespace ProyectoApi_KN.Models
 {
     public class UsuarioModel
     {
+        LogsModel model  = new LogsModel();
 
         public UsuarioEnt ValidarUsuario(UsuarioEnt entidad)
         {
@@ -91,5 +92,26 @@ namespace ProyectoApi_KN.Models
             }
         }
 
+        public void RecuperarContrasenna(UsuarioEnt entidad)
+        {
+
+            using (var conexion = new ProyectoWeb_KN_BDEntities())
+            {
+                var resultado = (from x in conexion.USUARIOS
+                                 where x.CorreoElectronico == entidad.CorreoElectronico
+                                 select x).FirstOrDefault();
+
+                if (resultado != null)
+                {
+                    string mensaje = "Su contraseña actual es: " + resultado.Contrasenna;
+                    Model.EnviarCorreo(resultado.CorreoElectronico, "Recuperar Contraseña", mensaje);
+
+
+                }
+            }
+        }
+
+
+        
     }
 }

@@ -47,5 +47,12 @@ namespace ProyectoApi_KN.Controllers
             return model.RegistrarUsuario(entidad);
         }
 
+
+        [HttpPost]
+        [Route("api/RecuperarContrasenna")]
+        public void RecuperarContrasenna(UsuarioEnt entidad)
+        {
+             model.RecuperarContrasenna(entidad);
+        }
     }
 }
