@@ -9,16 +9,33 @@ using System.Web.Mvc;
 
 namespace Proyecto_Avanzada.Controllers
 {
+    /*
+       F10 = Avanzamos línea por línea
+       F11 = Ingresamos a los métodos
+       F5 = Liberamos la depuración
+    */
     public class HomeController : Controller
     {
         UsuarioModel model = new UsuarioModel();
+
+        //Método de Iniciar Sesión
+
+        [HttpGet]
         public ActionResult Index()
         {
-            return View();
+            try
+            {
+                return View();
+            }
+            catch (Exception ex)
+            {
+                model.RegistrarBitacora("Home-Index", ex.Message);
+                return View("Index");
+            }
         }
 
         [HttpPost]
-        public ActionResult Login(UsuarioEnt entidad)
+        public ActionResult Principal(UsuarioEnt entidad)
         {
             try
             {
@@ -27,12 +44,12 @@ namespace Proyecto_Avanzada.Controllers
                 {
                     Session["CodigoUsuario"] = resultado.ConsecutivoUsuario;
                     Session["CorreoUsuario"] = resultado.CorreoElectronico;
-                    return View("About");
+                    return View();
                 }
                 else
                 {
                     ViewBag.mensajeError = "Sus credenciales son incorrectas";
-                    return View();
+                    return View("Index");
                 }
             }
             catch (Exception ex)
@@ -42,7 +59,6 @@ namespace Proyecto_Avanzada.Controllers
                 return View("Index");
             }
         }
-
 
         //Método de Registrar Usuario
 
@@ -80,8 +96,15 @@ namespace Proyecto_Avanzada.Controllers
         {
             try
             {
-                model.RegistrarUsuario(entidad);
-                return View("Index");
+                var respuesta = model.RegistrarUsuario(entidad);
+
+                if (respuesta > 0)
+                    return View("Index");
+                else
+                {
+                    ViewBag.mensajeError = "El usuario no se pudo registrar";
+                    return View("Index");
+                }
             }
             catch (Exception ex)
             {
@@ -90,30 +113,58 @@ namespace Proyecto_Avanzada.Controllers
             }
         }
 
+        //Método de Recuperar Contraseña
 
+        [HttpGet]
+        public ActionResult RecuperarContrasenna()
+        {
+            try
+            {
+                return View();
+            }
+            catch (Exception ex)
+            {
+                model.RegistrarBitacora("Home-RegistrarUsuario", ex.Message);
+                return View("Index");
+            }
+        }
 
-        public ActionResult About()
+        [HttpPost]
+        public ActionResult RecuperarContrasenna(UsuarioEnt entidad)
+        {
+            try
+            {
+                model.RecuperarContrasenna(entidad);
+                return View("Index");
+            }
+            catch (Exception ex)
+            {
+                model.RegistrarBitacora("Home-RegistrarUsuario", ex.Message);
+                return View("Index");
+            }
+        }
+            public ActionResult About()
+            {
+                return View();
+            }
+
+            public ActionResult Services()
+            {
+                return View();
+            }
+            public ActionResult Packages()
+            {
+                return View();
+            }
+            public ActionResult Contact()
+            {
+                return View();
+            }
+
+            public ActionResult Login()
         {
             return View();
         }
 
-        public ActionResult Services()
-        {
-            return View();
-        }
-
-        public ActionResult Packages()
-        {
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            return View();
-        }
-        public ActionResult Login()
-        {
-            return View();
-        }
     }
 }

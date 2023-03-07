@@ -202,6 +202,8 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Functions\RecuperarUsuario.js" />
+    <Content Include="Functions\RegistrarUsuarios.js" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="ModelDB\Model1.Context.tt">
@@ -309,6 +311,7 @@
     <Content Include="Views\Shared\_Layout_General.cshtml" />
     <Content Include="Views\Usuarios\Index.cshtml" />
     <Content Include="Views\Shared\_Layout_Logged.cshtml" />
+    <Content Include="Views\Home\RecuperarContrasenna.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

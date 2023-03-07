@@ -11,6 +11,7 @@ namespace Proyecto_Avanzada.Controllers
     {
         UsuarioModel model = new UsuarioModel();
 
+        [HttpGet]
         // GET: Usuarios
         public ActionResult Index()
         {

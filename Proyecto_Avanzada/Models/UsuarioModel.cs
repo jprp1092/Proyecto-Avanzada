@@ -31,60 +31,63 @@ namespace Proyecto_Avanzada.Models
 
         public List<UsuarioEnt> ConsultarUsuarios()
         {
-            using (var conexion = new ProyectoW_BDEntities())
+            using (var client = new HttpClient())
             {
-                //var datos = conexion.USUARIOS.ToList().Where(x => x.Estado == true);
-                var datos = (from x in conexion.USUARIOS
-                             select x).ToList();
 
-                List<UsuarioEnt> listaEntidadResultado = new List<UsuarioEnt>();
-                foreach (var item in datos)
-                {
-                    listaEntidadResultado.Add(new UsuarioEnt
-                    {
-                        ConsecutivoUsuario = item.ConsecutivoUsuario,
-                        CorreoElectronico = item.CorreoElectronico,
-                        Estado = item.Estado
-                    });
-                }
+                string url = "https://localhost:44344/api/ConsultarUsuarios";
 
-                return listaEntidadResultado;
+                HttpResponseMessage res = client.GetAsync(url).GetAwaiter().GetResult();
+
+                if (res.IsSuccessStatusCode)
+                    return res.Content.ReadFromJsonAsync<List<UsuarioEnt>>().Result;
+
+                return new List<UsuarioEnt>();
             }
         }
 
 
-
-        public string BuscarCorreo(string correoElectronico)
+            public string BuscarCorreo(string correoElectronico)
         {
-            using (var conexion = new ProyectoW_BDEntities())
+            using (var client = new HttpClient())
             {
-                var resultado = (from x in conexion.USUARIOS
-                                 where x.CorreoElectronico == correoElectronico
-                                 select x).FirstOrDefault();
 
-                if (resultado == null)
-                    return string.Empty;
-                else
-                {
-                    if (resultado.Estado)
-                        return "Esta cuenta de correo ya fue registrada anteriormente";
-                    else
-                        return "Esta cuenta de correo se encuentra inactiva";
-                }
+                string url = "https://localhost:44344/api/BuscarCorreo?correoElectronico=" + correoElectronico;
+
+                HttpResponseMessage res = client.GetAsync(url).GetAwaiter().GetResult();
+
+                if (res.IsSuccessStatusCode)
+                    return res.Content.ReadFromJsonAsync<string>().Result;
+
+                return  "ERROR";
+            }
+
+        }
+
+        public int RegistrarUsuario(UsuarioEnt entidad)
+        {
+            using (var client = new HttpClient())
+            {
+                JsonContent body = JsonContent.Create(entidad);
+                string url = "https://localhost:44344/api/RegistrarUsuarios";
+
+                HttpResponseMessage res = client.PostAsync(url, body).GetAwaiter().GetResult();
+
+                if (res.IsSuccessStatusCode)
+                    return res.Content.ReadFromJsonAsync<int>().Result;
+
+                return 0;
             }
         }
 
-        public void RegistrarUsuario(UsuarioEnt entidad)
+        public void RecuperarContrasenna(UsuarioEnt entidad)
         {
-            using (var conexion = new ProyectoW_BDEntities())
+            using (var client = new HttpClient())
             {
-                USUARIOS usuario = new USUARIOS();
-                usuario.CorreoElectronico = entidad.CorreoElectronico;
-                usuario.Contrasenna = entidad.Contrasenna;
-                usuario.Estado = true;
+                JsonContent body = JsonContent.Create(entidad);
+                string url = "https://localhost:44344/api/RecuperarContrasenna";
 
-                conexion.USUARIOS.Add(usuario);
-                conexion.SaveChanges();
+                HttpResponseMessage res = client.PostAsync(url, body).GetAwaiter().GetResult();
+
             }
         }
 
@@ -123,4 +126,4 @@ namespace Proyecto_Avanzada.Models
 
 
     }
-}
+    }

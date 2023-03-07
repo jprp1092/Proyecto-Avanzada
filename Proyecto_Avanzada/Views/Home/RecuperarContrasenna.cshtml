@@ -1,0 +1,42 @@
+﻿@model Proyecto_Avanzada.Entities.UsuarioEnt
+
+@{
+    ViewBag.Title = "RecuperarUsuario";
+    Layout = "~/Views/Shared/_Layout_Login.cshtml";
+}
+
+<div class="container-fluid page-body-wrapper full-page-wrapper">
+    <div class="content-wrapper d-flex align-items-center auth px-0">
+        <div class="row w-100 mx-0">
+            <div class="col-lg-4 mx-auto">
+                <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+                    <div class="brand-logo">
+                        <img src="~/template/images/logo.svg" />
+                    </div>
+                    <h4>Recuperar Cuenta</h4>
+
+                    @using (Html.BeginForm("RecuperarContrasenna", "Home", FormMethod.Post, new { @class = "pt-3" }))
+                    {
+                        <div class="form-group">
+                            @Html.TextBoxFor(Model => Model.CorreoElectronico, new
+                            {
+                                @class = "form-control form-control-lg",
+                                @placeholder = "Correo Electrónico",
+                           @onblur = "BuscarCorreo();",
+                                @required = true
+                       })
+                        </div>
+
+                        <div class="mt-3">
+                            <input type="submit" id="btnProcesar" disabled class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
+                                   value="Procesar">
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Funciones/RecuperarUsuario.js"></script>
