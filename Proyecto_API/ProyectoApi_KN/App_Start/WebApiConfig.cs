@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProyectoApi_KN.App_Start;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -13,6 +14,8 @@ namespace ProyectoApi_KN
 
             // Rutas de Web API
             config.MapHttpAttributeRoutes();
+
+            config.MessageHandlers.Add(new TokenValidationHandler());
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

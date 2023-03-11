@@ -11,5 +11,6 @@ namespace Proyecto_Avanzada.Entities
         public string CorreoElectronico { get; set; }
         public string Contrasenna { get; set; }
         public bool Estado { get; set; }
+        public string Token { get; set; }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
+using System.Net.Mail;
 using System.Web;
 
 namespace ProyectoApi_KN.Models
@@ -9,7 +11,7 @@ namespace ProyectoApi_KN.Models
     {
 
 
-        private void EnviarCorreo(srting destinatario, string asunto, string mensaje)
+        private void EnviarCorreo(string destinatario, string asunto, string mensaje)
         {
 
             string usuarioCorreo = ConfigurationManager.AppSettings["usuarioCorreo"].ToString();

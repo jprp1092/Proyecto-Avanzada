@@ -295,3 +295,7 @@ C:\Users\jsnqr\Source\Repos\Proyecto-Avanzada\Proyecto_API\ProyectoApi_KN\obj\De
 C:\Users\jsnqr\Source\Repos\Proyecto-Avanzada\Proyecto_API\ProyectoApi_KN\obj\Debug\ProyectoApi_KN.csproj.CopyComplete
 C:\Users\jsnqr\Source\Repos\Proyecto-Avanzada\Proyecto_API\ProyectoApi_KN\obj\Debug\ProyectoApi_KN.dll
 C:\Users\jsnqr\Source\Repos\Proyecto-Avanzada\Proyecto_API\ProyectoApi_KN\obj\Debug\ProyectoApi_KN.pdb
+C:\Users\joser\OneDrive\Documentos\Proyecto_Avanzada\Proyecto_Avanzada_API_Local\ProyectoApi_KN\obj\Debug\ProyectoApi_KN.csproj.AssemblyReference.cache
+C:\Users\joser\OneDrive\Documentos\Proyecto_Avanzada\Proyecto_Avanzada_API_Local\ProyectoApi_KN\obj\Debug\ProyectoApi_KN.csproj.CoreCompileInputs.cache
+C:\Users\joser\OneDrive\Documentos\Proyecto_Avanzada\Proyecto_Avanzada_API_Local\ProyectoApi_KN\obj\Debug\ProyectoApi_KN.dll
+C:\Users\joser\OneDrive\Documentos\Proyecto_Avanzada\Proyecto_Avanzada_API_Local\ProyectoApi_KN\obj\Debug\ProyectoApi_KN.pdb

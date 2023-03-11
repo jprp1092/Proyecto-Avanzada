@@ -44,6 +44,7 @@ namespace Proyecto_Avanzada.Controllers
                 {
                     Session["CodigoUsuario"] = resultado.ConsecutivoUsuario;
                     Session["CorreoUsuario"] = resultado.CorreoElectronico;
+                    Session["TokenUsuario"] = resultado.Token;
                     return View();
                 }
                 else

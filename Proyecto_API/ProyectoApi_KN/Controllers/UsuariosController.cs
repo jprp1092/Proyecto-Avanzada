@@ -20,6 +20,7 @@ namespace ProyectoApi_KN.Controllers
         UsuarioModel model = new UsuarioModel();
 
         [HttpPost]
+        [AllowAnonymous]
         [Route("api/ValidarUsuario")]
         public UsuarioEnt ValidarUsuario(UsuarioEnt entidad)
         {
@@ -27,6 +28,7 @@ namespace ProyectoApi_KN.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         [Route("api/ConsultarUsuarios")]
         public List<UsuarioEnt> ConsultarUsuarios()
         {
@@ -34,6 +36,7 @@ namespace ProyectoApi_KN.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         [Route("api/BuscarCorreo")]
         public string BuscarCorreo(string correoElectronico)
         {
@@ -41,6 +44,7 @@ namespace ProyectoApi_KN.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         [Route("api/RegistrarUsuario")]
         public int RegistrarUsuario(UsuarioEnt entidad)
         {
@@ -49,6 +53,7 @@ namespace ProyectoApi_KN.Controllers
 
 
         [HttpPost]
+        [AllowAnonymous]
         [Route("api/RecuperarContrasenna")]
         public void RecuperarContrasenna(UsuarioEnt entidad)
         {

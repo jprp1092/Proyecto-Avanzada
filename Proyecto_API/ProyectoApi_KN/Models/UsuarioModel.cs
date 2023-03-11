@@ -1,8 +1,10 @@
-﻿using ProyectoApi_KN.Entities;
+﻿using ProyectoApi_KN.App_Start;
+using ProyectoApi_KN.Entities;
 using ProyectoApi_KN.ModeloBD;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Web;
 
 namespace ProyectoApi_KN.Models
@@ -10,6 +12,7 @@ namespace ProyectoApi_KN.Models
     public class UsuarioModel
     {
         LogsModel model  = new LogsModel();
+        TokenGenerator generator = new TokenGenerator();
 
         public UsuarioEnt ValidarUsuario(UsuarioEnt entidad)
         {
@@ -26,6 +29,7 @@ namespace ProyectoApi_KN.Models
                 UsuarioEnt entidadResultado = new UsuarioEnt();
                 if (resultado != null)
                 {
+                    entidadResultado.Token = generator.GenerateTokenJwt(resultado.CorreoElectronico);
                     entidadResultado.ConsecutivoUsuario = resultado.ConsecutivoUsuario;
                     entidadResultado.CorreoElectronico = resultado.CorreoElectronico;
                     return entidadResultado;

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Web;
 
@@ -36,6 +37,7 @@ namespace Proyecto_Avanzada.Models
 
                 string url = "https://localhost:44344/api/ConsultarUsuarios";
 
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", HttpContext.Current.Session["TokenUsuario"].ToString());
                 HttpResponseMessage res = client.GetAsync(url).GetAwaiter().GetResult();
 
                 if (res.IsSuccessStatusCode)
