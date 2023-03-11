@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Proyecto_Avanzada.Models
 {
@@ -19,7 +20,7 @@ namespace Proyecto_Avanzada.Models
             using (var client = new HttpClient())
             {
                 JsonContent body = JsonContent.Create(entidad);
-                string url = "https://localhost:44344/api/ValidarUsuarios";
+                string url = "https://localhost:44398/api/ValidarUsuarios";
 
                 HttpResponseMessage res = client.PostAsync(url, body).GetAwaiter().GetResult();
 
@@ -35,7 +36,7 @@ namespace Proyecto_Avanzada.Models
             using (var client = new HttpClient())
             {
 
-                string url = "https://localhost:44344/api/ConsultarUsuarios";
+                string url = "https://localhost:44398/api/ConsultarUsuarios";
 
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", HttpContext.Current.Session["TokenUsuario"].ToString());
                 HttpResponseMessage res = client.GetAsync(url).GetAwaiter().GetResult();
@@ -53,7 +54,7 @@ namespace Proyecto_Avanzada.Models
             using (var client = new HttpClient())
             {
 
-                string url = "https://localhost:44344/api/BuscarCorreo?correoElectronico=" + correoElectronico;
+                string url = "https://localhost:44398/api/BuscarCorreo?correoElectronico=" + correoElectronico;
 
                 HttpResponseMessage res = client.GetAsync(url).GetAwaiter().GetResult();
 
@@ -70,7 +71,7 @@ namespace Proyecto_Avanzada.Models
             using (var client = new HttpClient())
             {
                 JsonContent body = JsonContent.Create(entidad);
-                string url = "https://localhost:44344/api/RegistrarUsuarios";
+                string url = "https://localhost:44398/api/RegistrarUsuarios";
 
                 HttpResponseMessage res = client.PostAsync(url, body).GetAwaiter().GetResult();
 
@@ -86,7 +87,7 @@ namespace Proyecto_Avanzada.Models
             using (var client = new HttpClient())
             {
                 JsonContent body = JsonContent.Create(entidad);
-                string url = "https://localhost:44344/api/RecuperarContrasenna";
+                string url = "https://localhost:44398/api/RecuperarContrasenna";
 
                 HttpResponseMessage res = client.PostAsync(url, body).GetAwaiter().GetResult();
 

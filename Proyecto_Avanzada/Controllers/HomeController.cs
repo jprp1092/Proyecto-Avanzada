@@ -61,21 +61,7 @@ namespace Proyecto_Avanzada.Controllers
             }
         }
 
-        //Método de Registrar Usuario
-
-        [HttpGet]
-        public ActionResult RegistrarUsuario()
-        {
-            try
-            {
-                return View();
-            }
-            catch (Exception ex)
-            {
-                model.RegistrarBitacora("Home-RegistrarUsuario", ex.Message);
-                return View("Index");
-            }
-        }
+        
 
         [HttpPost]
         public ActionResult BuscarCorreo(string correo)
@@ -91,6 +77,8 @@ namespace Proyecto_Avanzada.Controllers
                 return Json(null, JsonRequestBehavior.DenyGet);
             }
         }
+
+        //Método de Registrar Usuario
 
         [HttpPost]
         public ActionResult RegistrarUsuario(UsuarioEnt entidad)

@@ -12,7 +12,7 @@ namespace ProyectoApi_KN.ModeloBD
     using System;
     using System.Collections.Generic;
     
-    public partial class BITACORAS
+    public partial class BITACORA
     {
         public long ConsecutivoError { get; set; }
         public string DescripcionError { get; set; }

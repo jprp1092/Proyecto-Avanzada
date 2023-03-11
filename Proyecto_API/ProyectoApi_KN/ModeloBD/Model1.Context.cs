@@ -12,13 +12,11 @@ namespace ProyectoApi_KN.ModeloBD
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    using System.Data.Entity.Core.Objects;
-    using System.Linq;
     
-    public partial class ProyectoWeb_KN_BDEntities : DbContext
+    public partial class ProyectoW_BDEntities : DbContext
     {
-        public ProyectoWeb_KN_BDEntities()
-            : base("name=ProyectoWeb_KN_BDEntities")
+        public ProyectoW_BDEntities()
+            : base("name=ProyectoW_BDEntities")
         {
         }
     
@@ -27,34 +25,8 @@ namespace ProyectoApi_KN.ModeloBD
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<BITACORAS> BITACORAS { get; set; }
+        public virtual DbSet<BITACORA> BITACORA { get; set; }
         public virtual DbSet<ERRORES> ERRORES { get; set; }
         public virtual DbSet<USUARIOS> USUARIOS { get; set; }
-    
-        public virtual int RegistrarBitacora(string descripcion, string origen)
-        {
-            var descripcionParameter = descripcion != null ?
-                new ObjectParameter("Descripcion", descripcion) :
-                new ObjectParameter("Descripcion", typeof(string));
-    
-            var origenParameter = origen != null ?
-                new ObjectParameter("Origen", origen) :
-                new ObjectParameter("Origen", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RegistrarBitacora", descripcionParameter, origenParameter);
-        }
-    
-        public virtual ObjectResult<ValidarUsuario_Result> ValidarUsuario(string correoElectronico, string contrasenna)
-        {
-            var correoElectronicoParameter = correoElectronico != null ?
-                new ObjectParameter("CorreoElectronico", correoElectronico) :
-                new ObjectParameter("CorreoElectronico", typeof(string));
-    
-            var contrasennaParameter = contrasenna != null ?
-                new ObjectParameter("Contrasenna", contrasenna) :
-                new ObjectParameter("Contrasenna", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ValidarUsuario_Result>("ValidarUsuario", correoElectronicoParameter, contrasennaParameter);
-        }
     }
 }

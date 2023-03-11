@@ -16,7 +16,7 @@ namespace ProyectoApi_KN.Models
 
         public UsuarioEnt ValidarUsuario(UsuarioEnt entidad)
         {
-            using (var conexion = new ProyectoWeb_KN_BDEntities())
+            using (var conexion = new ProyectoW_BDEntities())
             {
                 //var resultado = conexion.ValidarUsuario(entidad.CorreoElectronico, entidad.Contrasenna).FirstOrDefault();
 
@@ -41,7 +41,7 @@ namespace ProyectoApi_KN.Models
 
         public List<UsuarioEnt> ConsultarUsuarios()
         {
-            using (var conexion = new ProyectoWeb_KN_BDEntities())
+            using (var conexion = new ProyectoW_BDEntities())
             {
                 //var datos = conexion.USUARIOS.ToList().Where(x => x.Estado == true);
                 var datos = (from x in conexion.USUARIOS
@@ -64,7 +64,7 @@ namespace ProyectoApi_KN.Models
 
         public string BuscarCorreo(string correoElectronico)
         {
-            using (var conexion = new ProyectoWeb_KN_BDEntities())
+            using (var conexion = new ProyectoW_BDEntities())
             {
                 var resultado = (from x in conexion.USUARIOS
                                  where x.CorreoElectronico == correoElectronico
@@ -84,13 +84,14 @@ namespace ProyectoApi_KN.Models
 
         public int RegistrarUsuario(UsuarioEnt entidad)
         {
-            using (var conexion = new ProyectoWeb_KN_BDEntities())
+            using (var conexion = new ProyectoW_BDEntities())
             {
                 USUARIOS usuario = new USUARIOS();
                 usuario.CorreoElectronico = entidad.CorreoElectronico;
                 usuario.Contrasenna = entidad.Contrasenna;
+                usuario.Nombre = entidad.Nombre;
+                usuario.Apellidos = entidad.Apellidos;
                 usuario.Estado = true;
-
                 conexion.USUARIOS.Add(usuario);
                 return conexion.SaveChanges();
             }
@@ -99,7 +100,7 @@ namespace ProyectoApi_KN.Models
         public void RecuperarContrasenna(UsuarioEnt entidad)
         {
 
-            using (var conexion = new ProyectoWeb_KN_BDEntities())
+            using (var conexion = new ProyectoW_BDEntities())
             {
                 var resultado = (from x in conexion.USUARIOS
                                  where x.CorreoElectronico == entidad.CorreoElectronico
@@ -109,8 +110,6 @@ namespace ProyectoApi_KN.Models
                 {
                     string mensaje = "Su contraseña actual es: " + resultado.Contrasenna;
                     Model.EnviarCorreo(resultado.CorreoElectronico, "Recuperar Contraseña", mensaje);
-
-
                 }
             }
         }

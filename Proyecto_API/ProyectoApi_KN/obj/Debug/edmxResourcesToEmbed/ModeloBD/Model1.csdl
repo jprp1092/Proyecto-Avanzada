@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="ProyectoWeb_KN_BDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="BITACORAS">
+<Schema Namespace="ProyectoW_BDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="BITACORA">
     <Key>
       <PropertyRef Name="ConsecutivoError" />
     </Key>
@@ -18,7 +18,7 @@
     <Property Name="FechaHora" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="ConsecutivoUsuario" Type="Int64" Nullable="false" />
     <Property Name="Origen" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="USUARIOS" Relationship="Self.FK_ERRORES_USUARIOS" FromRole="ERRORES" ToRole="USUARIOS" />
+    <NavigationProperty Name="USUARIOS" Relationship="Self.FK_ConsecutivoUsuario" FromRole="ERRORES" ToRole="USUARIOS" />
   </EntityType>
   <EntityType Name="USUARIOS">
     <Key>
@@ -26,11 +26,13 @@
     </Key>
     <Property Name="ConsecutivoUsuario" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="CorreoElectronico" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Apellidos" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Contrasenna" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Estado" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="ERRORES" Relationship="Self.FK_ERRORES_USUARIOS" FromRole="USUARIOS" ToRole="ERRORES" />
+    <NavigationProperty Name="ERRORES" Relationship="Self.FK_ConsecutivoUsuario" FromRole="USUARIOS" ToRole="ERRORES" />
   </EntityType>
-  <Association Name="FK_ERRORES_USUARIOS">
+  <Association Name="FK_ConsecutivoUsuario">
     <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="1" />
     <End Role="ERRORES" Type="Self.ERRORES" Multiplicity="*" />
     <ReferentialConstraint>
@@ -42,26 +44,13 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="ProyectoWeb_KN_BDEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="BITACORAS" EntityType="Self.BITACORAS" />
+  <EntityContainer Name="ProyectoW_BDEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BITACORA" EntityType="Self.BITACORA" />
     <EntitySet Name="ERRORES" EntityType="Self.ERRORES" />
     <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" />
-    <AssociationSet Name="FK_ERRORES_USUARIOS" Association="Self.FK_ERRORES_USUARIOS">
+    <AssociationSet Name="FK_ConsecutivoUsuario" Association="Self.FK_ConsecutivoUsuario">
       <End Role="USUARIOS" EntitySet="USUARIOS" />
       <End Role="ERRORES" EntitySet="ERRORES" />
     </AssociationSet>
-    <FunctionImport Name="RegistrarBitacora">
-      <Parameter Name="Descripcion" Mode="In" Type="String" />
-      <Parameter Name="Origen" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="ValidarUsuario" ReturnType="Collection(ProyectoWeb_KN_BDModel.ValidarUsuario_Result)">
-      <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
-      <Parameter Name="Contrasenna" Mode="In" Type="String" />
-    </FunctionImport>
   </EntityContainer>
-  <ComplexType Name="ValidarUsuario_Result">
-    <Property Type="Int64" Name="ConsecutivoUsuario" Nullable="false" />
-    <Property Type="String" Name="CorreoElectronico" Nullable="false" MaxLength="70" />
-    <Property Type="Boolean" Name="Estado" Nullable="false" />
-  </ComplexType>
 </Schema>

@@ -4,8 +4,8 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ProyectoWeb_KN_BDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="BITACORAS">
+      <Schema Namespace="ProyectoW_BDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BITACORA">
           <Key>
             <PropertyRef Name="ConsecutivoError" />
           </Key>
@@ -30,10 +30,12 @@
           </Key>
           <Property Name="ConsecutivoUsuario" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CorreoElectronico" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Apellidos" Type="varchar" MaxLength="40" Nullable="false" />
           <Property Name="Contrasenna" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="Estado" Type="bit" Nullable="false" />
         </EntityType>
-        <Association Name="FK_ERRORES_USUARIOS">
+        <Association Name="FK_ConsecutivoUsuario">
           <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="1" />
           <End Role="ERRORES" Type="Self.ERRORES" Multiplicity="*" />
           <ReferentialConstraint>
@@ -45,19 +47,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="RegistrarBitacora" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Descripcion" Type="varchar(max)" Mode="In" />
-          <Parameter Name="Origen" Type="varchar" Mode="In" />
-        </Function>
-        <Function Name="ValidarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="CorreoElectronico" Type="varchar" Mode="In" />
-          <Parameter Name="Contrasenna" Type="varchar" Mode="In" />
-        </Function>
-        <EntityContainer Name="ProyectoWeb_KN_BDModelStoreContainer">
-          <EntitySet Name="BITACORAS" EntityType="Self.BITACORAS" Schema="dbo" store:Type="Tables" />
+        <EntityContainer Name="ProyectoW_BDModelStoreContainer">
+          <EntitySet Name="BITACORA" EntityType="Self.BITACORA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ERRORES" EntityType="Self.ERRORES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_ERRORES_USUARIOS" Association="Self.FK_ERRORES_USUARIOS">
+          <AssociationSet Name="FK_ConsecutivoUsuario" Association="Self.FK_ConsecutivoUsuario">
             <End Role="USUARIOS" EntitySet="USUARIOS" />
             <End Role="ERRORES" EntitySet="ERRORES" />
           </AssociationSet>
@@ -66,8 +60,8 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="ProyectoWeb_KN_BDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="BITACORAS">
+      <Schema Namespace="ProyectoW_BDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BITACORA">
           <Key>
             <PropertyRef Name="ConsecutivoError" />
           </Key>
@@ -85,7 +79,7 @@
           <Property Name="FechaHora" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ConsecutivoUsuario" Type="Int64" Nullable="false" />
           <Property Name="Origen" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="USUARIOS" Relationship="Self.FK_ERRORES_USUARIOS" FromRole="ERRORES" ToRole="USUARIOS" />
+          <NavigationProperty Name="USUARIOS" Relationship="Self.FK_ConsecutivoUsuario" FromRole="ERRORES" ToRole="USUARIOS" />
         </EntityType>
         <EntityType Name="USUARIOS">
           <Key>
@@ -93,11 +87,13 @@
           </Key>
           <Property Name="ConsecutivoUsuario" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CorreoElectronico" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Apellidos" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Contrasenna" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Estado" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="ERRORES" Relationship="Self.FK_ERRORES_USUARIOS" FromRole="USUARIOS" ToRole="ERRORES" />
+          <NavigationProperty Name="ERRORES" Relationship="Self.FK_ConsecutivoUsuario" FromRole="USUARIOS" ToRole="ERRORES" />
         </EntityType>
-        <Association Name="FK_ERRORES_USUARIOS">
+        <Association Name="FK_ConsecutivoUsuario">
           <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="1" />
           <End Role="ERRORES" Type="Self.ERRORES" Multiplicity="*" />
           <ReferentialConstraint>
@@ -109,37 +105,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ProyectoWeb_KN_BDEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="BITACORAS" EntityType="Self.BITACORAS" />
+        <EntityContainer Name="ProyectoW_BDEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BITACORA" EntityType="Self.BITACORA" />
           <EntitySet Name="ERRORES" EntityType="Self.ERRORES" />
           <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" />
-          <AssociationSet Name="FK_ERRORES_USUARIOS" Association="Self.FK_ERRORES_USUARIOS">
+          <AssociationSet Name="FK_ConsecutivoUsuario" Association="Self.FK_ConsecutivoUsuario">
             <End Role="USUARIOS" EntitySet="USUARIOS" />
             <End Role="ERRORES" EntitySet="ERRORES" />
           </AssociationSet>
-          <FunctionImport Name="RegistrarBitacora">
-            <Parameter Name="Descripcion" Mode="In" Type="String" />
-            <Parameter Name="Origen" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="ValidarUsuario" ReturnType="Collection(ProyectoWeb_KN_BDModel.ValidarUsuario_Result)">
-            <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
-            <Parameter Name="Contrasenna" Mode="In" Type="String" />
-          </FunctionImport>
         </EntityContainer>
-        <ComplexType Name="ValidarUsuario_Result">
-          <Property Type="Int64" Name="ConsecutivoUsuario" Nullable="false" />
-          <Property Type="String" Name="CorreoElectronico" Nullable="false" MaxLength="70" />
-          <Property Type="Boolean" Name="Estado" Nullable="false" />
-        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ProyectoWeb_KN_BDModelStoreContainer" CdmEntityContainer="ProyectoWeb_KN_BDEntities">
-          <EntitySetMapping Name="BITACORAS">
-            <EntityTypeMapping TypeName="ProyectoWeb_KN_BDModel.BITACORAS">
-              <MappingFragment StoreEntitySet="BITACORAS">
+        <EntityContainerMapping StorageEntityContainer="ProyectoW_BDModelStoreContainer" CdmEntityContainer="ProyectoW_BDEntities">
+          <EntitySetMapping Name="BITACORA">
+            <EntityTypeMapping TypeName="ProyectoW_BDModel.BITACORA">
+              <MappingFragment StoreEntitySet="BITACORA">
                 <ScalarProperty Name="ConsecutivoError" ColumnName="ConsecutivoError" />
                 <ScalarProperty Name="DescripcionError" ColumnName="DescripcionError" />
                 <ScalarProperty Name="FechaHora" ColumnName="FechaHora" />
@@ -148,7 +131,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ERRORES">
-            <EntityTypeMapping TypeName="ProyectoWeb_KN_BDModel.ERRORES">
+            <EntityTypeMapping TypeName="ProyectoW_BDModel.ERRORES">
               <MappingFragment StoreEntitySet="ERRORES">
                 <ScalarProperty Name="ConsecutivoError" ColumnName="ConsecutivoError" />
                 <ScalarProperty Name="DescripcionError" ColumnName="DescripcionError" />
@@ -159,25 +142,17 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="USUARIOS">
-            <EntityTypeMapping TypeName="ProyectoWeb_KN_BDModel.USUARIOS">
+            <EntityTypeMapping TypeName="ProyectoW_BDModel.USUARIOS">
               <MappingFragment StoreEntitySet="USUARIOS">
                 <ScalarProperty Name="ConsecutivoUsuario" ColumnName="ConsecutivoUsuario" />
                 <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
                 <ScalarProperty Name="Contrasenna" ColumnName="Contrasenna" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="RegistrarBitacora" FunctionName="ProyectoWeb_KN_BDModel.Store.RegistrarBitacora" />
-          <FunctionImportMapping FunctionImportName="ValidarUsuario" FunctionName="ProyectoWeb_KN_BDModel.Store.ValidarUsuario">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ProyectoWeb_KN_BDModel.ValidarUsuario_Result">
-                <ScalarProperty Name="ConsecutivoUsuario" ColumnName="ConsecutivoUsuario" />
-                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -4,11 +4,11 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="dc91e149c5264082b05632fe87070643" Name="Diagram1">
-        <EntityTypeShape EntityType="ProyectoWeb_KN_BDModel.BITACORAS" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoWeb_KN_BDModel.ERRORES" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoWeb_KN_BDModel.USUARIOS" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
-        <AssociationConnector Association="ProyectoWeb_KN_BDModel.FK_ERRORES_USUARIOS" ManuallyRouted="false" />
+      <Diagram DiagramId="5fbc19b136524b1c8efdb979539f8c2c" Name="Diagram1">
+        <EntityTypeShape EntityType="ProyectoW_BDModel.BITACORA" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoW_BDModel.ERRORES" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoW_BDModel.USUARIOS" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="ProyectoW_BDModel.FK_ConsecutivoUsuario" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

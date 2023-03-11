@@ -6,19 +6,16 @@
 }
 
 <section class="wrapper">
-    <div class="form signup">
+
+    @using (Html.BeginForm("RegistrarUsuario", "Home", FormMethod.Post, new { @class="form signup" }))
+    {
         <header>Signup</header>
-        <form action="#">
-            <input type="text" placeholder="Full name" required />
-            <input type="text" placeholder="Email address" required />
-            <input type="password" placeholder="Password" required />
-            <div class="checkbox">
-                <input type="checkbox" id="signupCheck" />
-                <label for="signupCheck">I accept all terms & conditions</label>
-            </div>
-            <input type="submit" value="Signup" />
-        </form>
-    </div>
+        @Html.TextBoxFor(Model => Model.Nombre, new { @placeholder = "Nombre", @required = true })
+        @Html.TextBoxFor(Model => Model.CorreoElectronico, new { @placeholder = "Correo Electrónico", @required = true })
+        @Html.TextBoxFor(Model => Model.Apellidos, new { @placeholder = "Apellidos", @required = true })
+        @Html.TextBoxFor(Model => Model.Contrasenna, new { @placeholder = "Contraseña", @type = "Password", @required = true })
+        <input type="submit" value="Registrarse" />
+     }
 
 
     @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @class = "form login" }))
