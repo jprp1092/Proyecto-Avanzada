@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ProyectoApi_KN.Entities;
+using ProyectoApi_KN.ModeloBD;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -10,10 +12,37 @@ namespace ProyectoApi_KN.Models
     public class LogsModel
     {
 
-
-        private void EnviarCorreo(string destinatario, string asunto, string mensaje)
+        public void RegistrarBitacora(LogsEnt entidad)
         {
+            using (var conexion = new ProyectoW_BDEntities())
+            {
+                BITACORAS bitacora = new BITACORAS();
+                bitacora.FechaHora = entidad.FechaHora;
+                bitacora.Origen = entidad.Origen;
+                bitacora.DescripcionError = entidad.DescripcionError;
 
+                conexion.BITACORAS.Add(bitacora);
+                conexion.SaveChanges();
+            }
+        }
+
+        public void RegistrarErrores(LogsEnt entidad)
+        {
+            using (var conexion = new ProyectoW_BDEntities())
+            {
+                ERRORES error = new ERRORES();
+                error.ConsecutivoUsuario = entidad.ConsecutivoUsuario;
+                error.FechaHora = entidad.FechaHora;
+                error.Origen = entidad.Origen;
+                error.DescripcionError = entidad.DescripcionError;
+
+                conexion.ERRORES.Add(error);
+                conexion.SaveChanges();
+            }
+        }
+
+        public void EnviarCorreo(string destinatario, string asunto, string mensaje)
+        {
             string usuarioCorreo = ConfigurationManager.AppSettings["usuarioCorreo"].ToString();
             string claveCorreo = ConfigurationManager.AppSettings["claveCorreo"].ToString();
 
@@ -33,8 +62,6 @@ namespace ProyectoApi_KN.Models
             client.EnableSsl = true;
             client.Send(msg);
         }
-
-
 
     }
 }

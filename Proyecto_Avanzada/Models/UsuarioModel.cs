@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using Proyecto_Avanzada.Entities;
-using Proyecto_Avanzada.ModelDB;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -94,39 +93,6 @@ namespace Proyecto_Avanzada.Models
             }
         }
 
-        public void RegistrarBitacora(string origen, string descripcion)
-        {
-            using (var conexion = new ProyectoW_BDEntities())
-            {
-                //conexion.RegistrarBitacora(origen, descripcion);
-
-                BITACORA bitacora = new BITACORA();
-                bitacora.FechaHora = DateTime.Now;
-                bitacora.Origen = origen;
-                bitacora.DescripcionError = descripcion;
-
-                conexion.BITACORA.Add(bitacora);
-                conexion.SaveChanges();
-            }
-        }
-
-        public void RegistrarErrores(object usuario, string origen, string descripcion)
-        {
-            using (var conexion = new ProyectoW_BDEntities())
-            {
-                ERRORES error = new ERRORES();
-                error.ConsecutivoUsuario = long.Parse(usuario.ToString());
-                error.FechaHora = DateTime.Now;
-                error.Origen = origen;
-                error.DescripcionError = descripcion;
-
-                conexion.ERRORES.Add(error);
-                conexion.SaveChanges();
-            }
-        }
-
-
-
-
+        
     }
     }

@@ -1,10 +1,6 @@
 ﻿using Proyecto_Avanzada.Entities;
 using Proyecto_Avanzada.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Proyecto_Avanzada.Controllers
@@ -16,7 +12,9 @@ namespace Proyecto_Avanzada.Controllers
     */
     public class HomeController : Controller
     {
-        UsuarioModel model = new UsuarioModel();
+        UsuarioModel usuariosModel = new UsuarioModel();
+        ProvinciaModel provinciasModel = new ProvinciaModel();
+        LogsModel logsModel = new LogsModel();
 
         //Método de Iniciar Sesión
 
@@ -25,11 +23,12 @@ namespace Proyecto_Avanzada.Controllers
         {
             try
             {
+                Session.Clear();
                 return View();
             }
             catch (Exception ex)
             {
-                model.RegistrarBitacora("Home-Index", ex.Message);
+                logsModel.RegistrarBitacora(ControllerContext, ex.Message);
                 return View("Index");
             }
         }
@@ -39,13 +38,13 @@ namespace Proyecto_Avanzada.Controllers
         {
             try
             {
-                var resultado = model.ValidarUsuario(entidad);
+                var resultado = usuariosModel.ValidarUsuario(entidad);
                 if (resultado != null)
                 {
                     Session["CodigoUsuario"] = resultado.ConsecutivoUsuario;
                     Session["CorreoUsuario"] = resultado.CorreoElectronico;
                     Session["TokenUsuario"] = resultado.Token;
-                    return View();
+                    return RedirectToAction("PantallaPrincipal", "Home");
                 }
                 else
                 {
@@ -55,7 +54,7 @@ namespace Proyecto_Avanzada.Controllers
             }
             catch (Exception ex)
             {
-                model.RegistrarBitacora("Home-Principal", ex.Message);
+                logsModel.RegistrarBitacora(ControllerContext, ex.Message);
                 ViewBag.mensajeError = "Sus credenciales no fueron validadas";
                 return View("Index");
             }
@@ -68,39 +67,51 @@ namespace Proyecto_Avanzada.Controllers
         {
             try
             {
-                var resultado = model.BuscarCorreo(correo);
+                var resultado = usuariosModel.BuscarCorreo(correo);
                 return Json(resultado, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
-                model.RegistrarBitacora("Home-BuscarCorreo", ex.Message);
+                logsModel.RegistrarBitacora(ControllerContext, ex.Message);
                 return Json(null, JsonRequestBehavior.DenyGet);
             }
         }
 
         //Método de Registrar Usuario
 
+        [HttpGet]
+        public ActionResult RegistrarUsuario()
+        {
+            try
+            {
+                ViewBag.ListaProvincias = provinciasModel.ConsultarProvincias();
+                ViewBag.ListaRoles = provinciasModel.ConsultarRoles();
+                return View();
+            }
+            catch (Exception ex)
+            {
+                logsModel.RegistrarBitacora(ControllerContext, ex.Message);
+                return View("Index");
+            }
+        }
+
         [HttpPost]
         public ActionResult RegistrarUsuario(UsuarioEnt entidad)
         {
             try
             {
-                var respuesta = model.RegistrarUsuario(entidad);
 
-                if (respuesta > 0)
-                    return View("Index");
-                else
-                {
-                    ViewBag.mensajeError = "El usuario no se pudo registrar";
-                    return View("Index");
-                }
+                var resultado = usuariosModel.RegistrarUsuario(entidad);
+
+                return View(entidad);
             }
             catch (Exception ex)
             {
-                model.RegistrarBitacora("Home-RegistrarUsuario", ex.Message);
+                logsModel.RegistrarBitacora(ControllerContext, ex.Message);
                 return View("Index");
             }
         }
+
 
         //Método de Recuperar Contraseña
 
@@ -113,7 +124,7 @@ namespace Proyecto_Avanzada.Controllers
             }
             catch (Exception ex)
             {
-                model.RegistrarBitacora("Home-RegistrarUsuario", ex.Message);
+                logsModel.RegistrarBitacora(ControllerContext, ex.Message);
                 return View("Index");
             }
         }
@@ -123,12 +134,12 @@ namespace Proyecto_Avanzada.Controllers
         {
             try
             {
-                model.RecuperarContrasenna(entidad);
+                usuariosModel.RecuperarContrasenna(entidad);
                 return View("Index");
             }
             catch (Exception ex)
             {
-                model.RegistrarBitacora("Home-RegistrarUsuario", ex.Message);
+                logsModel.RegistrarBitacora(ControllerContext, ex.Message);
                 return View("Index");
             }
         }

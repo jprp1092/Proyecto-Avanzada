@@ -4,11 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5fbc19b136524b1c8efdb979539f8c2c" Name="Diagram1">
-        <EntityTypeShape EntityType="ProyectoW_BDModel.BITACORA" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoW_BDModel.ERRORES" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoW_BDModel.USUARIOS" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+      <Diagram DiagramId="bd18a5c3e357496badd76964af739387" Name="Diagram1">
+        <EntityTypeShape EntityType="ProyectoW_BDModel.BITACORAS" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoW_BDModel.ERRORES" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoW_BDModel.PROVINCIAS" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoW_BDModel.USUARIOS" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <AssociationConnector Association="ProyectoW_BDModel.FK_ConsecutivoUsuario" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoW_BDModel.FK_PROVINCIA" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -3,7 +3,9 @@ using ProyectoApi_KN.Entities;
 using ProyectoApi_KN.ModeloBD;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
+using System.Net.Mail;
 using System.Reflection.Emit;
 using System.Web;
 
@@ -32,6 +34,7 @@ namespace ProyectoApi_KN.Models
                     entidadResultado.Token = generator.GenerateTokenJwt(resultado.CorreoElectronico);
                     entidadResultado.ConsecutivoUsuario = resultado.ConsecutivoUsuario;
                     entidadResultado.CorreoElectronico = resultado.CorreoElectronico;
+                    entidadResultado.Estado = resultado.Estado;
                     return entidadResultado;
                 }
 
@@ -90,7 +93,6 @@ namespace ProyectoApi_KN.Models
                 usuario.CorreoElectronico = entidad.CorreoElectronico;
                 usuario.Contrasenna = entidad.Contrasenna;
                 usuario.Nombre = entidad.Nombre;
-                usuario.Apellidos = entidad.Apellidos;
                 usuario.Estado = true;
                 conexion.USUARIOS.Add(usuario);
                 return conexion.SaveChanges();
@@ -109,7 +111,7 @@ namespace ProyectoApi_KN.Models
                 if (resultado != null)
                 {
                     string mensaje = "Su contraseña actual es: " + resultado.Contrasenna;
-                    Model.EnviarCorreo(resultado.CorreoElectronico, "Recuperar Contraseña", mensaje);
+                    model.EnviarCorreo(resultado.CorreoElectronico, "Recuperar Contraseña", mensaje);
                 }
             }
         }

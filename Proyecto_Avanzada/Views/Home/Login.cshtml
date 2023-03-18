@@ -7,23 +7,97 @@
 
 <section class="wrapper">
 
-    @using (Html.BeginForm("RegistrarUsuario", "Home", FormMethod.Post, new { @class="form signup" }))
-    {
-        <header>Signup</header>
-        @Html.TextBoxFor(Model => Model.Nombre, new { @placeholder = "Nombre", @required = true })
-        @Html.TextBoxFor(Model => Model.CorreoElectronico, new { @placeholder = "Correo Electrónico", @required = true })
-        @Html.TextBoxFor(Model => Model.Apellidos, new { @placeholder = "Apellidos", @required = true })
-        @Html.TextBoxFor(Model => Model.Contrasenna, new { @placeholder = "Contraseña", @type = "Password", @required = true })
-        <input type="submit" value="Registrarse" />
-     }
+    <div class="row">
+
+        <div class="col-md-1"></div>
+
+        <div class="col-md-10 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Registrar Usuario</h4>
+
+                    @using (Html.BeginForm("RegistrarUsuario", "Home", FormMethod.Post, new { @class = "pt-3" }))
+                    {
+                        <form class="forms-sample">
+
+                            <div class="row">
+
+                                @Html.HiddenFor(x => x.ConsecutivoUsuario)
+
+                                <div class="form-group col-md-6">
+                                    <label>Correo Electrónico</label>
+                                    @Html.TextBoxFor(Model => Model.CorreoElectronico, new
+                               {
+                                   @class = "form-control form-control-lg",
+                                   @onblur = "BuscarCorreo();",
+                                   @required = true
+                               })
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Contraseña</label>
+                                    @Html.TextBoxFor(Model => Model.Contrasenna, new { @class = "form-control form-control-lg", @type = "password", @required = true })
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="form-group col-md-6">
+                                    <label>Identificación</label>
+                                    @Html.TextBoxFor(Model => Model.Identificacion, new
+                               {
+                                   @class = "form-control",
+                                   @onkeyUp = "ConsultarNombreApi();",
+                                   @required = true
+                               })
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Nombre</label>
+                                    @Html.TextBoxFor(Model => Model.Nombre, new { @class = "form-control", @readonly = "true" })
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="form-group col-md-6">
+                                    <label>Provincia</label>
+                                    @Html.DropDownListFor(Model => Model.CodProvincia, ViewBag.ListaProvincias as List<SelectListItem>, new { @class = "form-control" })
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Rol</label>
+                                    @Html.DropDownListFor(Model => Model.Rol, ViewBag.ListaRoles as List<SelectListItem>, new { @class = "form-control" })
+                                </div>
+
+                            </div>
+
+                            <br />
+
+                            <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">Registrarse</button>
+
+                        </form>
+                    }
 
 
-    @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @class = "form login" }))
-    {
-        <header>Login</header>
-        @Html.TextBoxFor(Model => Model.CorreoElectronico, new { @placeholder = "Correo Electrónico", @required = true })
-        @Html.TextBoxFor(Model => Model.Contrasenna, new { @placeholder = "Contraseña", @type = "Password", @required = true })
-        <a href="@Url.Action("RecuperarContrasenna", "Home")" class="text-primary">¿Olvidó su contraseña?</a>
-        <input type="submit" value="Login" />
-    }
+                    @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @class = "form login" }))
+                    {
+                        <header>Login</header>
+                        @Html.TextBoxFor(Model => Model.CorreoElectronico, new { @placeholder = "Correo Electrónico", @required = true })
+                        @Html.TextBoxFor(Model => Model.Contrasenna, new { @placeholder = "Contraseña", @type = "Password", @required = true })
+                        <a href="@Url.Action("RecuperarContrasenna", "Home")" class="text-primary">¿Olvidó su contraseña?</a>
+                        <input type="submit" value="Login" />
+                    }
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-md-1"></div>
+
+    </div>
 </section>
+
+
+
+
+<script src="~/Funciones/RegistrarUsuario.js"></script>
