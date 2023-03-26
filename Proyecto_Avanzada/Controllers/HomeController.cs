@@ -1,22 +1,29 @@
-﻿using Proyecto_Avanzada.Entities;
+﻿using Proyecto_Avanzada.App_Start;
+using Proyecto_Avanzada.Entities;
 using Proyecto_Avanzada.Models;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
-namespace Proyecto_Avanzada.Controllers
+namespace ProyectoWeb_KN.Controllers
 {
     /*
-       F10 = Avanzamos línea por línea
-       F11 = Ingresamos a los métodos
-       F5 = Liberamos la depuración
+       F10 = Avanzamos lÃ­nea por lÃ­nea
+       F11 = Ingresamos a los mÃ©todos
+       F5 = Liberamos la depuraciÃ³n
     */
+
     public class HomeController : Controller
     {
         UsuarioModel usuariosModel = new UsuarioModel();
-        ProvinciaModel provinciasModel = new ProvinciaModel();
+        ProvinciaModel provinciaModel = new ProvinciaModel();
         LogsModel logsModel = new LogsModel();
 
-        //Método de Iniciar Sesión
+        //MÃ©todo de Iniciar SesiÃ³n
 
         [HttpGet]
         public ActionResult Index()
@@ -60,32 +67,15 @@ namespace Proyecto_Avanzada.Controllers
             }
         }
 
-        
 
-        [HttpPost]
-        public ActionResult BuscarCorreo(string correo)
-        {
-            try
-            {
-                var resultado = usuariosModel.BuscarCorreo(correo);
-                return Json(resultado, JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception ex)
-            {
-                logsModel.RegistrarBitacora(ControllerContext, ex.Message);
-                return Json(null, JsonRequestBehavior.DenyGet);
-            }
-        }
 
-        //Método de Registrar Usuario
+        //MÃ©todo de Registrar Usuario
 
         [HttpGet]
         public ActionResult RegistrarUsuario()
         {
             try
             {
-                ViewBag.ListaProvincias = provinciasModel.ConsultarProvincias();
-                ViewBag.ListaRoles = provinciasModel.ConsultarRoles();
                 return View();
             }
             catch (Exception ex)
@@ -96,14 +86,26 @@ namespace Proyecto_Avanzada.Controllers
         }
 
         [HttpPost]
+        public ActionResult BuscarCorreo(string correo)
+        {
+            var resultado = usuariosModel.BuscarCorreo(correo);
+            return Json(resultado, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
         public ActionResult RegistrarUsuario(UsuarioEnt entidad)
         {
             try
             {
+                var respuesta = usuariosModel.RegistrarUsuario(entidad);
 
-                var resultado = usuariosModel.RegistrarUsuario(entidad);
-
-                return View(entidad);
+                if (respuesta > 0)
+                    return View("Index");
+                else
+                {
+                    ViewBag.mensajeError = "El usuario no se pudo registrar";
+                    return View("Index");
+                }
             }
             catch (Exception ex)
             {
@@ -112,8 +114,22 @@ namespace Proyecto_Avanzada.Controllers
             }
         }
 
+        //MÃ©todo de Recuperar ContraseÃ±a
 
-        //Método de Recuperar Contraseña
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         [HttpGet]
         public ActionResult RecuperarContrasenna()
@@ -143,28 +159,80 @@ namespace Proyecto_Avanzada.Controllers
                 return View("Index");
             }
         }
-            public ActionResult About()
-            {
-                return View();
-            }
 
-            public ActionResult Services()
+        [HttpGet]
+        [SessionFilter]
+        public ActionResult PantallaPrincipal()
+        {
+            try
             {
-                return View();
+                return View("Principal");
             }
-            public ActionResult Packages()
+            catch (Exception ex)
             {
-                return View();
+                logsModel.RegistrarBitacora(ControllerContext, ex.Message);
+                ViewBag.mensajeError = "Sus credenciales no fueron validadas";
+                return View("Index");
             }
-            public ActionResult Contact()
-            {
-                return View();
-            }
+        }
 
-            public ActionResult Login()
+        [HttpGet]
+        [SessionFilter]
+        public ActionResult CerrarSesion()
+        {
+            Session.Clear();
+            return RedirectToAction("Index", "Home");
+        }
+
+
+        [HttpGet]
+        public ActionResult ConsultarUsuarios(long q)
+        {
+            try
+            {
+                var resultado = usuariosModel.ConsultarUsuarios().FirstOrDefault(x => x.ConsecutivoUsuario == q);
+
+                ViewBag.ListaProvincias = provinciaModel.ConsultarProvincias();
+                ViewBag.ListaRoles = provinciaModel.ConsultarRoles();
+
+                return View(resultado);
+            }
+            catch (Exception ex)
+            {
+                logsModel.RegistrarErrores(Session["CodigoUsuario"], ControllerContext, ex.Message);
+                return View("Index");
+            }
+        }
+
+        public ActionResult About()
         {
             return View();
         }
 
+        public ActionResult Services()
+        {
+            return View();
+        }
+        public ActionResult Packages()
+        {
+            return View();
+        }
+        public ActionResult Contact()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Login()
+        {
+            ViewBag.ListaProvincias = provinciaModel.ConsultarProvincias();
+            ViewBag.ListaRoles = provinciaModel.ConsultarRoles();
+
+            return View();
+        }
+
+
+
     }
+
 }

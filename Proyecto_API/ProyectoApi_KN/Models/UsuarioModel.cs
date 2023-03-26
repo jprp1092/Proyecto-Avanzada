@@ -1,6 +1,6 @@
 ﻿using ProyectoApi_KN.App_Start;
 using ProyectoApi_KN.Entities;
-using ProyectoApi_KN.ModeloBD;
+using ProyectoApi_KN.ModelDB;
 using System;
 using System.Collections.Generic;
 using System.Configuration;

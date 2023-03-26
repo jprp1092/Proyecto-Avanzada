@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ProyectoW_BDModelStoreContainer" CdmEntityContainer="ProyectoW_BDEntities">
+    <EntitySetMapping Name="BITACORAS">
+      <EntityTypeMapping TypeName="ProyectoW_BDModel.BITACORAS">
+        <MappingFragment StoreEntitySet="BITACORAS">
+          <ScalarProperty Name="ConsecutivoError" ColumnName="ConsecutivoError" />
+          <ScalarProperty Name="DescripcionError" ColumnName="DescripcionError" />
+          <ScalarProperty Name="FechaHora" ColumnName="FechaHora" />
+          <ScalarProperty Name="Origen" ColumnName="Origen" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ERRORES">
+      <EntityTypeMapping TypeName="ProyectoW_BDModel.ERRORES">
+        <MappingFragment StoreEntitySet="ERRORES">
+          <ScalarProperty Name="ConsecutivoError" ColumnName="ConsecutivoError" />
+          <ScalarProperty Name="DescripcionError" ColumnName="DescripcionError" />
+          <ScalarProperty Name="FechaHora" ColumnName="FechaHora" />
+          <ScalarProperty Name="ConsecutivoUsuario" ColumnName="ConsecutivoUsuario" />
+          <ScalarProperty Name="Origen" ColumnName="Origen" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PROVINCIAS">
+      <EntityTypeMapping TypeName="ProyectoW_BDModel.PROVINCIAS">
+        <MappingFragment StoreEntitySet="PROVINCIAS">
+          <ScalarProperty Name="CodProvincia" ColumnName="CodProvincia" />
+          <ScalarProperty Name="NombreProvincia" ColumnName="NombreProvincia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USUARIOS">
+      <EntityTypeMapping TypeName="ProyectoW_BDModel.USUARIOS">
+        <MappingFragment StoreEntitySet="USUARIOS">
+          <ScalarProperty Name="ConsecutivoUsuario" ColumnName="ConsecutivoUsuario" />
+          <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+          <ScalarProperty Name="Contrasenna" ColumnName="Contrasenna" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
+          <ScalarProperty Name="CodProvincia" ColumnName="CodProvincia" />
+          <ScalarProperty Name="Rol" ColumnName="Rol" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="RegistrarBitacora" FunctionName="ProyectoW_BDModel.Store.RegistrarBitacora" />
+    <FunctionImportMapping FunctionImportName="ValidarUsuario" FunctionName="ProyectoW_BDModel.Store.ValidarUsuario">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ProyectoW_BDModel.ValidarUsuario_Result">
+          <ScalarProperty Name="ConsecutivoUsuario" ColumnName="ConsecutivoUsuario" />
+          <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

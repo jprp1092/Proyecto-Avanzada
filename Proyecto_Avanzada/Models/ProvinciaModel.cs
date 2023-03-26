@@ -1,5 +1,9 @@
 ﻿using Proyecto_Avanzada.Entities;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http.Headers;
+using System.Web;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Reflection;
@@ -47,7 +51,7 @@ namespace Proyecto_Avanzada.Models
     {
         List<SelectListItem> listaCombo = new List<SelectListItem>();
 
-        // listaCombo.Add(new SelectListItem { Text = "Administrador", Value = "Admin" });
+        listaCombo.Add(new SelectListItem { Text = "Administrador", Value = "Admin" });
         listaCombo.Add(new SelectListItem { Text = "Usuario", Value = "User" });
 
         return listaCombo;

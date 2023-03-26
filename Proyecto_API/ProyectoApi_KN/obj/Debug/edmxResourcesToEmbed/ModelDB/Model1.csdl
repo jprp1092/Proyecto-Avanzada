@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProyectoW_BDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="BITACORAS">
+    <Key>
+      <PropertyRef Name="ConsecutivoError" />
+    </Key>
+    <Property Name="ConsecutivoError" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DescripcionError" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FechaHora" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Origen" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ERRORES">
+    <Key>
+      <PropertyRef Name="ConsecutivoError" />
+    </Key>
+    <Property Name="ConsecutivoError" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DescripcionError" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FechaHora" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ConsecutivoUsuario" Type="Int64" Nullable="false" />
+    <Property Name="Origen" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="USUARIOS" Relationship="Self.FK_ERRORES_USUARIOS" FromRole="ERRORES" ToRole="USUARIOS" />
+  </EntityType>
+  <EntityType Name="PROVINCIAS">
+    <Key>
+      <PropertyRef Name="CodProvincia" />
+    </Key>
+    <Property Name="CodProvincia" Type="Byte" Nullable="false" />
+    <Property Name="NombreProvincia" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="USUARIOS" Relationship="Self.FK_USUARIOS_PROVINCIAS" FromRole="PROVINCIAS" ToRole="USUARIOS" />
+  </EntityType>
+  <EntityType Name="USUARIOS">
+    <Key>
+      <PropertyRef Name="ConsecutivoUsuario" />
+    </Key>
+    <Property Name="ConsecutivoUsuario" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CorreoElectronico" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Contrasenna" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Estado" Type="Boolean" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Identificacion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CodProvincia" Type="Byte" />
+    <Property Name="Rol" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ERRORES" Relationship="Self.FK_ERRORES_USUARIOS" FromRole="USUARIOS" ToRole="ERRORES" />
+    <NavigationProperty Name="PROVINCIAS" Relationship="Self.FK_USUARIOS_PROVINCIAS" FromRole="USUARIOS" ToRole="PROVINCIAS" />
+  </EntityType>
+  <Association Name="FK_ERRORES_USUARIOS">
+    <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="1" />
+    <End Role="ERRORES" Type="Self.ERRORES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIOS">
+        <PropertyRef Name="ConsecutivoUsuario" />
+      </Principal>
+      <Dependent Role="ERRORES">
+        <PropertyRef Name="ConsecutivoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USUARIOS_PROVINCIAS">
+    <End Role="PROVINCIAS" Type="Self.PROVINCIAS" Multiplicity="0..1" />
+    <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROVINCIAS">
+        <PropertyRef Name="CodProvincia" />
+      </Principal>
+      <Dependent Role="USUARIOS">
+        <PropertyRef Name="CodProvincia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ProyectoW_BDEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BITACORAS" EntityType="Self.BITACORAS" />
+    <EntitySet Name="ERRORES" EntityType="Self.ERRORES" />
+    <EntitySet Name="PROVINCIAS" EntityType="Self.PROVINCIAS" />
+    <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" />
+    <AssociationSet Name="FK_ERRORES_USUARIOS" Association="Self.FK_ERRORES_USUARIOS">
+      <End Role="USUARIOS" EntitySet="USUARIOS" />
+      <End Role="ERRORES" EntitySet="ERRORES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USUARIOS_PROVINCIAS" Association="Self.FK_USUARIOS_PROVINCIAS">
+      <End Role="PROVINCIAS" EntitySet="PROVINCIAS" />
+      <End Role="USUARIOS" EntitySet="USUARIOS" />
+    </AssociationSet>
+    <FunctionImport Name="RegistrarBitacora">
+      <Parameter Name="Descripcion" Mode="In" Type="String" />
+      <Parameter Name="Origen" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ValidarUsuario" ReturnType="Collection(ProyectoW_BDModel.ValidarUsuario_Result)">
+      <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
+      <Parameter Name="Contrasenna" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="ValidarUsuario_Result">
+    <Property Type="Int64" Name="ConsecutivoUsuario" Nullable="false" />
+    <Property Type="String" Name="CorreoElectronico" Nullable="false" MaxLength="70" />
+    <Property Type="Boolean" Name="Estado" Nullable="false" />
+  </ComplexType>
+</Schema>

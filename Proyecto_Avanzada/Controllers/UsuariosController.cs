@@ -1,7 +1,12 @@
-﻿using Proyecto_Avanzada.Models;
+﻿using Proyecto_Avanzada.App_Start;
+using Proyecto_Avanzada.Entities;
+using Proyecto_Avanzada.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
+
 
 namespace Proyecto_Avanzada.Controllers
 {
@@ -32,7 +37,7 @@ namespace Proyecto_Avanzada.Controllers
         {
             try
             {
-                var resultado = usuariosModel.ConsultarUsuarios().FirstOrDefault(x => x.ConsecutivoUsuario == q);
+                var resultado = usuariosModel.ConsultarUsuario(q);
 
                 ViewBag.ListaProvincias = provinciasModel.ConsultarProvincias();
                 ViewBag.ListaRoles = provinciasModel.ConsultarRoles();
@@ -44,6 +49,28 @@ namespace Proyecto_Avanzada.Controllers
                 logsModel.RegistrarErrores(Session["CodigoUsuario"], ControllerContext, ex.Message);
                 return View("Index");
             }
+        }
+
+        [HttpPost]
+        public ActionResult ActualizarUsuario(UsuarioEnt entidad)
+        {
+            try
+            {
+                usuariosModel.ActualizarUsuario(entidad);
+                return RedirectToAction("Index", "Usuarios");
+            }
+            catch (Exception ex)
+            {
+                logsModel.RegistrarErrores(Session["CodigoUsuario"], ControllerContext, ex.Message);
+                return View("Index");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult CambiarEstado(long id)
+        {
+            usuariosModel.CambiarEstado(id);
+            return Json("ok", JsonRequestBehavior.AllowGet);
         }
 
     }

@@ -9,17 +9,26 @@ using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Web;
 using System.Web.Mvc;
+using System.Net.Mail;
+using System.Xml;
+
 
 namespace Proyecto_Avanzada.Models
 {
+    //Todas las funciones
     public class UsuarioModel
     {
+        /*
+           1. Nivel de acceso: Public Private
+           2. Retorno del mÃ©todo int, decimal, string, datetime, boolean, Objeto, List<Objeto>
+           3. ParÃ¡metros de entrada int, decimal, string, datetime, boolean, Objeto, List<Objeto>
+        */
         public UsuarioEnt ValidarUsuario(UsuarioEnt entidad)
         {
             using (var client = new HttpClient())
             {
                 JsonContent body = JsonContent.Create(entidad);
-                string url = "https://localhost:44398/api/ValidarUsuarios";
+                string url = "https://localhost:44398/api/ValidarUsuario";
 
                 HttpResponseMessage res = client.PostAsync(url, body).GetAwaiter().GetResult();
 
@@ -47,8 +56,23 @@ namespace Proyecto_Avanzada.Models
             }
         }
 
+        public UsuarioEnt ConsultarUsuario(long q)
+        {
+            using (var client = new HttpClient())
+            {
+                string url = "https://localhost:44398/api/ConsultarUsuario?q=" + q;
 
-            public string BuscarCorreo(string correoElectronico)
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", HttpContext.Current.Session["TokenUsuario"].ToString());
+                HttpResponseMessage res = client.GetAsync(url).GetAwaiter().GetResult();
+
+                if (res.IsSuccessStatusCode)
+                    return res.Content.ReadFromJsonAsync<UsuarioEnt>().Result;
+
+                return null;
+            }
+        }
+
+        public string BuscarCorreo(string correoElectronico)
         {
             using (var client = new HttpClient())
             {
@@ -60,7 +84,7 @@ namespace Proyecto_Avanzada.Models
                 if (res.IsSuccessStatusCode)
                     return res.Content.ReadFromJsonAsync<string>().Result;
 
-                return  "ERROR";
+                return "ERROR";
             }
 
         }
@@ -70,7 +94,7 @@ namespace Proyecto_Avanzada.Models
             using (var client = new HttpClient())
             {
                 JsonContent body = JsonContent.Create(entidad);
-                string url = "https://localhost:44398/api/RegistrarUsuarios";
+                string url = "https://localhost:44398/api/RegistrarUsuario";
 
                 HttpResponseMessage res = client.PostAsync(url, body).GetAwaiter().GetResult();
 
@@ -78,6 +102,29 @@ namespace Proyecto_Avanzada.Models
                     return res.Content.ReadFromJsonAsync<int>().Result;
 
                 return 0;
+            }
+        }
+
+        public void ActualizarUsuario(UsuarioEnt entidad)
+        {
+            using (var client = new HttpClient())
+            {
+                JsonContent body = JsonContent.Create(entidad);
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", HttpContext.Current.Session["TokenUsuario"].ToString());
+                string url = "https://localhost:44398/api/ActualizarUsuario";
+
+                client.PutAsync(url, body).GetAwaiter().GetResult();
+            }
+        }
+
+        public void CambiarEstado(long id)
+        {
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", HttpContext.Current.Session["TokenUsuario"].ToString());
+                string url = "https://localhost:44398/api/CambiarEstado?q=" + id;
+
+                client.DeleteAsync(url).GetAwaiter().GetResult();
             }
         }
 
@@ -89,10 +136,8 @@ namespace Proyecto_Avanzada.Models
                 string url = "https://localhost:44398/api/RecuperarContrasenna";
 
                 HttpResponseMessage res = client.PostAsync(url, body).GetAwaiter().GetResult();
-
             }
         }
 
-        
     }
-    }
+}

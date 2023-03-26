@@ -1,8 +1,13 @@
 ﻿using System;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 
-namespace Proyecto_Avanzada.Controllers
+
+namespace Proyecto_Avanzada.App_Start
 {
     public class SessionFilter : ActionFilterAttribute
 {

@@ -1,7 +1,7 @@
 ﻿function BuscarCorreo() {
 
     $("#btnRegistrar").prop("disabled", true);
-    let correo = $("#CorreoElectronico").val();
+    let correo = $("#CorreoElectronico").value;
 
     $.ajax({
         url: "/Home/BuscarCorreo",
@@ -26,9 +26,9 @@
 
 }
 
-function ConsultarNombreApi() {
+function ConsultarNombreApi(field) {
+    let Identificacion = field.value;
 
-    let Identificacion = $("#Identificacion").val();
 
     if (Identificacion.trim().length >= 8) {
 
@@ -43,6 +43,7 @@ function ConsultarNombreApi() {
 
     }
     else {
+        console.log($);
         $("#Nombre").val("");
     }
 

@@ -1,7 +1,14 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Proyecto_API\\ProyectoApi_KN",
+    "\\Proyecto_API\\ProyectoApi_KN\\bin",
+    "\\Proyecto_API\\ProyectoApi_KN\\Controllers",
+    "\\Proyecto_Avanzada",
+    "\\Proyecto_Avanzada\\bin",
+    "\\Proyecto_Avanzada\\Controllers",
+    "\\Proyecto_Avanzada\\Views",
+    "\\Proyecto_Avanzada\\Views\\Home"
   ],
-  "SelectedNode": "\\ProyectoApi_KN.sln",
   "PreviewInSolutionExplorer": false
 }

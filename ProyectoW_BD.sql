@@ -1,32 +1,78 @@
-CREATE DATABASE ProyectoW_BD
+USE [master]
+GO
 
-USE ProyectoW_BD
+CREATE DATABASE [ProyectoW_BD]
+GO
 
-CREATE TABLE USUARIOS (
-ConsecutivoUsuario bigint primary key identity(1,1) not null,
-CorreoElectronico varchar(70) not null,
-Nombre varchar(15) not null,
-Apellidos varchar(40) not null,
-Contrasenna varchar(10) not null,
-Estado bit not null
-);
+USE [ProyectoW_BD]
+GO
 
-CREATE TABLE ERRORES (
-ConsecutivoError bigint primary key identity(1,1) not null,
-DescripcionError varchar(max) not null,
-FechaHora datetime not null,
-ConsecutivoUsuario bigint not null,
-Origen varchar(100) not null,
-CONSTRAINT FK_ConsecutivoUsuario FOREIGN KEY (ConsecutivoUsuario) REFERENCES USUARIOS (ConsecutivoUsuario)
-);
+CREATE TABLE [dbo].[BITACORAS](
+	[ConsecutivoError] [bigint] IDENTITY(1,1) NOT NULL,
+	[DescripcionError] [varchar](max) NOT NULL,
+	[FechaHora] [datetime] NOT NULL,
+	[Origen] [varchar](100) NOT NULL,
+ CONSTRAINT [PK_BITACORAS] PRIMARY KEY CLUSTERED 
+(
+	[ConsecutivoError] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
 
-CREATE TABLE BITACORA (
-ConsecutivoError bigint primary key identity(1,1) not null,
-DescripcionError varchar(max) not null,
-FechaHora datetime not null,
-Origen varchar(100) not null,
-);
+CREATE TABLE [dbo].[ERRORES](
+	[ConsecutivoError] [bigint] IDENTITY(1,1) NOT NULL,
+	[DescripcionError] [varchar](max) NOT NULL,
+	[FechaHora] [datetime] NOT NULL,
+	[ConsecutivoUsuario] [bigint] NOT NULL,
+	[Origen] [varchar](100) NOT NULL,
+ CONSTRAINT [PK_ERRORES] PRIMARY KEY CLUSTERED 
+(
+	[ConsecutivoError] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
 
+CREATE TABLE [dbo].[PROVINCIAS](
+	[CodProvincia] [tinyint] NOT NULL,
+	[NombreProvincia] [varchar](20) NOT NULL,
+ CONSTRAINT [PK_PROVINCIAS] PRIMARY KEY CLUSTERED 
+(
+	[CodProvincia] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+CREATE TABLE [dbo].[USUARIOS](
+	[ConsecutivoUsuario] [bigint] IDENTITY(1,1) NOT NULL,
+	[CorreoElectronico] [varchar](70) NOT NULL,
+	[Contrasenna] [varchar](10) NOT NULL,
+	[Estado] [bit] NOT NULL,
+	[Nombre] [varchar](100) NULL,
+	[Identificacion] [varchar](20) NULL,
+	[CodProvincia] [tinyint] NULL,
+	[Rol] [varchar](20) NULL,
+ CONSTRAINT [PK_USUARIOS] PRIMARY KEY CLUSTERED 
+(
+	[ConsecutivoUsuario] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+ CONSTRAINT [UK_CorreoElectronico] UNIQUE NONCLUSTERED 
+(
+	[CorreoElectronico] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[ERRORES]  WITH CHECK ADD  CONSTRAINT [FK_ERRORES_USUARIOS] FOREIGN KEY([ConsecutivoUsuario])
+REFERENCES [dbo].[USUARIOS] ([ConsecutivoUsuario])
+GO
+ALTER TABLE [dbo].[ERRORES] CHECK CONSTRAINT [FK_ERRORES_USUARIOS]
+GO
+
+ALTER TABLE [dbo].[USUARIOS]  WITH CHECK ADD  CONSTRAINT [FK_USUARIOS_PROVINCIAS] FOREIGN KEY([CodProvincia])
+REFERENCES [dbo].[PROVINCIAS] ([CodProvincia])
+GO
+ALTER TABLE [dbo].[USUARIOS] CHECK CONSTRAINT [FK_USUARIOS_PROVINCIAS]
+GO
 
 CREATE PROCEDURE [dbo].[RegistrarBitacora]
 	@Descripcion VARCHAR(MAX),
