@@ -38,6 +38,7 @@ namespace ProyectoApi_KN.App_Start
                 statusCode = HttpStatusCode.Unauthorized;
                 return base.SendAsync(request, cancellationToken);
             }
+           
 
             try
             {

@@ -2,137 +2,148 @@
 
 @{
     ViewBag.Title = "Home Page";
-    Layout = "~/Views/Shared/_Layout_Login.cshtml";
+    Layout = "~/Views/Shared/_Layout_General.cshtml";
 }
 
 <section class="wrapper">
 
-    <div class="row">
+    <div class="container-fluid page-body-wrapper full-page-wrapper">
+        <div class="content-wrapper d-flex align-items-center auth px-0">
+            <div class="row w-100 mx-0">
+                <div class="col-lg-4 mx-auto">
+                    <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+                        <div class="brand-logo">
 
 
-        <div class="col-12 grid-margin stretch-card">
 
-            <div class="card">
-                <div class="card-body">
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="login-tab" data-toggle="tab" href="#login" role="tab" aria-controls="login" aria-selected="true">Login</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="registro-tab" data-toggle="tab" href="#registro" role="tab" aria-controls="registro" aria-selected="false">Registro</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
+                                    <br />
+                                    <div class="login">
+                                        <h4 class="card-title">Login</h4>
+                                        @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @class = "form" }))
+                                        {
+                                            <div class="form-group">
 
-                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" id="login-tab" data-toggle="tab" href="#login" role="tab" aria-controls="login" aria-selected="true">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="registro-tab" data-toggle="tab" href="#registro" role="tab" aria-controls="registro" aria-selected="false">Registro</a>
-                        </li>
-                    </ul>
-                    <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
-                            <br />
-                            <div class="login">
-                                <h4 class="card-title">Login</h4>
-                                @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @class = "form" }))
-                                {
-                                    <div class="row">
-                                        @Html.TextBoxFor(Model => Model.CorreoElectronico, new { @class = "form-control", @placeholder = "Correo Electronico", @required = true })
-                                        @Html.TextBoxFor(Model => Model.Contrasenna, new { @class = "form-control", @placeholder = "Contraseña", @type = "Password", @required = true })
+                                                @Html.TextBoxFor(Model => Model.CorreoElectronico, new { @class = "form-control", @placeholder = "Correo Electronico", @required = true })
+                                                @Html.TextBoxFor(Model => Model.Contrasenna, new { @class = "form-control", @placeholder = "Contraseña", @type = "Password", @required = true })
+                                            </div>
+
+                                            <a href="@Url.Action("RecuperarContrasenna", "Home")" class="text-primary">¿Olvido su contraseña?</a>
+                                            <br /> <br />
+                                            <input type="submit" value="Login" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" />
+                                        }
                                     </div>
-                                    <a href="@Url.Action("RecuperarContrasenna", "Home")" class="text-primary">¿Olvido su contraseña?</a>
-                                    <input type="submit" value="Login" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" />
-                                }
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="registro" role="tabpanel" aria-labelledby="registro-tab">
-                            <div class="registro">
-                                <br />
-                                <h4 class="card-title">Registrar Usuario</h4>
-
-                                @using (Html.BeginForm("RegistrarUsuario", "Home", FormMethod.Post, new { @class = "pt-3" }))
-                                {
-                                    <form>
-
-                                        <div class="row">
-
-
-                                            @Html.HiddenFor(x => x.ConsecutivoUsuario)
-
-                                            <div class="form-group">
-                                                <label>Correo Electronico</label>
-                                                @Html.TextBoxFor(Model => Model.CorreoElectronico, new
-                                           {
-                                               @class = "form-control form-control-lg",
-
-                                               @onblur = "BuscarCorreo();",
-                                               @required = true
-                                           })
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Contraseña</label>
-                                                @Html.TextBoxFor(Model => Model.Contrasenna, new { @class = "form-control form-control-lg", @type = "password", @required = true })
-                                            </div>
-
-                                        </div>
-
-                                        <div class="row">
-
-                                            <div class="form-group">
-                                                <label>Identificación</label>
-                                                @Html.TextBoxFor(Model => Model.Identificacion, new
-                                           {
-                                               @class = "form-control form-control-lg",
-                                               @onkeyUp = "ConsultarNombreApi(this);",
-                                               @required = true
-                                           })
-                                            </div>
-                                            <div class="form-group">
-
-                                                <label>Nombre</label>
-                                                @Html.TextBoxFor(Model => Model.Nombre, new { @class = "form-control form-control-lg", @readonly = "true" })
-                                            </div>
-
-                                        </div>
-
-                                        <div class="row">
-
-                                            <div class="form-group" style="width: 100%">
-
-                                                <label>Provincia</label>
-                                                @Html.DropDownListFor(Model => Model.CodProvincia, ViewBag.ListaProvincias as List<SelectListItem>, new { @class = "form-control form-control-lg" })
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-
-                                            <div class="form-group" hidden style="width: 100%">
-                                                <label>Rol</label>
-                                                @Html.DropDownListFor(Model => Model.Rol, ViewBag.ListaRoles as List<SelectListItem>, new { @class = "form-control form-control-lg" })
-                                            </div>
-
-                                        </div>
-
+                                </div>
+                                <div class="tab-pane fade" id="registro" role="tabpanel" aria-labelledby="registro-tab">
+                                    <div class="registro">
                                         <br />
+                                        <h4 class="card-title">Registrar Usuario</h4>
 
-                                        <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">Registrarse</button>
+                                        @using (Html.BeginForm("RegistrarUsuario", "Home", FormMethod.Post, new { @class = "pt-3" }))
+                                        {
+                                            <form>
 
-                                    </form>
-                                }
+                                                <div class="form-group">
+
+
+
+                                                    @Html.HiddenFor(x => x.ConsecutivoUsuario)
+
+                                                    <div class="form-group">
+                                                        <label>Correo Electronico</label>
+                                                        @Html.TextBoxFor(Model => Model.CorreoElectronico, new
+                                                   {
+                                                       @class = "form-control form-control-lg",
+
+                                                       @onblur = "BuscarCorreo();",
+                                                       @required = true
+                                                   })
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Contraseña</label>
+                                                        @Html.TextBoxFor(Model => Model.Contrasenna, new { @class = "form-control form-control-lg", @type = "password", @required = true })
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="form-group">
+
+
+                                                    <div class="form-group">
+                                                        <label>Identificación</label>
+                                                        @Html.TextBoxFor(Model => Model.Identificacion, new
+                                                   {
+                                                       @class = "form-control form-control-lg",
+                                                       @onkeyUp = "ConsultarNombreApi(this);",
+                                                       @required = true
+                                                   })
+                                                    </div>
+                                                    <div class="form-group">
+
+                                                        <label>Nombre</label>
+                                                        @Html.TextBoxFor(Model => Model.Nombre, new { @class = "form-control form-control-lg", @readonly = "true" })
+                                                    </div>
+
+                                                </div>
+
+
+
+                                                <div class="form-group">
+
+                                                    <label>Provincia</label>
+                                                    @Html.DropDownListFor(Model => Model.CodProvincia, ViewBag.ListaProvincias as List<SelectListItem>, new { @class = "form-control form-control-lg" })
+                                                </div>
+
+
+                                                <div class="form-group">
+
+
+                                                    <div class="form-group" hidden>
+                                                        <label>Rol</label>
+                                                        @Html.DropDownListFor(Model => Model.Rol, ViewBag.ListaRoles as List<SelectListItem>, new { @class = "form-control form-control-lg" })
+                                                    </div>
+
+                                                </div>
+
+                                                <br />
+
+                                                <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">Registrarse</button>
+
+                                            </form>
+                                        }
+                                    </div>
+                                </div>
                             </div>
+
+
+
+
+
+
+
+
+
+
                         </div>
+
                     </div>
 
 
-
-
-
-
-
-
-
+                    <div class="col-md-2"></div>
 
                 </div>
-
             </div>
+
         </div>
-
-        <div class="col-md-2"></div>
-
     </div>
 </section>
 
