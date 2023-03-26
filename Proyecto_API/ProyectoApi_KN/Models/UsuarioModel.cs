@@ -33,6 +33,7 @@ namespace ProyectoApi_KN.Models
                     entidadResultado.Token = generator.GenerateTokenJwt(resultado.CorreoElectronico);
                     entidadResultado.ConsecutivoUsuario = resultado.ConsecutivoUsuario;
                     entidadResultado.CorreoElectronico = resultado.CorreoElectronico;
+                    entidadResultado.Nombre = resultado.Nombre; 
                     entidadResultado.Estado = resultado.Estado;
                     return entidadResultado;
                 }
