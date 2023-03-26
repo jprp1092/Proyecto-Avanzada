@@ -50,6 +50,7 @@ namespace ProyectoWeb_KN.Controllers
                 {
                     Session["CodigoUsuario"] = resultado.ConsecutivoUsuario;
                     Session["CorreoUsuario"] = resultado.CorreoElectronico;
+                    Session["Nombre"] = resultado.Nombre;
                     Session["TokenUsuario"] = resultado.Token;
                     return RedirectToAction("PantallaPrincipal", "Home");
                 }
@@ -115,21 +116,6 @@ namespace ProyectoWeb_KN.Controllers
         }
 
         //MÃ©todo de Recuperar ContraseÃ±a
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         [HttpGet]
         public ActionResult RecuperarContrasenna()

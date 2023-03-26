@@ -59,6 +59,15 @@
                         <a class="text-primary pl-3" href="">
                             <i class="fab fa-youtube"></i>
                         </a>
+                        &nbsp; &nbsp; &nbsp;
+
+                        @*Mostrar el correo de inicio de sesión*@
+
+                        @if (@Session["Nombre"] != null)
+                        {
+                            @Session["Nombre"].ToString()
+                        }
+
                     </div>
                 </div>
             </div>
@@ -77,8 +86,8 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
                     <div class="navbar-nav ml-auto py-0">
-                        <a class="nav-item nav-link">@Html.ActionLink("Inicio", "Inicio", "Home")</a>
-                        <a class="nav-item nav-link">@Html.ActionLink("Nosotros", "Nosotros", "Home")</a>
+                        <a class="nav-item nav-link">@Html.ActionLink("Inicio", "Index", "Home")</a>
+                        <a class="nav-item nav-link">@Html.ActionLink("Nosotros", "About", "Home")</a>
                         <a class="nav-item nav-link">@Html.ActionLink("Servicios", "Services", "Home")</a>
                         <a class="nav-item nav-link">@Html.ActionLink("Paquetes de Viaje", "Packages", "Home")</a>
                         <a class="nav-item nav-link">@Html.ActionLink("Contacto", "Contact", "Home")</a>
@@ -153,7 +162,7 @@
         <div class="row">
             <div class="col-lg-6 text-center text-md-left mb-3 mb-md-0">
                 <p class="m-0 text-white-50">
-                    Copyright &copy; <a href="#">TRAVELER</a>. Todos los derechos reservados.</a>
+                    Copyright &copy; <a href="#">TRAVELER. Todos los derechos reservados.</a>
                 </p>
             </div>
         </div>

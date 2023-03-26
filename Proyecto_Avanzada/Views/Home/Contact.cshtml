@@ -1,7 +1,14 @@
 ﻿@{
     ViewBag.Title = "Home Page";
-    Layout = "~/Views/Shared/_Layout_General.cshtml";
-}
+
+    if (@Session["Nombre"] != null)
+    {
+        Layout = "~/Views/Shared/_Layout_Logged.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout_General.cshtml";
+    }}
 
 <!-- Contact Start -->
 <div class="container-fluid py-5">

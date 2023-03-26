@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewBag.Title = "IniciarSesion";
+    if (@Session["Nombre"] != null)
+    {
+        Layout = "~/Views/Shared/_Layout_Logged.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout_General.cshtml";
+    }}
+
