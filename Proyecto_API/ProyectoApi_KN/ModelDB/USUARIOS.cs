@@ -32,5 +32,6 @@ namespace ProyectoApi_KN.ModelDB
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ERRORES> ERRORES { get; set; }
         public virtual PROVINCIAS PROVINCIAS { get; set; }
+       
     }
 }

@@ -1,7 +1,7 @@
 ﻿function BuscarCorreo() {
 
     $("#btnRegistrar").prop("disabled", true);
-    let correo = $("#CorreoElectronico").value;
+    let correo = $("#CorreoElectronico").val();
 
     $.ajax({
         url: "/Home/BuscarCorreo",

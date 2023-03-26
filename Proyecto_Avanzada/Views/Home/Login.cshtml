@@ -31,10 +31,10 @@
                                 @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @class = "form" }))
                                 {
                                     <div class="row">
-                                        @Html.TextBoxFor(Model => Model.CorreoElectronico, new { @class = "form-control", @placeholder = "Correo ElectrÃ³nico", @required = true })
-                                        @Html.TextBoxFor(Model => Model.Contrasenna, new { @class = "form-control", @placeholder = "ContraseÃ±a", @type = "Password", @required = true })
+                                        @Html.TextBoxFor(Model => Model.CorreoElectronico, new { @class = "form-control", @placeholder = "Correo Electronico", @required = true })
+                                        @Html.TextBoxFor(Model => Model.Contrasenna, new { @class = "form-control", @placeholder = "Contraseña", @type = "Password", @required = true })
                                     </div>
-                                    <a href="@Url.Action("RecuperarContrasenna", "Home")" class="text-primary">Â¿OlvidÃ³ su contraseÃ±a?</a>
+                                    <a href="@Url.Action("RecuperarContrasenna", "Home")" class="text-primary">¿Olvido su contraseña?</a>
                                     <input type="submit" value="Login" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" />
                                 }
                             </div>
@@ -46,78 +46,79 @@
 
                                 @using (Html.BeginForm("RegistrarUsuario", "Home", FormMethod.Post, new { @class = "pt-3" }))
                                 {
-                               
+                                    <form>
 
-                                    <div class="form-group" style="width: 85%">
+                                        <div class="row">
 
 
-                                        @Html.HiddenFor(x => x.ConsecutivoUsuario)
+                                            @Html.HiddenFor(x => x.ConsecutivoUsuario)
 
-                                        <div class="form-group" style="width: 85%">
+                                            <div class="form-group">
+                                                <label>Correo Electronico</label>
+                                                @Html.TextBoxFor(Model => Model.CorreoElectronico, new
+                                           {
+                                               @class = "form-control form-control-lg",
 
-                                            @Html.TextBoxFor(Model => Model.CorreoElectronico, new
-                                       {
-                                           @class = "form-control form-control-lg",
-                                           @placeholder = "Correo Electronico",
-                                           @onblur = "BuscarCorreo();",
-                                           @required = true
-                                       })
+                                               @onblur = "BuscarCorreo();",
+                                               @required = true
+                                           })
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Contraseña</label>
+                                                @Html.TextBoxFor(Model => Model.Contrasenna, new { @class = "form-control form-control-lg", @type = "password", @required = true })
+                                            </div>
+
                                         </div>
-                                        <div class="form-group">
 
-                                            @Html.TextBoxFor(Model => Model.Contrasenna, new { @class = "form-control form-control-lg", @placeholder = "ContraseÃ±a", @type = "Password", @required = true })
+                                        <div class="row">
+
+                                            <div class="form-group">
+                                                <label>Identificación</label>
+                                                @Html.TextBoxFor(Model => Model.Identificacion, new
+                                           {
+                                               @class = "form-control form-control-lg",
+                                               @onkeyUp = "ConsultarNombreApi(this);",
+                                               @required = true
+                                           })
+                                            </div>
+                                            <div class="form-group">
+
+                                                <label>Nombre</label>
+                                                @Html.TextBoxFor(Model => Model.Nombre, new { @class = "form-control form-control-lg", @readonly = "true" })
+                                            </div>
+
                                         </div>
 
-                                    </div>
+                                        <div class="row">
 
+                                            <div class="form-group" style="width: 100%">
 
-                                    <div class="form-group" style="width: 85%">
-                                        <label>Identificacion</label>
-                                        @Html.TextBoxFor(Model => Model.Identificacion, new
-                                   {
-                                       @class = "form-control form-control-lg",
-                                       @onkeyUp = "ConsultarNombreApi(this);",
-                                       @required = true
-                                   })
-                                    </div>
+                                                <label>Provincia</label>
+                                                @Html.DropDownListFor(Model => Model.CodProvincia, ViewBag.ListaProvincias as List<SelectListItem>, new { @class = "form-control form-control-lg" })
+                                            </div>
+                                        </div>
 
-                                    <div class="form-group" style="width: 85%">
-                                        <label>Nombre</label>
-                                        @Html.TextBoxFor(Model => Model.Nombre, new { @class = "form-control form-control-lg", @readonly = "true" })
-                                    </div>
+                                        <div class="row">
 
-                           
+                                            <div class="form-group" hidden style="width: 100%">
+                                                <label>Rol</label>
+                                                @Html.DropDownListFor(Model => Model.Rol, ViewBag.ListaRoles as List<SelectListItem>, new { @class = "form-control form-control-lg" })
+                                            </div>
 
+                                        </div>
 
+                                        <br />
 
-                            <div class="form-group" style="width: 85%">
+                                        <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">Registrarse</button>
 
-                                <label>Provincia</label>
-                                @Html.DropDownListFor(Model => Model.CodProvincia, ViewBag.ListaProvincias as List<SelectListItem>, new { @class = "form-control form-control-lg" })
-                            </div>
-
-
-
-
-                            <div class="form-group" style="width: 85%">
-                                <label>Rol</label>
-                                @Html.DropDownListFor(Model => Model.Rol, ViewBag.ListaRoles as List<SelectListItem>, new { @class = "form-control form-control-lg" })
-                            </div>
-
-
-
-                            <br />
-
-                            <div class="mt-3">
-                                <input type="submit" id="btnRegistrar"  class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
-                                       value="Registrarse">
-                            </div>
-
- 
+                                    </form>
                                 }
                             </div>
                         </div>
                     </div>
+
+
+
 
 
 
@@ -130,7 +131,7 @@
             </div>
         </div>
 
-        <div class="col-md-1"></div>
+        <div class="col-md-2"></div>
 
     </div>
 </section>
@@ -139,4 +140,5 @@
 
 
 <script src="~/Functions/RegistrarUsuarios.js"></script>
+
 

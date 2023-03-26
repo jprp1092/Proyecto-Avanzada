@@ -184,25 +184,7 @@ namespace ProyectoWeb_KN.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-
-        [HttpGet]
-        public ActionResult ConsultarUsuarios(long q)
-        {
-            try
-            {
-                var resultado = usuariosModel.ConsultarUsuarios().FirstOrDefault(x => x.ConsecutivoUsuario == q);
-
-                ViewBag.ListaProvincias = provinciaModel.ConsultarProvincias();
-                ViewBag.ListaRoles = provinciaModel.ConsultarRoles();
-
-                return View(resultado);
-            }
-            catch (Exception ex)
-            {
-                logsModel.RegistrarErrores(Session["CodigoUsuario"], ControllerContext, ex.Message);
-                return View("Index");
-            }
-        }
+             
 
         public ActionResult About()
         {

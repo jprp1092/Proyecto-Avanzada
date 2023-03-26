@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http.Headers;
+﻿using Proyecto_Avanzada.Entities;
+using System;
 using System.Net.Http.Json;
 using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
-using Proyecto_Avanzada.Entities;
-using Newtonsoft.Json;
-using System.Configuration;
+using System.Net.Http.Headers;
+
 
 
 namespace Proyecto_Avanzada.Models

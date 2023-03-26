@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Net.Mail;
-using System.Reflection.Emit;
 using System.Web;
 
 namespace ProyectoApi_KN.Models
@@ -46,7 +45,7 @@ namespace ProyectoApi_KN.Models
         {
             using (var conexion = new ProyectoW_BDEntities())
             {
-                //var datos = conexion.USUARIOS.ToList().Where(x => x.Estado == true);
+                
                 var datos = (from x in conexion.USUARIOS
                              select x).ToList();
 
@@ -57,13 +56,40 @@ namespace ProyectoApi_KN.Models
                     {
                         ConsecutivoUsuario = item.ConsecutivoUsuario,
                         CorreoElectronico = item.CorreoElectronico,
-                        Estado = item.Estado
+                        Estado = item.Estado,
+                        Nombre = item.Nombre,
+                        Identificacion = item.Identificacion
+
                     });
                 }
 
                 return listaEntidadResultado;
             }
         }
+
+        public UsuarioEnt ConsultarUsuario(long q)
+        {
+            using (var conexion = new ProyectoW_BDEntities())
+            {
+                var datos = (from x in conexion.USUARIOS
+                             where x.ConsecutivoUsuario == q
+                             select x).FirstOrDefault();
+
+                UsuarioEnt EntidadResultado = new UsuarioEnt();
+
+                EntidadResultado.ConsecutivoUsuario = datos.ConsecutivoUsuario;
+                EntidadResultado.CorreoElectronico = datos.CorreoElectronico;
+                EntidadResultado.Estado = datos.Estado;
+                EntidadResultado.Nombre = datos.Nombre;
+                EntidadResultado.Identificacion = datos.Identificacion;
+                EntidadResultado.CodProvincia = datos.CodProvincia.Value;
+                EntidadResultado.Rol = datos.Rol;
+
+                return EntidadResultado;
+            }
+        }
+
+
 
         public string BuscarCorreo(string correoElectronico)
         {
@@ -94,15 +120,51 @@ namespace ProyectoApi_KN.Models
                 usuario.Contrasenna = entidad.Contrasenna;
                 usuario.Nombre = entidad.Nombre;
                 usuario.Estado = true;
+                usuario.Identificacion = entidad.Identificacion;
+                usuario.Rol = "User";
+                usuario.CodProvincia = entidad.CodProvincia;
                 conexion.USUARIOS.Add(usuario);
                 return conexion.SaveChanges();
             }
         }
 
+        public void ActualizarUsuario(UsuarioEnt entidad)
+        {
+            using (var conexion = new ProyectoW_BDEntities())
+            {
+                var datos = (from x in conexion.USUARIOS
+                             where x.ConsecutivoUsuario == entidad.ConsecutivoUsuario
+                             select x).FirstOrDefault();
+
+                datos.Identificacion = entidad.Identificacion;
+                datos.Nombre = entidad.Nombre;
+                datos.Rol = entidad.Rol;
+                datos.CodProvincia = entidad.CodProvincia;
+
+                if (!string.IsNullOrEmpty(entidad.Contrasenna))
+                    datos.Contrasenna = entidad.Contrasenna;
+
+                conexion.SaveChanges();
+            }
+        }
+
+        public void CambiarEstado(long q)
+        {
+            using (var conexion = new ProyectoW_BDEntities())
+            {
+                var datos = (from x in conexion.USUARIOS
+                             where x.ConsecutivoUsuario == q
+                             select x).FirstOrDefault();
+
+                datos.Estado = (datos.Estado == true ? false : true);
+                conexion.SaveChanges();
+            }
+        }
+
         public void RecuperarContrasenna(UsuarioEnt entidad)
         {
-
             using (var conexion = new ProyectoW_BDEntities())
+
             {
                 var resultado = (from x in conexion.USUARIOS
                                  where x.CorreoElectronico == entidad.CorreoElectronico
@@ -116,7 +178,5 @@ namespace ProyectoApi_KN.Models
             }
         }
 
-
-        
     }
 }

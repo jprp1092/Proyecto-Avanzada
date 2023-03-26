@@ -1,10 +1,10 @@
 ﻿using ProyectoApi_KN.Entities;
 using ProyectoApi_KN.ModelDB;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
+using System.Web;
+
 
 
 namespace ProyectoApi_KN.Models

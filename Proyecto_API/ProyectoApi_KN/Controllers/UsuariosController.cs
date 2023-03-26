@@ -36,6 +36,14 @@ namespace ProyectoApi_KN.Controllers
         }
 
         [HttpGet]
+        [Authorize]
+        [Route("api/ConsultarUsuario")]
+        public UsuarioEnt ConsultarUsuario(long q)
+        {
+            return model.ConsultarUsuario(q);
+        }
+
+        [HttpGet]
         [AllowAnonymous]
         [Route("api/BuscarCorreo")]
         public string BuscarCorreo(string correoElectronico)
@@ -51,13 +59,31 @@ namespace ProyectoApi_KN.Controllers
             return model.RegistrarUsuario(entidad);
         }
 
+        [HttpPut]
+        [Authorize]
+        [Route("api/ActualizarUsuario")]
+        public void ActualizarUsuario(UsuarioEnt entidad)
+        {
+            model.ActualizarUsuario(entidad);
+        }
+
+        [HttpDelete]
+        [Authorize]
+        [Route("api/CambiarEstado")]
+        public void CambiarEstado(long q)
+        {
+            model.CambiarEstado(q);
+        }
 
         [HttpPost]
         [AllowAnonymous]
         [Route("api/RecuperarContrasenna")]
         public void RecuperarContrasenna(UsuarioEnt entidad)
         {
-             model.RecuperarContrasenna(entidad);
+            model.RecuperarContrasenna(entidad);
         }
+
     }
 }
+
+
