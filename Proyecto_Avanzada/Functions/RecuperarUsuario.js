@@ -17,11 +17,19 @@
                     $("#btnProcesar").prop("disabled", false);
                 }
                 else {
-                    alert("El correo ingresado no existe en el sistema");
+
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'El correo ingresado no existe en el sistema!',
+                        
+                    })
+                  
                 }
             }
 
         }
     });
-
+    
 }
+
