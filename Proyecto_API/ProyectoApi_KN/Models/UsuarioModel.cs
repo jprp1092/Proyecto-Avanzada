@@ -1,5 +1,6 @@
 ﻿using ProyectoApi_KN.App_Start;
 using ProyectoApi_KN.Entities;
+using ProyectoApi_KN.ModelDB;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -30,6 +31,7 @@ namespace ProyectoApi_KN.Models
                     entidadResultado.CorreoElectronico = resultado.CorreoElectronico;
                     entidadResultado.Nombre = resultado.Nombre; 
                     entidadResultado.Estado = resultado.Estado;
+                    entidadResultado.Rol = resultado.Rol;
                     return entidadResultado;
                 }
 

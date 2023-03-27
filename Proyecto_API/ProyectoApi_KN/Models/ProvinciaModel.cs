@@ -1,4 +1,5 @@
 ﻿using ProyectoApi_KN.Entities;
+using ProyectoApi_KN.ModelDB;
 using System.Collections.Generic;
 using System.Linq;
 

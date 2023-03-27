@@ -42,7 +42,7 @@
                 </div>
                 <div class="col-lg-6 text-center text-lg-right">
                     <div class="d-inline-flex align-items-center">
-                        
+
                         &nbsp; &nbsp;
 
                         @*Mostrar el correo de inicio de sesión*@
@@ -50,7 +50,7 @@
                         @if (@Session["Nombre"] != null)
                         {
                             <h6>Bienvenido,   @Session["Nombre"].ToString() </h6>
-                          
+
                         }
                         &nbsp;
 
@@ -72,23 +72,31 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
                     <div class="navbar-nav ml-auto py-0">
+                        @{String Rol = @Session["Rol"].ToString(); }
+
+                        @if (@Session["Rol"] != null && Rol == "Admin")
+                        {
+                            <div class="dropdown">
+                                <a class="btn btn-dark dropdown-toggle" type="button" id="administrar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    Administrar
+                                    <span class=""></span>
+                                </a>
+                                <ul class="dropdown-menu " aria-labelledby="administrar">
+                                    <li><a class="">@Html.ActionLink("Usuarios", "Index", "Usuarios")</a></li>
+                                    <li><a class="">@Html.ActionLink("Reservas", "Index", "Reservas")</a></li>
+                                </ul>
+                            </div>
+                        }
                         <a class="nav-item nav-link">@Html.ActionLink("Inicio", "Index", "Home")</a>
                         <a class="nav-item nav-link">@Html.ActionLink("Nosotros", "About", "Home")</a>
-                        <a class="nav-item nav-link">@Html.ActionLink("Servicios", "Services", "Home")</a>
                         <a class="nav-item nav-link">@Html.ActionLink("Paquetes de Viaje", "Packages", "Home")</a>
                         <a class="nav-item nav-link">@Html.ActionLink("Contacto", "Contact", "Home")</a>
-                        @if (@Session["rol"] != null || @Session["rol"] == "Administrador")
-                        {
-                            <a class="nav-item nav-link">@Html.ActionLink("Usuarios", "Index", "Usuarios")</a>
-
-                        }
-                        
                         <a class="nav-item nav-link">@Html.ActionLink("Cerrar Sesión", "CerrarSesion", "Home")</a>
                     </div>
-                </div>
             </nav>
         </div>
     </div>
+    
     <!-- Navbar End -->
 
     @RenderBody()

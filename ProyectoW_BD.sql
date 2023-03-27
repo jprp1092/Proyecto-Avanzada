@@ -120,4 +120,8 @@ INSERT INTO [dbo].[USUARIOS] VALUES
 									('jgarcia60845@ufide.ac.cr', 60845, 1,'Josué García Roldán', 116860845,1,'Administrador'),
 									('ecalvo90415@ufide.ac.cr', 90415, 1,'Eduardo Calvo Castillo', 123490415,1,'Administrador'),
 									('usuario1234@ufide.ac.cr', 12345, 1,'Usuario de Prueba 1', 123456789, 4, 'Usuario')
-go
+GO
+
+INSERT INTO [dbo].[RESERVAS] VALUES
+									(1,'2023-05-12',1,1,0,1)
+GO

@@ -30,6 +30,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="RESERVAS">
+      <EntityTypeMapping TypeName="ProyectoW_BDModel.RESERVAS">
+        <MappingFragment StoreEntitySet="RESERVAS">
+          <ScalarProperty Name="ConsecutivoReservas" ColumnName="ConsecutivoReservas" />
+          <ScalarProperty Name="FechaReserva" ColumnName="FechaReserva" />
+          <ScalarProperty Name="CodUsuario" ColumnName="CodUsuario" />
+          <ScalarProperty Name="CodDestino" ColumnName="CodDestino" />
+          <ScalarProperty Name="Pago" ColumnName="Pago" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="USUARIOS">
       <EntityTypeMapping TypeName="ProyectoW_BDModel.USUARIOS">
         <MappingFragment StoreEntitySet="USUARIOS">

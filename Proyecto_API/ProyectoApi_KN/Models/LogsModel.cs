@@ -1,4 +1,5 @@
 ﻿using ProyectoApi_KN.Entities;
+using ProyectoApi_KN.ModelDB;
 using System.Configuration;
 using System.Net.Mail;
 

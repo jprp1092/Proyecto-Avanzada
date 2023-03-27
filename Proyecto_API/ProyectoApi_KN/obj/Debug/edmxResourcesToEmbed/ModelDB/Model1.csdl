@@ -28,6 +28,18 @@
     <Property Name="NombreProvincia" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="USUARIOS" Relationship="Self.FK_USUARIOS_PROVINCIAS" FromRole="PROVINCIAS" ToRole="USUARIOS" />
   </EntityType>
+  <EntityType Name="RESERVAS">
+    <Key>
+      <PropertyRef Name="ConsecutivoReservas" />
+    </Key>
+    <Property Name="ConsecutivoReservas" Type="Int64" Nullable="false" />
+    <Property Name="FechaReserva" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CodUsuario" Type="Int64" Nullable="false" />
+    <Property Name="CodDestino" Type="Int64" Nullable="false" />
+    <Property Name="Pago" Type="Boolean" Nullable="false" />
+    <Property Name="Estado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="USUARIOS" Relationship="Self.FK_RESERVAS_USUARIOS" FromRole="RESERVAS" ToRole="USUARIOS" />
+  </EntityType>
   <EntityType Name="USUARIOS">
     <Key>
       <PropertyRef Name="ConsecutivoUsuario" />
@@ -42,6 +54,7 @@
     <Property Name="Rol" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="ERRORES" Relationship="Self.FK_ERRORES_USUARIOS" FromRole="USUARIOS" ToRole="ERRORES" />
     <NavigationProperty Name="PROVINCIAS" Relationship="Self.FK_USUARIOS_PROVINCIAS" FromRole="USUARIOS" ToRole="PROVINCIAS" />
+    <NavigationProperty Name="RESERVAS" Relationship="Self.FK_RESERVAS_USUARIOS" FromRole="USUARIOS" ToRole="RESERVAS" />
   </EntityType>
   <Association Name="FK_ERRORES_USUARIOS">
     <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="1" />
@@ -67,10 +80,23 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_RESERVAS_USUARIOS">
+    <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="1" />
+    <End Role="RESERVAS" Type="Self.RESERVAS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIOS">
+        <PropertyRef Name="ConsecutivoUsuario" />
+      </Principal>
+      <Dependent Role="RESERVAS">
+        <PropertyRef Name="CodUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="ProyectoW_BDEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="BITACORAS" EntityType="Self.BITACORAS" />
     <EntitySet Name="ERRORES" EntityType="Self.ERRORES" />
     <EntitySet Name="PROVINCIAS" EntityType="Self.PROVINCIAS" />
+    <EntitySet Name="RESERVAS" EntityType="Self.RESERVAS" />
     <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" />
     <AssociationSet Name="FK_ERRORES_USUARIOS" Association="Self.FK_ERRORES_USUARIOS">
       <End Role="USUARIOS" EntitySet="USUARIOS" />
@@ -79,6 +105,10 @@
     <AssociationSet Name="FK_USUARIOS_PROVINCIAS" Association="Self.FK_USUARIOS_PROVINCIAS">
       <End Role="PROVINCIAS" EntitySet="PROVINCIAS" />
       <End Role="USUARIOS" EntitySet="USUARIOS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RESERVAS_USUARIOS" Association="Self.FK_RESERVAS_USUARIOS">
+      <End Role="USUARIOS" EntitySet="USUARIOS" />
+      <End Role="RESERVAS" EntitySet="RESERVAS" />
     </AssociationSet>
     <FunctionImport Name="RegistrarBitacora">
       <Parameter Name="Descripcion" Mode="In" Type="String" />
