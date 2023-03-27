@@ -281,6 +281,7 @@
     <Content Include="Views\Usuarios\Index.cshtml" />
     <Content Include="Views\Shared\_Layout_Logged.cshtml" />
     <Content Include="Views\Home\RecuperarContrasenna.cshtml" />
+    <Content Include="Views\Usuarios\ActualizarUsuario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
