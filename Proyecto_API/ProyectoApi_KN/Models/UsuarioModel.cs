@@ -1,12 +1,7 @@
 ﻿using ProyectoApi_KN.App_Start;
 using ProyectoApi_KN.Entities;
-using ProyectoApi_KN.ModelDB;
-using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
-using System.Net.Mail;
-using System.Web;
 
 namespace ProyectoApi_KN.Models
 {
@@ -123,7 +118,7 @@ namespace ProyectoApi_KN.Models
                 usuario.Estado = true;
                 usuario.Identificacion = entidad.Identificacion;
                 usuario.Rol = "User";
-                usuario.CodProvincia = entidad.CodProvincia;
+                usuario.CodProvincia = 1;
                 conexion.USUARIOS.Add(usuario);
                 return conexion.SaveChanges();
             }

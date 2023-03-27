@@ -19,7 +19,7 @@ namespace Proyecto_Avanzada.Models
         {
             string url = "https://localhost:44398/api/ConsultarProvincias";
 
-            //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", HttpContext.Current.Session["TokenUsuario"].ToString());
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", HttpContext.Current.Session["TokenUsuario"].ToString());
             HttpResponseMessage res = client.GetAsync(url).GetAwaiter().GetResult();
 
             if (res.IsSuccessStatusCode)

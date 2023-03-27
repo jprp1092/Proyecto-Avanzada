@@ -102,3 +102,22 @@ BEGIN
 
 END
 GO
+
+INSERT INTO [dbo].[PROVINCIAS] VALUES 
+										(1,'San José'),
+										(2,'Alajuela'),
+										(3,'Cartago'),
+										(4,'Heredia'),
+										(5,'Guanacaste'),
+										(6,'Puntarenas'),
+										(7,'Limón')
+GO
+
+INSERT INTO [dbo].[USUARIOS] VALUES
+									('jretana80675@ufide.ac.cr', 80675, 1,'Jose Pablo Retana Pereira', 123,1,'Administrador'),
+									('jsegura90582@ufide.ac.cr', 90582, 1,'Jostin Segura Noguera', 123,1,'Administrador'),
+									('jquiros90650@ufide.ac.cr', 90650, 1,'Jason Quiros Fonseca', 123,1,'Administrador'),
+									('jgarcia60845@ufide.ac.cr', 60845, 1,'Josué García Roldán', 116860845,1,'Administrador'),
+									('ecalvo90415@ufide.ac.cr', 90415, 1,'Eduardo Calvo Castillo', 123490415,1,'Administrador'),
+									('usuario1234@ufide.ac.cr', 12345, 1,'Usuario de Prueba 1', 123456789, 4, 'Usuario')
+go
