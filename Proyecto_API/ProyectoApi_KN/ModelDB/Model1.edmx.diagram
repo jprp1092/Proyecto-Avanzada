@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="2cb5003192ed4649949319b24bcdd782" Name="Diagram1">
+      <Diagram DiagramId="9c55e0564484402582ad5820fedb8c13" Name="Diagram1">
         <EntityTypeShape EntityType="ProyectoW_BDModel.BITACORAS" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ProyectoW_BDModel.ERRORES" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="ProyectoW_BDModel.PROVINCIAS" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
