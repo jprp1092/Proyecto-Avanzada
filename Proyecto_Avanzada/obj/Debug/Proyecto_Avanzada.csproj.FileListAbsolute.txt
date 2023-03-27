@@ -652,3 +652,9 @@ C:\Users\jsnqr\source\repos\Proyecto-Avanzada3\Proyecto_Avanzada\bin\es\System.W
 C:\Users\jsnqr\source\repos\Proyecto-Avanzada3\Proyecto_Avanzada\obj\Debug\Proyecto_Avanzada.csproj.CopyComplete
 C:\Users\jsnqr\source\repos\Proyecto-Avanzada3\Proyecto_Avanzada\obj\Debug\Proyecto_Avanzada.dll
 C:\Users\jsnqr\source\repos\Proyecto-Avanzada3\Proyecto_Avanzada\obj\Debug\Proyecto_Avanzada.pdb
+C:\Users\joser\OneDrive\Documentos\Proyecto_Avanzada\Proyecto_Avanzada_Local\Proyecto_Avanzada\bin\AWSSDK.Core.dll
+C:\Users\joser\OneDrive\Documentos\Proyecto_Avanzada\Proyecto_Avanzada_Local\Proyecto_Avanzada\bin\AWSSDK.SimpleSystemsManagement.dll
+C:\Users\joser\OneDrive\Documentos\Proyecto_Avanzada\Proyecto_Avanzada_Local\Proyecto_Avanzada\bin\AWSSDK.Core.pdb
+C:\Users\joser\OneDrive\Documentos\Proyecto_Avanzada\Proyecto_Avanzada_Local\Proyecto_Avanzada\bin\AWSSDK.Core.xml
+C:\Users\joser\OneDrive\Documentos\Proyecto_Avanzada\Proyecto_Avanzada_Local\Proyecto_Avanzada\bin\AWSSDK.SimpleSystemsManagement.pdb
+C:\Users\joser\OneDrive\Documentos\Proyecto_Avanzada\Proyecto_Avanzada_Local\Proyecto_Avanzada\bin\AWSSDK.SimpleSystemsManagement.xml
