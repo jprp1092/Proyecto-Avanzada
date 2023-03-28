@@ -77,7 +77,7 @@
                         @if (@Session["Rol"] != null && Rol == "Admin")
                         {
                             <div class="dropdown">
-                                <a class="btn btn-dark dropdown-toggle" type="button" id="administrar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                <a class="btn btn-dark dropdown-toggle nav-item" id="administrar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                     Administrar
                                     <span class=""></span>
                                 </a>
@@ -93,10 +93,11 @@
                         <a class="nav-item nav-link">@Html.ActionLink("Contacto", "Contact", "Home")</a>
                         <a class="nav-item nav-link">@Html.ActionLink("Cerrar Sesión", "CerrarSesion", "Home")</a>
                     </div>
+                </div>
             </nav>
         </div>
     </div>
-    
+
     <!-- Navbar End -->
 
     @RenderBody()

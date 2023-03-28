@@ -28,7 +28,6 @@ namespace ProyectoApi_KN.Models
         {
             using (var conexion = new ProyectoW_BDEntities())
             {
-
                 var datos = (from x in conexion.RESERVAS
                              select x).ToList();
 

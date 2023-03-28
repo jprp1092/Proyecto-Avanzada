@@ -1,6 +1,4 @@
 ﻿@model IEnumerable<Proyecto_Avanzada.Entities.ReservasEnt>
-
-
 @{
     ViewBag.Title = "Home Page";
     if (@Session["Nombre"] != null)
@@ -25,10 +23,10 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th>Correo Electrónico</th>
-                            <th>Identificación</th>
+                            <th>Fecha de creación</th>
                             <th>Nombre</th>
-                            <th>Estado</th>
+                            <th>Destino</th>
+                            <th>Estado de pago</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -39,7 +37,14 @@
                                 <td>@item.FechaReserva</td>
                                 <td>@item.CodUsuario</td>
                                 <td>@item.CodDestino</td>
-                                <td>@item.Pago</td>
+                                @if (item.Pago)
+                                {
+                                    <td>Pagado</td>
+                                }
+                                else
+                                {
+                                    <td>Sin pago</td>
+                                }
                                 @if (item.Estado)
                                 {
                                     <td>Activo</td>

@@ -14,7 +14,6 @@ namespace Proyecto_Avanzada.Controllers
     public class ReservasController : Controller
     {
         ReservasModel reservasModel = new ReservasModel();
-        ProvinciaModel provinciasModel = new ProvinciaModel();
         LogsModel logsModel = new LogsModel();
 
         [HttpGet]
@@ -28,7 +27,7 @@ namespace Proyecto_Avanzada.Controllers
             catch (Exception ex)
             {
                 logsModel.RegistrarErrores(Session["CodigoUsuario"], ControllerContext, ex.Message);
-                return View("Index");
+                return View("Home/Index");
             }
         }
         /*

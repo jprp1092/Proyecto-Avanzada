@@ -53,7 +53,7 @@ namespace ProyectoWeb_KN.Controllers
                     Session["Nombre"] = resultado.Nombre;
                     Session["TokenUsuario"] = resultado.Token;
                     Session["Rol"] = resultado.Rol;
-                    return RedirectToAction("PantallaPrincipal", "Home");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
