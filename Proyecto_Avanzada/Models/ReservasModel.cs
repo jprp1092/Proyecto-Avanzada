@@ -45,6 +45,27 @@ namespace Proyecto_Avanzada.Models
                 return null;
             }
         }
+        public void ActualizarReserva(ReservasEnt entidad)
+        {
+            using (var client = new HttpClient())
+            {
+                JsonContent body = JsonContent.Create(entidad);
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", HttpContext.Current.Session["TokenUsuario"].ToString());
+                string url = "https://localhost:44398/api/ActualizarUsuario";
+
+                client.PutAsync(url, body).GetAwaiter().GetResult();
+            }
+        }
+        public void CambiarEstado(long id)
+        {
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", HttpContext.Current.Session["TokenUsuario"].ToString());
+                string url = "https://localhost:44398/api/CambiarEstado?q=" + id;
+
+                client.DeleteAsync(url).GetAwaiter().GetResult();
+            }
+        }
         public int CrearReserva(ReservasEnt entidad)
         {
             using (var client = new HttpClient())

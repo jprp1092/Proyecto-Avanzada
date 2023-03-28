@@ -22,7 +22,7 @@ namespace ProyectoApi_KN.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
+        [Authorize]
         [Route("api/ConsultarReservas")]
         public List<ReservasEnt> ConsultarReservas()
         {
@@ -30,13 +30,19 @@ namespace ProyectoApi_KN.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
+        [Authorize]
         [Route("api/ConsultarReserva")]
         public ReservasEnt ConsultarReserva(long q)
         {
             return model.ConsultarReserva(q);
         }
-
+        [HttpDelete]
+        [Authorize]
+        [Route("api/CambiarEstado")]
+        public void CambiarEstado(long q)
+        {
+            model.CambiarEstado(q);
+        }
 
     }
 }

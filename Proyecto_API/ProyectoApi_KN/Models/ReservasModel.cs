@@ -68,56 +68,38 @@ namespace ProyectoApi_KN.Models
                 return EntidadResultado;
             }
         }
-        /*
-public void ActualizarUsuario(UsuarioEnt entidad)
-{
-   using (var conexion = new ProyectoW_BDEntities())
-   {
-       var datos = (from x in conexion.USUARIOS
-                    where x.ConsecutivoUsuario == entidad.ConsecutivoUsuario
-                    select x).FirstOrDefault();
+        
+        public void ActualizarReserva(ReservasEnt entidad)
+        {
+           using (var conexion = new ProyectoW_BDEntities())
+           {
+               var datos = (from x in conexion.RESERVAS
+                            where x.ConsecutivoReservas == entidad.ConsecutivoReservas
+                            select x).FirstOrDefault();
 
-       datos.Identificacion = entidad.Identificacion;
-       datos.Nombre = entidad.Nombre;
-       datos.Rol = entidad.Rol;
-       datos.CodProvincia = entidad.CodProvincia;
+               datos.FechaReserva = entidad.FechaReserva;
+               datos.CodUsuario = entidad.CodUsuario;
+               datos.CodDestino = entidad.CodDestino;
+               datos.Pago = entidad.Pago;
 
-       if (!string.IsNullOrEmpty(entidad.Contrasenna))
-           datos.Contrasenna = entidad.Contrasenna;
+               conexion.SaveChanges();
+           }
+        }
 
-       conexion.SaveChanges();
-   }
-}
+        public void CambiarEstado(long q)
+        {
+           using (var conexion = new ProyectoW_BDEntities())
+           {
+               var datos = (from x in conexion.RESERVAS
+                            where x.ConsecutivoReservas == q
+                            select x).FirstOrDefault();
 
-public void CambiarEstado(long q)
-{
-   using (var conexion = new ProyectoW_BDEntities())
-   {
-       var datos = (from x in conexion.USUARIOS
-                    where x.ConsecutivoUsuario == q
-                    select x).FirstOrDefault();
+               datos.Estado = (datos.Estado == true ? false : true);
+               conexion.SaveChanges();
+           }
+        }
 
-       datos.Estado = (datos.Estado == true ? false : true);
-       conexion.SaveChanges();
-   }
-}
 
-public void RecuperarContrasenna(UsuarioEnt entidad)
-{
-   using (var conexion = new ProyectoW_BDEntities())
-
-   {
-       var resultado = (from x in conexion.USUARIOS
-                        where x.CorreoElectronico == entidad.CorreoElectronico
-                        select x).FirstOrDefault();
-
-       if (resultado != null)
-       {
-           string mensaje = "Su contraseña actual es: " + resultado.Contrasenna;
-           model.EnviarCorreo(resultado.CorreoElectronico, "Recuperar Contraseña", mensaje);
-       }
-   }
-}*/
 
     }
 }

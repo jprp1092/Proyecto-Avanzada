@@ -30,16 +30,15 @@ namespace Proyecto_Avanzada.Controllers
                 return View("Home/Index");
             }
         }
-        /*
+        
         [HttpGet]
-        public ActionResult ActualizarUsuario(long q)
+        public ActionResult ActualizarReserva(long q)
         {
             try
             {
-                var resultado = usuariosModel.ConsultarUsuario(q);
+                var resultado = reservasModel.ConsultarReserva(q);
 
-                ViewBag.ListaProvincias = provinciasModel.ConsultarProvincias();
-                ViewBag.ListaRoles = provinciasModel.ConsultarRoles();
+                //ViewBag.ListaProvincias = reservasModel.ConsultarProvincias(); Posible respuesta para ver el nombre y no el codigo
 
                 return View(resultado);
             }
@@ -51,11 +50,11 @@ namespace Proyecto_Avanzada.Controllers
         }
 
         [HttpPost]
-        public ActionResult ActualizarUsuario(UsuarioEnt entidad)
+        public ActionResult ActualizarReserva(ReservasEnt entidad)
         {
             try
             {
-                usuariosModel.ActualizarUsuario(entidad);
+                reservasModel.ActualizarReserva(entidad);
                 return RedirectToAction("Index", "Usuarios");
             }
             catch (Exception ex)
@@ -68,9 +67,9 @@ namespace Proyecto_Avanzada.Controllers
         [HttpPost]
         public ActionResult CambiarEstado(long id)
         {
-            usuariosModel.CambiarEstado(id);
+            reservasModel.CambiarEstado(id);
             return Json("ok", JsonRequestBehavior.AllowGet);
-        }*/
+        }
 
     }
 }
