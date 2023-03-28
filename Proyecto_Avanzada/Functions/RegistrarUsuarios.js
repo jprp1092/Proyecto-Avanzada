@@ -17,7 +17,16 @@
                     $("#btnRegistrar").prop("disabled", false);
                 }
                 else {
-                    alert(res);
+                    $("#CorreoElectronico").val("");
+                   
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'El correo ingresado ya existe en el sistema!',
+
+
+                    })
+
                 }
             }
 
@@ -25,6 +34,42 @@
     });
 
 }
+
+function BuscarCorreo2() {
+
+    $(id = "btnLogin").prop("disabled", true);
+    let correo = $("#CorreoElectronico").val();
+
+    $.ajax({
+        url: "/Home/BuscarCorreo",
+        type: "POST",
+        data: {
+            "correo": correo
+        },
+        dataType: 'json',
+        success: function (res) {
+
+            if (res != "ERROR") {
+                if (res != "") {
+                    $("#btnProcesar").prop("disabled", false);
+                }
+                else {
+                    $("#CorreoElectronico").val("");
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'El correo ingresado no existe en el sistema!',
+
+                    })
+
+                }
+            }
+
+        }
+    });
+
+}
+
 
 function ConsultarNombreApi(field) {
     let Identificacion = field.value;

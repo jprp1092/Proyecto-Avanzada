@@ -17,7 +17,7 @@
                     $("#btnProcesar").prop("disabled", false);
                 }
                 else {
-
+                    $("#CorreoElectronico").val("");
                     Swal.fire({
                         icon: 'error',
                         title: 'Oops...',

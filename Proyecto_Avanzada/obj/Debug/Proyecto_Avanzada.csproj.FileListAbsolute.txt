@@ -774,3 +774,9 @@ C:\Users\Faubricio\Documents\Ing. Sistemas C\Bloque 6\Programacion Avanzada K\Po
 C:\Users\Faubricio\Documents\Ing. Sistemas C\Bloque 6\Programacion Avanzada K\Poroyecto\26-3\Proyecto_Avanzada\obj\Debug\Proyecto_Avanzada.csproj.CopyComplete
 C:\Users\Faubricio\Documents\Ing. Sistemas C\Bloque 6\Programacion Avanzada K\Poroyecto\26-3\Proyecto_Avanzada\obj\Debug\Proyecto_Avanzada.dll
 C:\Users\Faubricio\Documents\Ing. Sistemas C\Bloque 6\Programacion Avanzada K\Poroyecto\26-3\Proyecto_Avanzada\obj\Debug\Proyecto_Avanzada.pdb
+C:\Users\jsnqr\source\repos\Proyecto-Avanzada\Proyecto_Avanzada\bin\AWSSDK.Core.dll
+C:\Users\jsnqr\source\repos\Proyecto-Avanzada\Proyecto_Avanzada\bin\AWSSDK.SimpleSystemsManagement.dll
+C:\Users\jsnqr\source\repos\Proyecto-Avanzada\Proyecto_Avanzada\bin\AWSSDK.Core.pdb
+C:\Users\jsnqr\source\repos\Proyecto-Avanzada\Proyecto_Avanzada\bin\AWSSDK.Core.xml
+C:\Users\jsnqr\source\repos\Proyecto-Avanzada\Proyecto_Avanzada\bin\AWSSDK.SimpleSystemsManagement.pdb
+C:\Users\jsnqr\source\repos\Proyecto-Avanzada\Proyecto_Avanzada\bin\AWSSDK.SimpleSystemsManagement.xml
