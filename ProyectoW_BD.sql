@@ -1,12 +1,15 @@
 USE [master]
 GO
-
+/****** Object:  Database [ProyectoW_BD]    Script Date: 28/3/2023 13:53:57 ******/
 CREATE DATABASE [ProyectoW_BD]
-GO
 
 USE [ProyectoW_BD]
 GO
-
+/****** Object:  Table [dbo].[BITACORAS]    Script Date: 28/3/2023 13:53:57 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE TABLE [dbo].[BITACORAS](
 	[ConsecutivoError] [bigint] IDENTITY(1,1) NOT NULL,
 	[DescripcionError] [varchar](max) NOT NULL,
@@ -18,7 +21,11 @@ CREATE TABLE [dbo].[BITACORAS](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-
+/****** Object:  Table [dbo].[ERRORES]    Script Date: 28/3/2023 13:53:58 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE TABLE [dbo].[ERRORES](
 	[ConsecutivoError] [bigint] IDENTITY(1,1) NOT NULL,
 	[DescripcionError] [varchar](max) NOT NULL,
@@ -31,7 +38,11 @@ CREATE TABLE [dbo].[ERRORES](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-
+/****** Object:  Table [dbo].[PROVINCIAS]    Script Date: 28/3/2023 13:53:58 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE TABLE [dbo].[PROVINCIAS](
 	[CodProvincia] [tinyint] NOT NULL,
 	[NombreProvincia] [varchar](20) NOT NULL,
@@ -41,7 +52,29 @@ CREATE TABLE [dbo].[PROVINCIAS](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
+/****** Object:  Table [dbo].[RESERVAS]    Script Date: 28/3/2023 13:53:58 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[RESERVAS](
+	[ConsecutivoReservas] [bigint] NOT NULL,
+	[FechaReserva] [datetime] NOT NULL,
+	[CodUsuario] [bigint] NOT NULL,
+	[CodDestino] [bigint] NOT NULL,
+	[Pago] [bit] NOT NULL,
+	[Estado] [bit] NOT NULL,
+ CONSTRAINT [PK_RESERVAS] PRIMARY KEY CLUSTERED 
+(
+	[ConsecutivoReservas] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[USUARIOS]    Script Date: 28/3/2023 13:53:58 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE TABLE [dbo].[USUARIOS](
 	[ConsecutivoUsuario] [bigint] IDENTITY(1,1) NOT NULL,
 	[CorreoElectronico] [varchar](70) NOT NULL,
@@ -61,17 +94,25 @@ CREATE TABLE [dbo].[USUARIOS](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
 ALTER TABLE [dbo].[ERRORES]  WITH CHECK ADD  CONSTRAINT [FK_ERRORES_USUARIOS] FOREIGN KEY([ConsecutivoUsuario])
 REFERENCES [dbo].[USUARIOS] ([ConsecutivoUsuario])
 GO
 ALTER TABLE [dbo].[ERRORES] CHECK CONSTRAINT [FK_ERRORES_USUARIOS]
 GO
-
+ALTER TABLE [dbo].[RESERVAS]  WITH CHECK ADD  CONSTRAINT [FK_RESERVAS_USUARIOS] FOREIGN KEY([CodUsuario])
+REFERENCES [dbo].[USUARIOS] ([ConsecutivoUsuario])
+GO
+ALTER TABLE [dbo].[RESERVAS] CHECK CONSTRAINT [FK_RESERVAS_USUARIOS]
+GO
 ALTER TABLE [dbo].[USUARIOS]  WITH CHECK ADD  CONSTRAINT [FK_USUARIOS_PROVINCIAS] FOREIGN KEY([CodProvincia])
 REFERENCES [dbo].[PROVINCIAS] ([CodProvincia])
 GO
 ALTER TABLE [dbo].[USUARIOS] CHECK CONSTRAINT [FK_USUARIOS_PROVINCIAS]
+GO
+/****** Object:  StoredProcedure [dbo].[RegistrarBitacora]    Script Date: 28/3/2023 13:53:58 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE PROCEDURE [dbo].[RegistrarBitacora]
@@ -84,6 +125,11 @@ BEGIN
     VALUES (@Descripcion,GETDATE(),@Origen)
 
 END
+GO
+/****** Object:  StoredProcedure [dbo].[ValidarUsuario]    Script Date: 28/3/2023 13:53:58 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE PROCEDURE [dbo].[ValidarUsuario]
@@ -102,22 +148,27 @@ BEGIN
 
 END
 GO
+USE [master]
+GO
+ALTER DATABASE [ProyectoW_BD] SET  READ_WRITE 
+GO
+
 
 INSERT INTO [dbo].[PROVINCIAS] VALUES 
-										(1,'San JosÈ'),
+										(1,'San Jos√©'),
 										(2,'Alajuela'),
 										(3,'Cartago'),
 										(4,'Heredia'),
 										(5,'Guanacaste'),
 										(6,'Puntarenas'),
-										(7,'LimÛn')
+										(7,'Lim√≥n')
 GO
 
 INSERT INTO [dbo].[USUARIOS] VALUES
 									('jretana80675@ufide.ac.cr', 80675, 1,'Jose Pablo Retana Pereira', 123,1,'Administrador'),
 									('jsegura90582@ufide.ac.cr', 90582, 1,'Jostin Segura Noguera', 123,1,'Administrador'),
 									('jquiros90650@ufide.ac.cr', 90650, 1,'Jason Quiros Fonseca', 123,1,'Administrador'),
-									('jgarcia60845@ufide.ac.cr', 60845, 1,'JosuÈ GarcÌa Rold·n', 116860845,1,'Administrador'),
+									('jgarcia60845@ufide.ac.cr', 60845, 1,'Josu√© Garc√≠a Rold√°n', 116860845,1,'Administrador'),
 									('ecalvo90415@ufide.ac.cr', 90415, 1,'Eduardo Calvo Castillo', 123490415,1,'Administrador'),
 									('usuario1234@ufide.ac.cr', 12345, 1,'Usuario de Prueba 1', 123456789, 4, 'Usuario')
 GO
