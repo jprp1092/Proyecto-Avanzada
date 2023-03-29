@@ -167,13 +167,16 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="App_Start\SessionFilterAttribute.cs" />
+    <Compile Include="Controllers\ReservasController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
+    <Compile Include="Entities\ReservasEnt.cs" />
     <Compile Include="Entities\LogsEnt.cs" />
     <Compile Include="Entities\ProvinciaEnt.cs" />
     <Compile Include="Entities\UsuarioEnt.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ReservasModel.cs" />
     <Compile Include="Models\LogsModel.cs" />
     <Compile Include="Models\ProvinciaModel.cs" />
     <Compile Include="Models\UsuarioModel.cs" />
@@ -282,6 +285,8 @@
     <Content Include="Views\Shared\_Layout_Logged.cshtml" />
     <Content Include="Views\Home\RecuperarContrasenna.cshtml" />
     <Content Include="Views\Usuarios\ActualizarUsuario.cshtml" />
+    <Content Include="Views\Reservas\Index.cshtml" />
+    <Content Include="Views\Reservas\ActualizarReserva.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

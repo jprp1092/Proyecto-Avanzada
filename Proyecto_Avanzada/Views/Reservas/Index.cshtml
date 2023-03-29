@@ -1,0 +1,123 @@
+﻿@model IEnumerable<Proyecto_Avanzada.Entities.ReservasEnt>
+@{
+    ViewBag.Title = "Home Page";
+    if (@Session["Nombre"] != null)
+    {
+        Layout = "~/Views/Shared/_Layout_Logged.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout_General.cshtml";
+    }
+}
+
+<div class="row">
+
+    <div class="col-md-1">
+    </div>
+    <div class="card col-md-10">
+        <div class="card-body">
+            <h4 class="card-title">Usuarios del Sistema</h4>
+
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Fecha de creación</th>
+                            <th>Nombre</th>
+                            <th>Destino</th>
+                            <th>Estado de pago</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.FechaReserva</td>
+                                <td>@item.CodUsuario</td>
+                                <td>@item.CodDestino</td>
+                                @if (item.Pago)
+                                {
+                                    <td>Pagado</td>
+                                }
+                                else
+                                {
+                                    <td>Sin pago</td>
+                                }
+                                @if (item.Estado)
+                                {
+                                    <td>Activo</td>
+                                }
+                                else
+                                {
+                                    <td>Inactivo</td>
+                                }
+
+                                <td>
+                                    <a class="btn btn-primary" href="@Url.Action("ActualizarReserva","Reservas", new { q = item.ConsecutivoReservas })">Actualizar</a> |
+                                    <button type="button" class="btn btn-primary openModal" data-toggle="modal" data-target="#exampleModal"
+                                            data-id=@item.ConsecutivoReservas data-backdrop="static" data-keyboard="false">
+                                        Cambiar Estado
+                                    </button>
+
+                                </td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Cambiar Estado</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Está seguro de cambiar el estado del usuario?
+
+                <input type="hidden" id="idModalHidden">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" onclick="CambiarEstado();" class="btn btn-primary">Procesar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script>
+
+    $(document).on("click", ".openModal", function () {
+        var id = $(this).data('id');
+        $("#idModalHidden").val(id);
+    });
+
+    function CambiarEstado() {
+        let id = $("#idModalHidden").val();
+
+        $.ajax({
+            url: "/Usuarios/CambiarEstado",
+            type: "POST",
+            data: {
+                "id": id
+            },
+            dataType: 'json',
+            success: function () {
+                window.location.href = "/Usuarios/Index";
+            }
+        });
+    }
+
+</script>

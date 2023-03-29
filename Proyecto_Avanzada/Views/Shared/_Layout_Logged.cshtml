@@ -37,36 +37,20 @@
             <div class="row">
                 <div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
                     <div class="d-inline-flex align-items-center">
-                        <p><i class="fa fa-envelope mr-2"></i>info@ejemplo.com</p>
-                        <p class="text-body px-3">|</p>
                         <p><i class="fa fa-phone-alt mr-2"></i>+506 2233 2233</p>
                     </div>
                 </div>
                 <div class="col-lg-6 text-center text-lg-right">
                     <div class="d-inline-flex align-items-center">
-                        <a class="text-primary px-3" href="">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a class="text-primary px-3" href="">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a class="text-primary px-3" href="">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a class="text-primary px-3" href="">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a class="text-primary pl-3" href="">
-                            <i class="fab fa-youtube"></i>
-                        </a>
+
                         &nbsp; &nbsp;
 
                         @*Mostrar el correo de inicio de sesión*@
 
                         @if (@Session["Nombre"] != null)
                         {
-                            <h6>Bienvenido,   @Session["Nombre"].ToString() </h6>
-                          
+                            <h6>Bienvenido,   @Session["Nombre"].ToString() <font Size="1"><br />@DateTime.Now.ToString("dddd, dd MMMM yyyy")</font></h6>
+
                         }
                         &nbsp;
 
@@ -88,18 +72,32 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
                     <div class="navbar-nav ml-auto py-0">
+                        @{String Rol = @Session["Rol"].ToString(); }
+
+                        @if (@Session["Rol"] != null && Rol == "Admin")
+                        {
+                            <div class="dropdown">
+                                <a class="btn btn-dark dropdown-toggle nav-item" id="administrar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    Administrar
+                                    <span class=""></span>
+                                </a>
+                                <ul class="dropdown-menu " aria-labelledby="administrar">
+                                    <li><a class="">@Html.ActionLink("Usuarios", "Index", "Usuarios")</a></li>
+                                    <li><a class="">@Html.ActionLink("Reservas", "Index", "Reservas")</a></li>
+                                </ul>
+                            </div>
+                        }
                         <a class="nav-item nav-link">@Html.ActionLink("Inicio", "Index", "Home")</a>
                         <a class="nav-item nav-link">@Html.ActionLink("Nosotros", "About", "Home")</a>
-                        <a class="nav-item nav-link">@Html.ActionLink("Servicios", "Services", "Home")</a>
                         <a class="nav-item nav-link">@Html.ActionLink("Paquetes de Viaje", "Packages", "Home")</a>
                         <a class="nav-item nav-link">@Html.ActionLink("Contacto", "Contact", "Home")</a>
-                        <a class="nav-item nav-link">@Html.ActionLink("Usuarios", "Index", "Usuarios")</a>
                         <a class="nav-item nav-link">@Html.ActionLink("Cerrar Sesión", "CerrarSesion", "Home")</a>
                     </div>
                 </div>
             </nav>
         </div>
     </div>
+
     <!-- Navbar End -->
 
     @RenderBody()
@@ -111,7 +109,7 @@
                 <a href="" class="navbar-brand">
                     <h1 class="text-primary"><span class="text-white">TRAVEL</span>ER</h1>
                 </a>
-                <p>Sed ipsum clita tempor ipsum ipsum amet sit ipsum lorem amet labore rebum lorem ipsum dolor. No sed vero lorem dolor dolor</p>
+                <p>Encontrar el hotel adecuado significa optar por estadías que satisfagan sus necesidades únicas. Hay bastantes factores que influyen en cómo es la experiencia de un hotel, y deberá considerarlos todos. Piensa en qué tipo de comodidades necesitas tener. Encontrará opciones para piscinas y gimnasios en hoteles de todo el país y más allá.</p>
                 <h6 class="text-white text-uppercase mt-4 mb-3" style="letter-spacing: 5px;">Síguenos en</h6>
                 <div class="d-flex justify-content-start">
                     <a class="btn btn-outline-primary btn-square mr-2" href="#"><i class="fab fa-twitter"></i></a>

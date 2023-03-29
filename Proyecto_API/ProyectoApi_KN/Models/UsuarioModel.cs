@@ -1,12 +1,8 @@
 ﻿using ProyectoApi_KN.App_Start;
 using ProyectoApi_KN.Entities;
 using ProyectoApi_KN.ModelDB;
-using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
-using System.Net.Mail;
-using System.Web;
 
 namespace ProyectoApi_KN.Models
 {
@@ -35,6 +31,7 @@ namespace ProyectoApi_KN.Models
                     entidadResultado.CorreoElectronico = resultado.CorreoElectronico;
                     entidadResultado.Nombre = resultado.Nombre; 
                     entidadResultado.Estado = resultado.Estado;
+                    entidadResultado.Rol = resultado.Rol;
                     return entidadResultado;
                 }
 
@@ -46,7 +43,6 @@ namespace ProyectoApi_KN.Models
         {
             using (var conexion = new ProyectoW_BDEntities())
             {
-                
                 var datos = (from x in conexion.USUARIOS
                              select x).ToList();
 
@@ -123,7 +119,7 @@ namespace ProyectoApi_KN.Models
                 usuario.Estado = true;
                 usuario.Identificacion = entidad.Identificacion;
                 usuario.Rol = "User";
-                usuario.CodProvincia = entidad.CodProvincia;
+                usuario.CodProvincia = 1;
                 conexion.USUARIOS.Add(usuario);
                 return conexion.SaveChanges();
             }

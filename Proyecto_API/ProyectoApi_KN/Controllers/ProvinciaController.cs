@@ -16,7 +16,7 @@ namespace ProyectoApi_KN.Controllers
         ProvinciaModel model = new ProvinciaModel();
 
         [HttpGet]
-        //[Authorize]
+        [AllowAnonymous]
         [Route("api/ConsultarProvincias")]
         public List<ProvinciaEnt> ConsultarProvincias()
         {

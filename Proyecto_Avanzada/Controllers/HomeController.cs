@@ -20,7 +20,7 @@ namespace ProyectoWeb_KN.Controllers
     public class HomeController : Controller
     {
         UsuarioModel usuariosModel = new UsuarioModel();
-        ProvinciaModel provinciaModel = new ProvinciaModel();
+        ProvinciaModel provinciasModel = new ProvinciaModel();
         LogsModel logsModel = new LogsModel();
 
         //MÃ©todo de Iniciar SesiÃ³n
@@ -52,6 +52,7 @@ namespace ProyectoWeb_KN.Controllers
                     Session["CorreoUsuario"] = resultado.CorreoElectronico;
                     Session["Nombre"] = resultado.Nombre;
                     Session["TokenUsuario"] = resultado.Token;
+                    Session["Rol"] = resultado.Rol;
                     return RedirectToAction("PantallaPrincipal", "Home");
                 }
                 else
@@ -77,6 +78,7 @@ namespace ProyectoWeb_KN.Controllers
         {
             try
             {
+                ViewBag.ListaProvincias = provinciasModel.ConsultarProvincias();
                 return View();
             }
             catch (Exception ex)
@@ -193,10 +195,16 @@ namespace ProyectoWeb_KN.Controllers
         [HttpGet]
         public ActionResult Login()
         {
-            ViewBag.ListaProvincias = provinciaModel.ConsultarProvincias();
-            ViewBag.ListaRoles = provinciaModel.ConsultarRoles();
+            try
+            {
+                Session.Clear();
+                return View();
+            }
+            catch (Exception)
+            {
 
-            return View();
+                return View("Index");
+            }
         }
 
 
