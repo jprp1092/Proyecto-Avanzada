@@ -30,7 +30,6 @@ namespace ProyectoWeb_KN.Controllers
         {
             try
             {
-                Session.Clear();
                 return View();
             }
             catch (Exception ex)
@@ -154,7 +153,7 @@ namespace ProyectoWeb_KN.Controllers
         {
             try
             {
-                return View("Principal");
+                return View("Index");
             }
             catch (Exception ex)
             {

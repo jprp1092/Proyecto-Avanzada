@@ -58,8 +58,7 @@ function BuscarCorreo2() {
                     Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
-                        text: 'El correo ingresado no existe en el sistema!',
-
+                        text: '¡El correo ingresado no existe en el sistema!',
                     })
 
                 }

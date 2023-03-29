@@ -31,14 +31,14 @@
                                         {
                                             <div class="form-group">
 
-                                                @Html.TextBoxFor(Model => Model.CorreoElectronico, new { @class = "form-control", @placeholder = "Correo Electronico", @onblur = "BuscarCorreo2();", @required = true })
+                                                @Html.TextBoxFor(Model => Model.CorreoElectronico, new { @class = "form-control", @placeholder = "Correo Electrónico", @onblur = "BuscarCorreo2();", @required = true })
                                                 <br />
                                                 @Html.TextBoxFor(Model => Model.Contrasenna, new { @class = "form-control", @placeholder = "Contraseña", @type = "Password", @required = true })
                                             </div>
 
                                             <a href="@Url.Action("RecuperarContrasenna", "Home")" class="text-primary">¿Olvido su contraseña?</a>
                                             <br /> <br />
-                                            <input type="submit" id="btnLogin" value="Login" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" />
+                                            <input type="submit" id="btnLogin" value="INGRESAR" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" />
                                         }
                                     </div>
                                 </div>
@@ -58,7 +58,7 @@
                                                     @Html.HiddenFor(x => x.ConsecutivoUsuario)
 
                                                     <div class="form-group">
-                                                        <label>Correo Electronico</label>
+                                                        <label>Correo Electrónico</label>
                                                         @Html.TextBoxFor(Model => Model.CorreoElectronico, new
                                                    {
                                                        @class = "form-control form-control-lg",
@@ -93,27 +93,21 @@
                                                     </div>
 
                                                 </div>
-
-
-                                                <!--
-                                                <div class="form-group col-md-6">
+                                                @*<div class="form-group col-md-6">
                                                     <label>Provincia</label>
-                                                    Html.DropDownListFor(Model => Model.CodProvincia, ViewBag.ListaProvincias as List<SelectListItem>,
-                                                       new { class = "form-control" })
+                                                    @Html.DropDownListFor(Model => Model.CodProvincia, ViewBag.ListaProvincias as List<SelectListItem>,
+                                                       new { @class = "form-control" })
                                                 </div>
+                                                <div class="form-group">
 
 
-    <div class="form-group">
+                                                    <div class="form-group" hidden>
+                                                        <label>Rol</label>
+                                                        Html.DropDownListFor(Model => Model.Rol, ViewBag.ListaRoles as List<SelectListItem>, new { class = "form-control form-control-lg" })
+                                                    </div>
 
-
-        <div class="form-group" hidden>
-            <label>Rol</label>
-            Html.DropDownListFor(Model => Model.Rol, ViewBag.ListaRoles as List<SelectListItem>, new { class = "form-control form-control-lg" })
-        </div>
-
-    </div>
-
-    <br />-->
+                                                </div>
+                                                <br />*@
 
                                                 <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">Registrarse</button>
 

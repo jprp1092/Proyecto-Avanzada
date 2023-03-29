@@ -49,7 +49,7 @@
                                 }
 
                                 <td>
-                                    <a class="btn btn-primary" href="@Url.Action("ActualizarUsuario","Usuarios", new { q = item.ConsecutivoUsuario })">Actualizar</a> |
+                                    <a class="btn btn-primary" href="@Url.Action("ActualizarUsuario", "Usuarios", new { q = item.ConsecutivoUsuario })">Actualizar</a> |
                                     <button type="button" class="btn btn-primary openModal" data-toggle="modal" data-target="#exampleModal"
                                             data-id=@item.ConsecutivoUsuario data-backdrop="static" data-keyboard="false">
                                         Cambiar Estado
@@ -94,7 +94,7 @@
 <script>
 
     $(document).on("click", ".openModal", function () {
-        var id = $(this).data('id');
+        var id = $(this).data('q');
         $("#idModalHidden").val(id);
     });
 
@@ -105,7 +105,7 @@
             url: "/Usuarios/CambiarEstado",
             type: "POST",
             data: {
-                "id": id
+                "q": id
             },
             dataType: 'json',
             success: function () {

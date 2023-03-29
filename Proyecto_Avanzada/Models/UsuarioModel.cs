@@ -117,12 +117,12 @@ namespace Proyecto_Avanzada.Models
             }
         }
 
-        public void CambiarEstado(long id)
+        public void CambiarEstado(long q)
         {
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", HttpContext.Current.Session["TokenUsuario"].ToString());
-                string url = "https://localhost:44398/api/CambiarEstado?q=" + id;
+                string url = "https://localhost:44398/api/CambiarEstado?q=" + q;
 
                 client.DeleteAsync(url).GetAwaiter().GetResult();
             }

@@ -25,7 +25,7 @@
     <!-- Customized Bootstrap Stylesheet -->
     <link href="~/template/css/style.css" rel="stylesheet">
 
-
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
 
 </head>
 
@@ -74,7 +74,7 @@
                     <div class="navbar-nav ml-auto py-0">
                         @{String Rol = @Session["Rol"].ToString(); }
 
-                        @if (@Session["Rol"] != null && Rol == "Admin")
+                        @if (@Session["Rol"] != null && Rol == "Administrador")
                         {
                             <div class="dropdown">
                                 <a class="btn btn-dark dropdown-toggle nav-item" id="administrar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -89,7 +89,7 @@
                         }
                         <a class="nav-item nav-link">@Html.ActionLink("Inicio", "Index", "Home")</a>
                         <a class="nav-item nav-link">@Html.ActionLink("Nosotros", "About", "Home")</a>
-                        <a class="nav-item nav-link">@Html.ActionLink("Paquetes de Viaje", "Packages", "Home")</a>
+                        <a class="nav-item nav-link">@Html.ActionLink("Reservas", "Packages", "Home")</a>
                         <a class="nav-item nav-link">@Html.ActionLink("Contacto", "Contact", "Home")</a>
                         <a class="nav-item nav-link">@Html.ActionLink("Cerrar Sesión", "CerrarSesion", "Home")</a>
                     </div>
@@ -112,10 +112,10 @@
                 <p>Encontrar el hotel adecuado significa optar por estadías que satisfagan sus necesidades únicas. Hay bastantes factores que influyen en cómo es la experiencia de un hotel, y deberá considerarlos todos. Piensa en qué tipo de comodidades necesitas tener. Encontrará opciones para piscinas y gimnasios en hoteles de todo el país y más allá.</p>
                 <h6 class="text-white text-uppercase mt-4 mb-3" style="letter-spacing: 5px;">Síguenos en</h6>
                 <div class="d-flex justify-content-start">
-                    <a class="btn btn-outline-primary btn-square mr-2" href="#"><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-outline-primary btn-square mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-outline-primary btn-square mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-                    <a class="btn btn-outline-primary btn-square" href="#"><i class="fab fa-instagram"></i></a>
+                    <a class="btn btn-outline-primary btn-square mr-2" href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-outline-primary btn-square mr-2" href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-outline-primary btn-square mr-2" href="https://www.linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
+                    <a class="btn btn-outline-primary btn-square" href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 mb-5">

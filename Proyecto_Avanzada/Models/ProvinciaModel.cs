@@ -48,10 +48,12 @@ namespace Proyecto_Avanzada.Models
     {
         List<SelectListItem> listaCombo = new List<SelectListItem>();
 
-        listaCombo.Add(new SelectListItem { Text = "Administrador", Value = "Admin" });
-        listaCombo.Add(new SelectListItem { Text = "Usuario", Value = "User" });
+        listaCombo.Add(new SelectListItem { Text = "Administrador", Value = "Administrador" });
+        listaCombo.Add(new SelectListItem { Text = "Usuario", Value = "Usuario" });
+        listaCombo.Add(new SelectListItem { Text = "Afiliado", Value = "Afiliado" });
+       // listaCombo.Add(new SelectListItem { Text = "Afiliado", Value = "Afiliado" });
 
-        return listaCombo;
+            return listaCombo;
     }
 
 }

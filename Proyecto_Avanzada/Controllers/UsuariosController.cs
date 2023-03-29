@@ -67,9 +67,9 @@ namespace Proyecto_Avanzada.Controllers
         }
 
         [HttpPost]
-        public ActionResult CambiarEstado(long id)
+        public ActionResult CambiarEstado(long q)
         {
-            usuariosModel.CambiarEstado(id);
+            usuariosModel.CambiarEstado(q);
             return Json("ok", JsonRequestBehavior.AllowGet);
         }
 
