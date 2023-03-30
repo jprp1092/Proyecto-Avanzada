@@ -30,7 +30,6 @@ namespace ProyectoApi_KN.ModelDB
         public virtual DbSet<BITACORAS> BITACORAS { get; set; }
         public virtual DbSet<ERRORES> ERRORES { get; set; }
         public virtual DbSet<PROVINCIAS> PROVINCIAS { get; set; }
-        public virtual DbSet<RESERVAS> RESERVAS { get; set; }
         public virtual DbSet<USUARIOS> USUARIOS { get; set; }
     
         public virtual int RegistrarBitacora(string descripcion, string origen)

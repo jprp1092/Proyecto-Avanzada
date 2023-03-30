@@ -1,0 +1,68 @@
+﻿@model Proyecto_Avanzada.Entities.HospedajeEnt
+
+@{
+    ViewBag.Title = "Home Page";
+    if (@Session["Nombre"] != null)
+    {
+        Layout = "~/Views/Shared/_Layout_Logged.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout_General.cshtml";
+    }
+}
+
+<div class="row">
+
+    <div class="col-md-1"></div>
+
+    <div class="col-md-10 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Actualizar Información</h4>
+
+                <br />
+
+                @using (Html.BeginForm("AgregarHospedaje", "Hospedaje", FormMethod.Post, new { @class = "forms-sample" }))
+                {
+
+                    <div class="row">
+
+                        @Html.HiddenFor(x => x.ConsecutivoHospedaje)
+
+                        <div class="form-group col-md-6">
+                            <label>Nombre de hospedaje</label>
+                            @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control"})
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Provincia</label>
+                            @Html.TextBoxFor(m => m.Lugar, new { @class = "form-control"})
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="form-group col-md-6">
+                            <label>Precio</label>
+                            @Html.TextBoxFor(m => m.Precio, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Disponibilidad</label>
+                            @Html.TextBoxFor(m => m.Disponibilidad, new { @class = "form-control", @readonly = "true", @value = "disponible" , @placeholder = "Disponible"})
+                        </div>
+
+                    </div>
+                    <br />
+
+                    <input type="submit" class="btn btn-primary mr-2" value="Agregar Hospedaje">
+
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-1"></div>
+
+</div>
+

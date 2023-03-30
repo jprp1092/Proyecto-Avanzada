@@ -4,15 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="8ec98a24063244d188de9e4d37d99ccc" Name="Diagram1">
-        <EntityTypeShape EntityType="ProyectoW_BDModel.BITACORAS" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoW_BDModel.ERRORES" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoW_BDModel.PROVINCIAS" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoW_BDModel.RESERVAS" Width="1.5" PointX="5.25" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoW_BDModel.USUARIOS" Width="1.5" PointX="3" PointY="2.125" IsExpanded="true" />
+      <Diagram DiagramId="75a156502926482987ded1fbf3ca4f12" Name="Diagram1">
+        <EntityTypeShape EntityType="ProyectoW_BDModel.BITACORAS" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoW_BDModel.ERRORES" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoW_BDModel.PROVINCIAS" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoW_BDModel.USUARIOS" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <AssociationConnector Association="ProyectoW_BDModel.FK_ERRORES_USUARIOS" ManuallyRouted="false" />
         <AssociationConnector Association="ProyectoW_BDModel.FK_USUARIOS_PROVINCIAS" ManuallyRouted="false" />
-        <AssociationConnector Association="ProyectoW_BDModel.FK_RESERVAS_USUARIOS" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -958,3 +958,7 @@ C:\Users\jsnqr\Source\Repos\Proyecto-Avanzada\Proyecto_API\ProyectoApi_KN\bin\Sy
 C:\Users\jsnqr\Source\Repos\Proyecto-Avanzada\Proyecto_API\ProyectoApi_KN\bin\System.Text.Json.xml
 C:\Users\jsnqr\Source\Repos\Proyecto-Avanzada\Proyecto_API\ProyectoApi_KN\bin\System.Threading.Tasks.Extensions.xml
 C:\Users\jsnqr\Source\Repos\Proyecto-Avanzada\Proyecto_API\ProyectoApi_KN\bin\System.ValueTuple.xml
+C:\Users\joser\OneDrive\Documentos\Proyecto_Avanzada\Proyecto-Avanzada\Proyecto_API\ProyectoApi_KN\obj\Debug\ProyectoApi_KN.csproj.AssemblyReference.cache
+C:\Users\joser\OneDrive\Documentos\Proyecto_Avanzada\Proyecto-Avanzada\Proyecto_API\ProyectoApi_KN\obj\Debug\ProyectoApi_KN.csproj.CoreCompileInputs.cache
+C:\Users\joser\OneDrive\Documentos\Proyecto_Avanzada\Proyecto-Avanzada\Proyecto_API\ProyectoApi_KN\obj\Debug\ProyectoApi_KN.dll
+C:\Users\joser\OneDrive\Documentos\Proyecto_Avanzada\Proyecto-Avanzada\Proyecto_API\ProyectoApi_KN\obj\Debug\ProyectoApi_KN.pdb
