@@ -11,6 +11,7 @@ using System.Web.Mvc;
 namespace Proyecto_Avanzada.Controllers
 {
     [SessionFilter]
+    [AdminFilter]
     public class UsuariosController : Controller
     {
         UsuarioModel usuariosModel = new UsuarioModel();

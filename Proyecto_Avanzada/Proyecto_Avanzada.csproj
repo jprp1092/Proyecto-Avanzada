@@ -162,13 +162,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AdminFilter.cs" />
+    <Compile Include="App_Start\AfliliadoFilter.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\HospedajeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="App_Start\SessionFilterAttribute.cs" />
     <Compile Include="Controllers\ReservasController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
+    <Compile Include="Entities\HospedajeEnt.cs" />
     <Compile Include="Entities\ReservasEnt.cs" />
     <Compile Include="Entities\LogsEnt.cs" />
     <Compile Include="Entities\ProvinciaEnt.cs" />
@@ -279,14 +283,13 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Packages.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
-    <Content Include="Views\Shared\_Layout_Login.cshtml" />
     <Content Include="Views\Shared\_Layout_General.cshtml" />
     <Content Include="Views\Usuarios\Index.cshtml" />
-    <Content Include="Views\Shared\_Layout_Logged.cshtml" />
     <Content Include="Views\Home\RecuperarContrasenna.cshtml" />
     <Content Include="Views\Usuarios\ActualizarUsuario.cshtml" />
     <Content Include="Views\Reservas\Index.cshtml" />
     <Content Include="Views\Reservas\ActualizarReserva.cshtml" />
+    <Content Include="Views\Hospedaje\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -171,8 +171,6 @@ namespace ProyectoWeb_KN.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-             
-
         public ActionResult About()
         {
             return View();

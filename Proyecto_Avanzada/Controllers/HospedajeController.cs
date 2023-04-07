@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace Proyecto_Avanzada.Controllers
 {
+    [AfliliadoFilter]
     public class HospedajeController : Controller
     {
         public ActionResult Index()

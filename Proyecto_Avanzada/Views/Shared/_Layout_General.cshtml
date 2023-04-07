@@ -84,13 +84,59 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
                     <div class="navbar-nav ml-auto py-0">
-                        <a class="nav-item nav-link">@Html.ActionLink("Inicio", "Index", "Home")</a>
-                        <a class="nav-item nav-link">@Html.ActionLink("Nosotros", "About", "Home")</a>
-                        <a class="nav-item nav-link">@Html.ActionLink("Servicios", "Services", "Home")</a>
-                        <a class="nav-item nav-link">@Html.ActionLink("Paquetes de Viaje", "Packages", "Home")</a>
-                        <a class="nav-item nav-link">@Html.ActionLink("Contacto", "Contact", "Home")</a>
-                        <a class="nav-item nav-link">@Html.ActionLink("Ingresar", "Login", "Home")</a>
-                        <a class="nav-item nav-link">@Html.ActionLink("Nuevo Hospedaje", "Index", "Hospedaje")</a>
+
+                        @if (Session["Rol"] == null)
+                        {
+                            <a class="nav-item nav-link">@Html.ActionLink("Inicio", "Index", "Home")</a>
+                            <a class="nav-item nav-link">@Html.ActionLink("Nosotros", "About", "Home")</a>
+                            <a class="nav-item nav-link">@Html.ActionLink("Servicios", "Services", "Home")</a>
+                            <a class="nav-item nav-link">@Html.ActionLink("Paquetes de Viaje", "Packages", "Home")</a>
+                            <a class="nav-item nav-link">@Html.ActionLink("Contacto", "Contact", "Home")</a>
+                            <a class="nav-item nav-link">@Html.ActionLink("Ingresar", "Login", "Home")</a>
+                        }
+
+                        @if (Session["Rol"] != null && Session["Rol"].ToString() == "usuario")
+                        {
+                            <a class="nav-item nav-link">@Html.ActionLink("Inicio", "Index", "Home")</a>
+                            <a class="nav-item nav-link">@Html.ActionLink("Nosotros", "About", "Home")</a>
+                            <a class="nav-item nav-link">@Html.ActionLink("Servicios", "Services", "Home")</a>
+                            <a class="nav-item nav-link">@Html.ActionLink("Paquetes de Viaje", "Packages", "Home")</a>
+                            <a class="nav-item nav-link">@Html.ActionLink("Contacto", "Contact", "Home")</a>
+                            <a class="nav-item nav-link">@Html.ActionLink("Reservas", "Index", "Reservas")</a>
+                            <a class="nav-item nav-link">@Html.ActionLink("Cerrar Sesión", "CerrarSesion", "Home")</a>
+                        }
+
+                        @if (Session["Rol"] != null && Session["Rol"].ToString() == "afiliado")
+                        {
+                            <a class="nav-item nav-link">@Html.ActionLink("Inicio", "Index", "Home")</a>
+                            <a class="nav-item nav-link">@Html.ActionLink("Nosotros", "About", "Home")</a>
+                            <a class="nav-item nav-link">@Html.ActionLink("Servicios", "Services", "Home")</a>
+                            <a class="nav-item nav-link">@Html.ActionLink("Paquetes de Viaje", "Packages", "Home")</a>
+                            <a class="nav-item nav-link">@Html.ActionLink("Contacto", "Contact", "Home")</a>
+                            <a class="nav-item nav-link">@Html.ActionLink("Nuevo Hospedaje", "Index", "Hospedaje")</a>
+                            <a class="nav-item nav-link">@Html.ActionLink("Cerrar Sesión", "CerrarSesion", "Home")</a>
+                        }
+
+                        @if (Session["Rol"] != null && Session["Rol"].ToString() == "administrador")
+                        {
+                            <div class="dropdown">
+                                <a class="btn btn-dark dropdown-toggle nav-item" id="administrar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    Administrar
+                                    <span class=""></span>
+                                </a>
+                                <ul class="dropdown-menu " aria-labelledby="administrar">
+                                    <li><a class="">@Html.ActionLink("Usuarios", "Index", "Usuarios")</a></li>
+                                    <li><a class="">@Html.ActionLink("Reservas", "Index", "Reservas")</a></li>
+                                </ul>
+                            </div>
+                            <a class="nav-item nav-link">@Html.ActionLink("Inicio", "Index", "Home")</a>
+                            <a class="nav-item nav-link">@Html.ActionLink("Nosotros", "About", "Home")</a>
+                            <a class="nav-item nav-link">@Html.ActionLink("Servicios", "Services", "Home")</a>
+                            <a class="nav-item nav-link">@Html.ActionLink("Paquetes de Viaje", "Packages", "Home")</a>
+                            <a class="nav-item nav-link">@Html.ActionLink("Contacto", "Contact", "Home")</a>
+                            <a class="nav-item nav-link">@Html.ActionLink("Nuevo Hospedaje", "Index", "Hospedaje")</a>
+                            <a class="nav-item nav-link">@Html.ActionLink("Cerrar Sesión", "CerrarSesion", "Home")</a>
+                        }
                     </div>
                 </div>
             </nav>
