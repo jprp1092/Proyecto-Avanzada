@@ -1,4 +1,6 @@
-﻿@{
+﻿@model Proyecto_Avanzada.Entities.CorreoEnt
+
+@{
     ViewBag.Title = "Home Page";
     Layout = "~/Views/Shared/_Layout_General.cshtml";
 }
@@ -14,34 +16,44 @@
             <div class="col-lg-8">
                 <div class="contact-form bg-white" style="padding: 30px;">
                     <div id="success"></div>
-                    <form name="sentMessage" id="contactForm" novalidate="novalidate">
-                        <div class="form-row">
-                            <div class="control-group col-sm-6">
-                                <input type="text" class="form-control p-4" id="name" placeholder="Tu nombre"
-                                       required="required" data-validation-required-message="Por favor, introduce tu nombre" />
+                    @*<form name="sentMessage" id="contactForm" novalidate="novalidate">*@
+
+
+                        @using (Html.BeginForm("EnvioCorreoContacto", "Home", FormMethod.Post, new { @class = "form" }))
+                        {
+                            <div class="form-row">
+                                <div class="control-group col-sm-6">
+
+                                    @Html.TextBoxFor(Model => Model.Emisor, new { @class = "form-control p-4", @placeholder = "Tu nombre", @required = true })
+                                    <p class="help-block text-danger"></p>
+                                </div>
+
+                                <div class="control-group col-sm-6">
+
+                                    @Html.TextBoxFor(Model => Model.CorreoEmisor, new { @class = "form-control p-4", @placeholder = "Correo electrónico", @type = "Correo", @required = true })
+                                    <p class="help-block text-danger"></p>
+                                </div>
+
+                                <div class="control-group col-sm-6">
+                                    @Html.TextBoxFor(Model => Model.Asunto, new { @class = "form-control p-4", @placeholder = "Asunto", @required = true })
+                                    <p class="help-block text-danger"></p>
+                                </div>
+
+                                @Html.TextAreaFor(Model => Model.CuerpoCorreo, new { @class = "form-control py-3 px-4", @placeholder = "Por favor, introduce tu mensaje", @required = true })
                                 <p class="help-block text-danger"></p>
+                                <br /> <br />
+                                <br /> <br />
+                                <br /> <br />
+
                             </div>
-                            <div class="control-group col-sm-6">
-                                <input type="email" class="form-control p-4" id="email" placeholder="Tu correo electrónico"
-                                       required="required" data-validation-required-message="Por favor, introduce tu correo electrónico" />
-                                <p class="help-block text-danger"></p>
+
+                                <br />
+
+                            <div class="text-center">
+                                <button class="btn btn-primary py-3 px-4" type="submit" id="sendMessageButton">Enviar mensaje</button>
                             </div>
-                        </div>
-                        <div class="control-group">
-                            <input type="text" class="form-control p-4" id="subject" placeholder="Asunto"
-                                   required="required" data-validation-required-message="Por favor, introduce un asunto" />
-                            <p class="help-block text-danger"></p>
-                        </div>
-                        <div class="control-group">
-                            <textarea class="form-control py-3 px-4" rows="5" id="message" placeholder="Mensaje"
-                                      required="required"
-                                      data-validation-required-message="Por favor, introduce tu mensaje"></textarea>
-                            <p class="help-block text-danger"></p>
-                        </div>
-                        <div class="text-center">
-                            <button class="btn btn-primary py-3 px-4" type="submit" id="sendMessageButton">Enviar mensaje</button>
-                        </div>
-                    </form>
+                        }
+                    @*</form>*@
                 </div>
             </div>
         </div>

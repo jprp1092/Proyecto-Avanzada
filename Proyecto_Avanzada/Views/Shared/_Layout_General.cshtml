@@ -95,7 +95,7 @@
                             <a class="nav-item nav-link">@Html.ActionLink("Ingresar", "Login", "Home")</a>
                         }
 
-                        @if (Session["Rol"] != null && Session["Rol"].ToString() == "usuario")
+                        @if (Session["Rol"] != null && Session["Rol"].ToString() == "Usuario")
                         {
                             <a class="nav-item nav-link">@Html.ActionLink("Inicio", "Index", "Home")</a>
                             <a class="nav-item nav-link">@Html.ActionLink("Nosotros", "About", "Home")</a>
@@ -106,7 +106,7 @@
                             <a class="nav-item nav-link">@Html.ActionLink("Cerrar Sesión", "CerrarSesion", "Home")</a>
                         }
 
-                        @if (Session["Rol"] != null && Session["Rol"].ToString() == "afiliado")
+                        @if (Session["Rol"] != null && Session["Rol"].ToString() == "Afilidado")
                         {
                             <a class="nav-item nav-link">@Html.ActionLink("Inicio", "Index", "Home")</a>
                             <a class="nav-item nav-link">@Html.ActionLink("Nosotros", "About", "Home")</a>
@@ -117,7 +117,7 @@
                             <a class="nav-item nav-link">@Html.ActionLink("Cerrar Sesión", "CerrarSesion", "Home")</a>
                         }
 
-                        @if (Session["Rol"] != null && Session["Rol"].ToString() == "administrador")
+                        @if (Session["Rol"] != null && Session["Rol"].ToString() == "Administrador")
                         {
                             <div class="dropdown">
                                 <a class="btn btn-dark dropdown-toggle nav-item" id="administrar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">

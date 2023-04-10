@@ -17,6 +17,7 @@ namespace ProyectoApi_KN.Controllers
     */
     public class UsuariosController : ApiController
     {
+        ContactModel contact = new ContactModel();
         UsuarioModel model = new UsuarioModel();
 
         [HttpPost]
@@ -81,6 +82,14 @@ namespace ProyectoApi_KN.Controllers
         public void RecuperarContrasenna(UsuarioEnt entidad)
         {
             model.RecuperarContrasenna(entidad);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("api/EnvioCorreoContacto")]
+        public void EnvioCorreoContacto(CorreoEnt mensaje)
+        {
+            contact.EnviarCorreoContacto(mensaje);
         }
 
     }

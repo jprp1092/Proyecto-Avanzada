@@ -22,6 +22,7 @@ namespace ProyectoWeb_KN.Controllers
         UsuarioModel usuariosModel = new UsuarioModel();
         ProvinciaModel provinciasModel = new ProvinciaModel();
         LogsModel logsModel = new LogsModel();
+        ContactModel contactModel = new ContactModel();
 
         //MÃ©todo de Iniciar SesiÃ³n
 
@@ -184,10 +185,43 @@ namespace ProyectoWeb_KN.Controllers
         {
             return View();
         }
+
+        [HttpGet]
         public ActionResult Contact()
         {
-            return View();
+            try
+            {
+                return View();
+
+            }
+            
+            catch (Exception ex)
+            {
+                logsModel.RegistrarBitacora(ControllerContext, ex.Message);
+                ViewBag.mensajeError = "Sus credenciales no fueron validadas";
+                return View("Index");
+            }
         }
+
+
+        [HttpPost]
+        public ActionResult EnvioCorreoContacto(CorreoEnt mensaje)
+        {
+            try
+            {
+                contactModel.EnvioCorreoContacto(mensaje);
+                return View("Index");
+
+            }
+
+            catch (Exception ex)
+            {
+                logsModel.RegistrarBitacora(ControllerContext, ex.Message);
+                ViewBag.mensajeError = "Sus credenciales no fueron validadas";
+                return View("Index");
+            }
+        }
+
 
         [HttpGet]
         public ActionResult Login()
@@ -203,8 +237,6 @@ namespace ProyectoWeb_KN.Controllers
                 return View("Index");
             }
         }
-
-
 
     }
 

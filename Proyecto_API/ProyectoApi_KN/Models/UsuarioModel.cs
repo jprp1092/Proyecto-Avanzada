@@ -118,7 +118,7 @@ namespace ProyectoApi_KN.Models
                 usuario.Nombre = entidad.Nombre;
                 usuario.Estado = true;
                 usuario.Identificacion = entidad.Identificacion;
-                usuario.Rol = "User";
+                usuario.Rol = "Usuario";
                 usuario.CodProvincia = 1;
                 conexion.USUARIOS.Add(usuario);
                 return conexion.SaveChanges();
@@ -174,6 +174,7 @@ namespace ProyectoApi_KN.Models
                 }
             }
         }
+
 
     }
 }
