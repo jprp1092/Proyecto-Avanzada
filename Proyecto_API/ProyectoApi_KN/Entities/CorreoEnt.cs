@@ -11,6 +11,7 @@ namespace ProyectoApi_KN.Entities
         public string CorreoEmisor { get; set; }
         public string Asunto { get; set; }
         public string CuerpoCorreo { get; set; }
+        public DateTime FechaHora { get; set; }
 
     }
 }

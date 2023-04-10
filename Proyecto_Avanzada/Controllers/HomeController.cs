@@ -210,7 +210,9 @@ namespace ProyectoWeb_KN.Controllers
             try
             {
                 contactModel.EnvioCorreoContacto(mensaje);
-                return View("Index");
+                contactModel.RegistrarCorreoContacto(mensaje);
+
+                return RedirectToAction("Contact", "Home");
 
             }
 

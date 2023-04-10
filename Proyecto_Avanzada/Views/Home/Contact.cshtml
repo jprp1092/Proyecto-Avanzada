@@ -35,7 +35,7 @@
                                 </div>
 
                                 <div class="control-group col-sm-6">
-                                    @Html.TextBoxFor(Model => Model.Asunto, new { @class = "form-control p-4", @placeholder = "Asunto", @required = true })
+                                    @Html.DropDownListFor(Model => Model.Asunto, new SelectList(new[] { "Consulta General", "Consultar de Reservación", "Consulta de Usuario" }), "Seleccione un asunto", new { @class = "form-control" })
                                     <p class="help-block text-danger"></p>
                                 </div>
 

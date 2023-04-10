@@ -63,7 +63,7 @@
 
                         @if (@Session["Nombre"] != null)
                         {
-                            @Session["Nombre"].ToString()
+                            <h6>Bienvenido,   @Session["Nombre"].ToString() <font Size="1"><br />@DateTime.Now.ToString("dddd, dd MMMM yyyy")</font></h6>
                         }
 
                     </div>

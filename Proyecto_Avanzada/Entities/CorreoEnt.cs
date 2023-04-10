@@ -12,5 +12,6 @@ namespace Proyecto_Avanzada.Entities
         public string Asunto { get; set; }
         public string CuerpoCorreo { get;set; }
 
+        public DateTime FechaHora { get; set; } 
     }
 }

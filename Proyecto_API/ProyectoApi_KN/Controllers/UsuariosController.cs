@@ -92,6 +92,15 @@ namespace ProyectoApi_KN.Controllers
             contact.EnviarCorreoContacto(mensaje);
         }
 
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("api/RegistrarCorreoContacto")]
+        public void RegistrarCorreoContacto(CorreoEnt mensaje)
+        {
+            contact.RegistrarCorreoContacto(mensaje);
+        }
+
+
     }
 }
 
