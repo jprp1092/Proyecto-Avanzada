@@ -55,6 +55,7 @@ namespace ProyectoApi_KN.Models
                         CorreoElectronico = item.CorreoElectronico,
                         Estado = item.Estado,
                         Nombre = item.Nombre,
+                        Telefono = (short)item.Telefono,
                         Identificacion = item.Identificacion
 
                     });
@@ -81,7 +82,7 @@ namespace ProyectoApi_KN.Models
                 EntidadResultado.Identificacion = datos.Identificacion;
                 EntidadResultado.CodProvincia = datos.CodProvincia.Value;
                 EntidadResultado.Rol = datos.Rol;
-
+                EntidadResultado.Telefono = (short)datos.Telefono;
                 return EntidadResultado;
             }
         }
@@ -119,7 +120,8 @@ namespace ProyectoApi_KN.Models
                 usuario.Estado = true;
                 usuario.Identificacion = entidad.Identificacion;
                 usuario.Rol = "Usuario";
-                usuario.CodProvincia = 1;
+                usuario.CodProvincia = entidad.CodProvincia;
+                usuario.Telefono = entidad.Telefono;
                 conexion.USUARIOS.Add(usuario);
                 return conexion.SaveChanges();
             }

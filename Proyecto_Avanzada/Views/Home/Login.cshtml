@@ -47,81 +47,100 @@
                                         <br />
                                         <h4 class="card-title">Hazte una cuenta</h4>
 
-                                        @using (Html.BeginForm("RegistrarUsuario", "Home", FormMethod.Post, new { @class = "pt-3" }))
-                                        {
-                                            <form>
+                                        <div class="row">
 
-                                                <div class="form-group">
+                                            <div class="col-md-offset-6"></div>
+
+                                            <div class="col-md-offset-6 grid-margin stretch-card">
+                                                <div class="card">
+                                                    <div class="card-body">
+
+                                                        @using (Html.BeginForm("RegistrarUsuario", "Home", FormMethod.Post, new { @class = "pt-3" }))
+                                                        {
+
+
+                                                            <div class="row">
 
 
 
-                                                    @Html.HiddenFor(x => x.ConsecutivoUsuario)
+                                                                @Html.HiddenFor(x => x.ConsecutivoUsuario)
 
-                                                    <div class="form-group">
-                                                        <label>Correo Electrónico</label>
-                                                        @Html.TextBoxFor(Model => Model.CorreoElectronico, new
-                                                   {
-                                                       @class = "form-control form-control-lg",
+                                                                <div class="form-group col-md-6">
+                                                                    <label>Correo Electrónico</label>
+                                                                    @Html.TextBoxFor(Model => Model.CorreoElectronico, new
+                                                               {
+                                                                   @class = "form-control form-control-lg",
 
-                                                       @onblur = "BuscarCorreo();",
-                                                       @required = true
-                                                   })
+                                                                   @onblur = "BuscarCorreo();",
+                                                                   @required = true
+                                                               })
+                                                                </div>
+                                                                <div class="form-group col-md-6">
+                                                                    <label>Contraseña</label>
+                                                                    @Html.TextBoxFor(Model => Model.Contrasenna, new { @class = "form-control form-control-lg", @type = "password", @required = true })
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="row">
+
+
+                                                                <div class="form-group col-md-6">
+                                                                    <label>Identificación</label>
+                                                                    @Html.TextBoxFor(Model => Model.Identificacion, new
+                                                               {
+                                                                   @class = "form-control form-control-lg",
+                                                                   @onkeyUp = "ConsultarNombreApi(this);",
+                                                                   @required = true
+                                                               })
+                                                                </div>
+                                                                <div class="form-group col-md-6">
+
+                                                                    <label>Nombre</label>
+                                                                    @Html.TextBoxFor(Model => Model.Nombre, new { @class = "form-control form-control-lg", @readonly = "true" })
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="row">
+
+                                                                <div class="form-group col-md-6">
+                                                                    <label>Provincia</label>
+                                                                    @Html.DropDownListFor(m => m.CodProvincia, ViewBag.ListaProvincias as List<SelectListItem>,
+                                                                       "Seleccione una opción", new { @class = "form-control" })
+                                                                </div>
+
+
+                                                                <div class="form-group col-md-6">
+                                                                    <label>Telefóno</label>
+                                                                    @Html.TextBoxFor(Model => Model.Telefono, new { @class = "form-control form-control-lg", })
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group" hidden>
+                                                                <label>Rol</label>
+                                                                Html.DropDownListFor(Model => Model.Rol, ViewBag.ListaRoles as List<SelectListItem>, new { class = "form-control form-control-lg" })
+                                                            </div>
+
+
+                                                            <br />
+
+                                                            <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">Registrarse</button>
+
+
+                                                        }
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label>Contraseña</label>
-                                                        @Html.TextBoxFor(Model => Model.Contrasenna, new { @class = "form-control form-control-lg", @type = "password", @required = true })
-                                                    </div>
-
                                                 </div>
+                                            </div>
+                                        </div>
 
-                                                <div class="form-group">
-
-
-                                                    <div class="form-group">
-                                                        <label>Identificación</label>
-                                                        @Html.TextBoxFor(Model => Model.Identificacion, new
-                                                   {
-                                                       @class = "form-control form-control-lg",
-                                                       @onkeyUp = "ConsultarNombreApi(this);",
-                                                       @required = true
-                                                   })
-                                                    </div>
-                                                    <div class="form-group">
-
-                                                        <label>Nombre</label>
-                                                        @Html.TextBoxFor(Model => Model.Nombre, new { @class = "form-control form-control-lg", @readonly = "true" })
-                                                    </div>
-
-                                                </div>
-                                                @*<div class="form-group col-md-6">
-                                                    <label>Provincia</label>
-                                                    @Html.DropDownListFor(Model => Model.CodProvincia, ViewBag.ListaProvincias as List<SelectListItem>,
-                                                       new { @class = "form-control" })
-                                                </div>
-                                                <div class="form-group">
-
-
-                                                    <div class="form-group" hidden>
-                                                        <label>Rol</label>
-                                                        Html.DropDownListFor(Model => Model.Rol, ViewBag.ListaRoles as List<SelectListItem>, new { class = "form-control form-control-lg" })
-                                                    </div>
-
-                                                </div>
-                                                <br />*@
-
-                                                <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">Registrarse</button>
-
-                                            </form>
-                                    }
                                     </div>
+                                    <div class="col-md-1"></div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
-                    <div class="col-md-2"></div>
-
-                </div>
+                    </div>
             </div>
         </div>
     </div>

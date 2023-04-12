@@ -17,6 +17,7 @@ namespace ProyectoApi_KN.Entities
         public string Identificacion { get; set; }
         public string Nombre { get; set; }
         public byte CodProvincia { get; set; }
+        public short Telefono { get; set; }
         public string Rol { get; set; }
     }
 

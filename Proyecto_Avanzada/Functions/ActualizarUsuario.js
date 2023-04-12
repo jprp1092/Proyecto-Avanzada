@@ -19,6 +19,8 @@
     else {
         $("#Nombre").val("");
     }
-
+    $(document).ready(function () {
+        $('#ActualizarTablaUsuarios').DataTable();
+    });
 }
 

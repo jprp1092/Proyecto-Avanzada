@@ -3,8 +3,11 @@
 @{
     ViewBag.Title = "Home Page";
     Layout = "~/Views/Shared/_Layout_General.cshtml";
-    
+
 }
+
+
+
 
 <div class="row">
 
@@ -12,53 +15,54 @@
     </div>
     <div class="card col-md-10">
         <div class="card-body">
+
             <h4 class="card-title">Usuarios del Sistema</h4>
 
-            <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>Correo Electrónico</th>
-                            <th>Identificación</th>
-                            <th>Nombre</th>
-                            <th>Estado</th>
-                            <th>Acciones</th>
+
+            <table id="TablaUsuarios" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Correo Electrónico</th>
+                        <th>Identificación</th>
+                        <th>Nombre</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>                          
+                            <td>@item.CorreoElectronico</td>
+                            <td>@item.Identificacion</td>
+                            <td>@item.Nombre</td>
+
+                            @if (item.Estado)
+                            {
+                                <td>Activo</td>
+                            }
+                            else
+                            {
+                                <td>Inactivo</td>
+                            }
+
+                            <td>
+                                <a class="btn btn-primary" href="@Url.Action("ActualizarUsuario", "Usuarios", new { q = item.ConsecutivoUsuario })">Actualizar</a> |
+                                <button type="button" class="btn btn-primary openModal" data-toggle="modal" data-target="#exampleModal"
+                                        data-id=@item.ConsecutivoUsuario data-backdrop="static" data-keyboard="false">
+                                    Cambiar Estado
+                                </button>
+
+                            </td>
+
                         </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td>@item.CorreoElectronico</td>
-                                <td>@item.Identificacion</td>
-                                <td>@item.Nombre</td>
+                    }
+                </tbody>
+            </table>
 
-                                @if (item.Estado)
-                                {
-                                    <td>Activo</td>
-                                }
-                                else
-                                {
-                                    <td>Inactivo</td>
-                                }
 
-                                <td>
-                                    <a class="btn btn-primary" href="@Url.Action("ActualizarUsuario", "Usuarios", new { q = item.ConsecutivoUsuario })">Actualizar</a> |
-                                    <button type="button" class="btn btn-primary openModal" data-toggle="modal" data-target="#exampleModal"
-                                            data-id=@item.ConsecutivoUsuario data-backdrop="static" data-keyboard="false">
-                                        Cambiar Estado
-                                    </button>
-
-                                </td>
-
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
         </div>
     </div>
-
 </div>
 
 <!-- Modal -->
@@ -84,13 +88,19 @@
     </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
 <script>
 
     $(document).on("click", ".openModal", function () {
         var id = $(this).data('q');
         $("#idModalHidden").val(id);
     });
+
+    $(document).ready(function () {
+        $('#TablaUsuarios').DataTable();
+    });
+
 
     function CambiarEstado() {
         let id = $("#idModalHidden").val();

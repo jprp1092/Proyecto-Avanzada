@@ -12,6 +12,7 @@ namespace Proyecto_Avanzada.Controllers
 {
     [SessionFilter]
     [AdminFilter]
+    [OutputCache(NoStore = true, Duration = 0)]
     public class UsuariosController : Controller
     {
         UsuarioModel usuariosModel = new UsuarioModel();

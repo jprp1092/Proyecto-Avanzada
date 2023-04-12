@@ -17,6 +17,7 @@ namespace Proyecto_Avanzada.Entities
         public string Identificacion { get; set; }
         public string Nombre { get; set; }
         public short CodProvincia { get; set; }
+        public short Telefono { get; set; }
         public string Rol { get; set; }
     }
 }

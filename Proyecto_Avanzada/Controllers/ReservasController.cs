@@ -11,6 +11,7 @@ using System.Web.Mvc;
 namespace Proyecto_Avanzada.Controllers
 {
     [SessionFilter]
+    [OutputCache(NoStore = true, Duration = 0)]
     public class ReservasController : Controller
     {
         ReservasModel reservasModel = new ReservasModel();

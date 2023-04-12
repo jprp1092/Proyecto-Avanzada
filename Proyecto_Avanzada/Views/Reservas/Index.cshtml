@@ -15,53 +15,55 @@
             <h4 class="card-title">Usuarios del Sistema</h4>
 
             <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>Fecha de creación</th>
-                            <th>Nombre</th>
-                            <th>Destino</th>
-                            <th>Estado de pago</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
+                <table id="TablaReservas" class="table table-hover">
+                    
+                        <thead>
                             <tr>
-                                <td>@item.FechaReserva</td>
-                                <td>@item.CodUsuario</td>
-                                <td>@item.CodDestino</td>
-                                @if (item.Pago)
-                                {
-                                    <td>Pagado</td>
-                                }
-                                else
-                                {
-                                    <td>Sin pago</td>
-                                }
-                                @if (item.Estado)
-                                {
-                                    <td>Activo</td>
-                                }
-                                else
-                                {
-                                    <td>Inactivo</td>
-                                }
-
-                                <td>
-                                    <a class="btn btn-primary" href="@Url.Action("ActualizarReserva","Reservas", new { q = item.ConsecutivoReservas })">Actualizar</a> |
-                                    <button type="button" id="idModalHidden" class="btn btn-primary openModal" data-toggle="modal" data-target="#exampleModal"
-                                            data-id=@item.ConsecutivoReservas data-backdrop="static" data-keyboard="false">
-                                        Cambiar Estado
-                                    </button>
-
-                                </td>
-
+                                <th>Fecha de creación</th>
+                                <th>Nombre</th>
+                                <th>Destino</th>
+                                <th>Estado de pago</th>
+                                <th>Estado Reserva</th>
+                                <th>Acciones</th>
                             </tr>
-                        }
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.FechaReserva</td>
+                                    <td>@item.NombreUsuario</td>
+                                    <td>@item.CodDestino</td>
+                                    @if (item.Pago)
+                                    {
+                                        <td>Pagado</td>
+                                    }
+                                    else
+                                    {
+                                        <td>Sin pago</td>
+                                    }
+                                    @if (item.Estado)
+                                    {
+                                        <td>Activo</td>
+                                    }
+                                    else
+                                    {
+                                        <td>Inactivo</td>
+                                    }
+
+                                    <td>
+                                        <a class="btn btn-primary" href="@Url.Action("ActualizarReserva","Reservas", new { q = item.ConsecutivoReservas })">Actualizar</a> |
+                                        <button type="button" id="idModalHidden" class="btn btn-primary openModal" data-toggle="modal" data-target="#exampleModal"
+                                                data-id=@item.ConsecutivoReservas data-backdrop="static" data-keyboard="false">
+                                            Cambiar Estado
+                                        </button>
+
+                                    </td>
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
             </div>
         </div>
     </div>
@@ -91,12 +93,16 @@
     </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
 
     $(document).on("click", ".openModal", function () {
         var id = $(this).data('id');
         $("#idModalHidden").val(id);
+    });
+
+    $(document).ready(function () {
+        $('#TablaReservas').DataTable();
     });
 
     function CambiarEstado() {

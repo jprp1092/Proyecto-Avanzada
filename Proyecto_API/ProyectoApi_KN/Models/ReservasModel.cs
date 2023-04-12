@@ -29,7 +29,11 @@ namespace ProyectoApi_KN.Models
             using (var conexion = new ProyectoW_BDEntities())
             {
                 var datos = (from x in conexion.RESERVAS
-                             select x).ToList();
+                             join z in conexion.USUARIOS on x.CodUsuario equals (z.ConsecutivoUsuario)
+                             select new
+                             {
+                                 x.ConsecutivoReservas,x.FechaReserva,x.CodUsuario,z.Nombre,x.CodDestino,x.Pago,x.Estado
+                             }).ToList();
 
                 List<ReservasEnt> listaEntidadResultado = new List<ReservasEnt>();
                 foreach (var item in datos)
@@ -39,6 +43,7 @@ namespace ProyectoApi_KN.Models
                         ConsecutivoReservas = item.ConsecutivoReservas,
                         FechaReserva = item.FechaReserva,
                         CodUsuario = item.CodUsuario,
+                        NombreUsuario = item.Nombre,
                         CodDestino = item.CodDestino,
                         Pago = item.Pago,
                         Estado = item.Estado

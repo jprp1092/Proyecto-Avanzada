@@ -11,6 +11,8 @@ using System.Web.Security;
 
 namespace ProyectoWeb_KN.Controllers
 {
+
+    [OutputCache(NoStore = true, Duration = 0 )]
     /*
        F10 = Avanzamos lÃ­nea por lÃ­nea
        F11 = Ingresamos a los mÃ©todos
@@ -78,7 +80,7 @@ namespace ProyectoWeb_KN.Controllers
         {
             try
             {
-                ViewBag.ListaProvincias = provinciasModel.ConsultarProvincias();
+               // ViewBag.ListaProvincias = provinciasModel.ConsultarProvincias();
                 return View();
             }
             catch (Exception ex)
@@ -231,6 +233,7 @@ namespace ProyectoWeb_KN.Controllers
             try
             {
                 Session.Clear();
+                ViewBag.ListaProvincias = provinciasModel.ConsultarProvincias();
                 return View();
             }
             catch (Exception)

@@ -10,6 +10,7 @@ using System.Web.Mvc;
 namespace Proyecto_Avanzada.Controllers
 {
     [AfliliadoFilter]
+    [OutputCache(NoStore = true, Duration = 0)]
     public class HospedajeController : Controller
     {
         public ActionResult Index()

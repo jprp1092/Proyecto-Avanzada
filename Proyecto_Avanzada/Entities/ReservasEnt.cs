@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Web.Mvc;
 using System.Web;
+using System.Data.SqlTypes;
 
 namespace Proyecto_Avanzada.Entities
 {
@@ -15,9 +16,11 @@ namespace Proyecto_Avanzada.Entities
         public long ConsecutivoReservas { get; set; }
         public DateTime FechaReserva { get; set; }
         public long CodUsuario { get; set; }
+        public string NombreUsuario { get; set; }
         public long CodDestino { get; set; }
         public bool Pago { get; set; }
         public bool Estado { get; set; }
+
 
     }
 

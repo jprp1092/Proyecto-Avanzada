@@ -21,6 +21,37 @@ CREATE TABLE [dbo].[BITACORAS](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
+
+CREATE TABLE [dbo].[CARRITO](
+	[IdCarrito] [bigint] IDENTITY(1,1) NOT NULL,
+	[ConsecutivoUsuario] [bigint] NOT NULL,
+	[IdProducto] [bigint] NOT NULL,
+	[Cantidad] [int] NOT NULL,
+	[Fecha] [datetime] NOT NULL,
+ CONSTRAINT [PK_CARRITO] PRIMARY KEY CLUSTERED 
+(
+	[IdCarrito] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+CREATE TABLE [dbo].[DETALLE](
+	[IdDetalle] [bigint] IDENTITY(1,1) NOT NULL,
+	[IdMaestro] [bigint] NOT NULL,
+	[Cantidad] [int] NOT NULL,
+	[Precio] [decimal](10, 2) NOT NULL,
+	[IdProducto] [bigint] NOT NULL,
+ CONSTRAINT [PK_DETALLE] PRIMARY KEY CLUSTERED 
+(
+	[IdDetalle] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+
+
 /****** Object:  Table [dbo].[ERRORES]    Script Date: 28/3/2023 13:53:58 ******/
 SET ANSI_NULLS ON
 GO
@@ -38,6 +69,13 @@ CREATE TABLE [dbo].[ERRORES](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
+
+
+
+
+
+
+
 /****** Object:  Table [dbo].[PROVINCIAS]    Script Date: 28/3/2023 13:53:58 ******/
 SET ANSI_NULLS ON
 GO
@@ -83,6 +121,7 @@ CREATE TABLE [dbo].[USUARIOS](
 	[Nombre] [varchar](100) NULL,
 	[Identificacion] [varchar](20) NULL,
 	[CodProvincia] [tinyint] NULL,
+	[Telefono] [int] NULL,
 	[Rol] [varchar](20) NULL,
  CONSTRAINT [PK_USUARIOS] PRIMARY KEY CLUSTERED 
 (
@@ -165,13 +204,13 @@ INSERT INTO [ProyectoW_BD].[dbo].[PROVINCIAS] VALUES
 GO
 
 INSERT INTO [ProyectoW_BD].[dbo].[USUARIOS] VALUES
-									('jretana80675@ufide.ac.cr', 80675, 1,'Jose Pablo Retana Pereira', 305380675,1,'Administrador'),
-									('jsegura90582@ufide.ac.cr', 90582, 1,'Jostin Segura Noguera', 116290582,1,'Administrador'),
-									('jquiros90650@ufide.ac.cr', 90650, 1,'Jason Quiros Fonseca', 112790650,1,'Administrador'),
-									('jgarcia60845@ufide.ac.cr', 60845, 1,'Josué García Roldán', 116860845,1,'Administrador'),
-									('ecalvo90415@ufide.ac.cr', 90415, 1,'Eduardo Calvo Castillo', 304590415,1,'Administrador'),
-									('usuario1234@ufide.ac.cr', 12345, 1,'Usuario de Prueba 1', 116860848, 4, 'Usuario'),
-									('usuario4321@ufide.ac.cr', 12345, 1,'Usuario de Prueba 1', 116290585, 4, 'Afiliado'),
+									('jretana80675@ufide.ac.cr', 80675, 1,'Jose Pablo Retana Pereira', 305380675,1,88888888,'Administrador'),
+									('jsegura90582@ufide.ac.cr', 90582, 1,'Jostin Segura Noguera', 116290582,1,88888888,'Administrador'),
+									('jquiros90650@ufide.ac.cr', 90650, 1,'Jason Quiros Fonseca', 112790650,1,88888888,'Administrador'),
+									('jgarcia60845@ufide.ac.cr', 60845, 1,'Josué García Roldán', 116860845,1,88888888,'Administrador'),
+									('ecalvo90415@ufide.ac.cr', 90415, 1,'Eduardo Calvo Castillo', 304590415,1,88888888,'Administrador'),
+									('usuario1234@ufide.ac.cr', 12345, 1,'Usuario de Prueba 1', 116860848, 4, 88888888,'Usuario'),
+									('usuario4321@ufide.ac.cr', 12345, 1,'Usuario de Prueba 1', 116290585, 4, 88888888,'Afiliado')
 GO
 
 INSERT INTO [ProyectoW_BD].[dbo].[RESERVAS] VALUES
