@@ -18,6 +18,7 @@ namespace ProyectoApi_KN.ModelDB
         public USUARIOS()
         {
             this.ERRORES = new HashSet<ERRORES>();
+            this.RESERVAS = new HashSet<RESERVAS>();
         }
     
         public long ConsecutivoUsuario { get; set; }
@@ -27,10 +28,13 @@ namespace ProyectoApi_KN.ModelDB
         public string Nombre { get; set; }
         public string Identificacion { get; set; }
         public Nullable<byte> CodProvincia { get; set; }
+        public Nullable<int> Telefono { get; set; }
         public string Rol { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ERRORES> ERRORES { get; set; }
         public virtual PROVINCIAS PROVINCIAS { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RESERVAS> RESERVAS { get; set; }
     }
 }

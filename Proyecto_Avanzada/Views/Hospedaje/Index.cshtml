@@ -17,39 +17,41 @@
 
                 <br />
 
-                @using (Html.BeginForm("AgregarHospedaje", "Hospedaje", FormMethod.Post, new { @class = "forms-sample" }))
+                @using (Html.BeginForm("RegistrarHospedaje", "Hospedaje", FormMethod.Post, new { @class = "forms-sample" }))
                 {
 
-                    <div class="row">
+                <div class="row">
 
-                        @Html.HiddenFor(x => x.ConsecutivoHospedaje)
+                    @Html.HiddenFor(x => x.ConsecutivoHospedaje)
 
-                        <div class="form-group col-md-6">
-                            <label>Nombre de hospedaje</label>
-                            @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control"})
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label>Provincia</label>
-                            @Html.TextBoxFor(m => m.Lugar, new { @class = "form-control"})
-                        </div>
-
+                    <div class="form-group col-md-6">
+                        <label>Nombre de hospedaje</label>
+                        @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control"})
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Provincia</label>
+                        @Html.DropDownListFor(m => m.CodProvincia, ViewBag.ListaProvincias as List<SelectListItem>
+                            ,
+                            new { @class = "form-control" })
                     </div>
 
-                    <div class="row">
+                </div>
 
-                        <div class="form-group col-md-6">
-                            <label>Precio</label>
-                            @Html.TextBoxFor(m => m.Precio, new { @class = "form-control" })
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label>Disponibilidad</label>
-                            @Html.TextBoxFor(m => m.Disponibilidad, new { @class = "form-control", @readonly = "true", @value = "disponible" , @placeholder = "Disponible"})
-                        </div>
+                <div class="row">
 
+                    <div class="form-group col-md-6">
+                        <label>Precio</label>
+                        @Html.TextBoxFor(m => m.Precio, new { @class = "form-control" })
                     </div>
-                    <br />
+                    <div class="form-group col-md-6">
+                        <label>Disponibilidad</label>
+                        @Html.TextBoxFor(m => m.Disponibilidad, new { @class = "form-control", @readonly = "true", @value = "disponible" , @placeholder = "Disponible"})
+                    </div>
 
-                    <input type="submit" class="btn btn-primary mr-2" value="Agregar Hospedaje">
+                </div>
+                <br />
+
+                <input type="submit" class="btn btn-primary mr-2" value="Agregar Hospedaje">
 
                 }
             </div>

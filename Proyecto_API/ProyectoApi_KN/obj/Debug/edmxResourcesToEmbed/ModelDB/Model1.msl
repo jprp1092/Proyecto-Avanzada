@@ -1,6 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="ProyectoW_BDModelStoreContainer" CdmEntityContainer="ProyectoW_BDEntities">
+    <EntitySetMapping Name="BITACORA_CONTACTO">
+      <EntityTypeMapping TypeName="ProyectoW_BDModel.BITACORA_CONTACTO">
+        <MappingFragment StoreEntitySet="BITACORA_CONTACTO">
+          <ScalarProperty Name="ID_MENSAJE" ColumnName="ID_MENSAJE" />
+          <ScalarProperty Name="TIPO_MENSAJE" ColumnName="TIPO_MENSAJE" />
+          <ScalarProperty Name="EMISOR" ColumnName="EMISOR" />
+          <ScalarProperty Name="CORREO_EMISOR" ColumnName="CORREO_EMISOR" />
+          <ScalarProperty Name="CUERPO_CORREO" ColumnName="CUERPO_CORREO" />
+          <ScalarProperty Name="FECHA_REGISTRO" ColumnName="FECHA_REGISTRO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="BITACORAS">
       <EntityTypeMapping TypeName="ProyectoW_BDModel.BITACORAS">
         <MappingFragment StoreEntitySet="BITACORAS">
@@ -8,6 +20,28 @@
           <ScalarProperty Name="DescripcionError" ColumnName="DescripcionError" />
           <ScalarProperty Name="FechaHora" ColumnName="FechaHora" />
           <ScalarProperty Name="Origen" ColumnName="Origen" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CARRITO">
+      <EntityTypeMapping TypeName="ProyectoW_BDModel.CARRITO">
+        <MappingFragment StoreEntitySet="CARRITO">
+          <ScalarProperty Name="IdCarrito" ColumnName="IdCarrito" />
+          <ScalarProperty Name="ConsecutivoUsuario" ColumnName="ConsecutivoUsuario" />
+          <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DETALLE">
+      <EntityTypeMapping TypeName="ProyectoW_BDModel.DETALLE">
+        <MappingFragment StoreEntitySet="DETALLE">
+          <ScalarProperty Name="IdDetalle" ColumnName="IdDetalle" />
+          <ScalarProperty Name="IdMaestro" ColumnName="IdMaestro" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+          <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -30,6 +64,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="RESERVAS">
+      <EntityTypeMapping TypeName="ProyectoW_BDModel.RESERVAS">
+        <MappingFragment StoreEntitySet="RESERVAS">
+          <ScalarProperty Name="ConsecutivoReservas" ColumnName="ConsecutivoReservas" />
+          <ScalarProperty Name="FechaReserva" ColumnName="FechaReserva" />
+          <ScalarProperty Name="CodUsuario" ColumnName="CodUsuario" />
+          <ScalarProperty Name="CodDestino" ColumnName="CodDestino" />
+          <ScalarProperty Name="Pago" ColumnName="Pago" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="USUARIOS">
       <EntityTypeMapping TypeName="ProyectoW_BDModel.USUARIOS">
         <MappingFragment StoreEntitySet="USUARIOS">
@@ -40,6 +86,7 @@
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
           <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
           <ScalarProperty Name="CodProvincia" ColumnName="CodProvincia" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
           <ScalarProperty Name="Rol" ColumnName="Rol" />
         </MappingFragment>
       </EntityTypeMapping>

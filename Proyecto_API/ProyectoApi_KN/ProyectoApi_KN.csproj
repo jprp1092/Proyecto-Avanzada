@@ -212,6 +212,7 @@
     <Compile Include="Controllers\LogsController.cs" />
     <Compile Include="Controllers\ProvinciaController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
+    <Compile Include="Entities\CorreoEnt.cs" />
     <Compile Include="Entities\LogsEnt.cs" />
     <Compile Include="Entities\ProvinciaEnt.cs" />
     <Compile Include="Entities\ReservasEnt.cs" />
@@ -220,6 +221,15 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="ModelDB\BITACORAS.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelDB\BITACORA_CONTACTO.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelDB\CARRITO.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelDB\DETALLE.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="ModelDB\ERRORES.cs">
@@ -243,12 +253,16 @@
     <Compile Include="ModelDB\PROVINCIAS.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="ModelDB\RESERVAS.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="ModelDB\USUARIOS.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="ModelDB\ValidarUsuario_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ContactModel.cs" />
     <Compile Include="Models\LogsModel.cs" />
     <Compile Include="Models\ProvinciaModel.cs" />
     <Compile Include="Models\ReservasModel.cs" />

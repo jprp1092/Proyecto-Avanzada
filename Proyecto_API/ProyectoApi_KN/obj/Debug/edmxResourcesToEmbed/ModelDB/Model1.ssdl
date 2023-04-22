@@ -1,5 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="ProyectoW_BDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="BITACORA_CONTACTO">
+    <Key>
+      <PropertyRef Name="ID_MENSAJE" />
+    </Key>
+    <Property Name="ID_MENSAJE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TIPO_MENSAJE" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="EMISOR" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="CORREO_EMISOR" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="CUERPO_CORREO" Type="varchar(max)" Nullable="false" />
+    <Property Name="FECHA_REGISTRO" Type="datetime" Nullable="false" />
+  </EntityType>
   <EntityType Name="BITACORAS">
     <Key>
       <PropertyRef Name="ConsecutivoError" />
@@ -8,6 +19,26 @@
     <Property Name="DescripcionError" Type="varchar(max)" Nullable="false" />
     <Property Name="FechaHora" Type="datetime" Nullable="false" />
     <Property Name="Origen" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CARRITO">
+    <Key>
+      <PropertyRef Name="IdCarrito" />
+    </Key>
+    <Property Name="IdCarrito" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ConsecutivoUsuario" Type="bigint" Nullable="false" />
+    <Property Name="IdProducto" Type="bigint" Nullable="false" />
+    <Property Name="Cantidad" Type="int" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DETALLE">
+    <Key>
+      <PropertyRef Name="IdDetalle" />
+    </Key>
+    <Property Name="IdDetalle" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdMaestro" Type="bigint" Nullable="false" />
+    <Property Name="Cantidad" Type="int" Nullable="false" />
+    <Property Name="Precio" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="IdProducto" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="ERRORES">
     <Key>
@@ -26,6 +57,17 @@
     <Property Name="CodProvincia" Type="tinyint" Nullable="false" />
     <Property Name="NombreProvincia" Type="varchar" MaxLength="20" Nullable="false" />
   </EntityType>
+  <EntityType Name="RESERVAS">
+    <Key>
+      <PropertyRef Name="ConsecutivoReservas" />
+    </Key>
+    <Property Name="ConsecutivoReservas" Type="bigint" Nullable="false" />
+    <Property Name="FechaReserva" Type="datetime" Nullable="false" />
+    <Property Name="CodUsuario" Type="bigint" Nullable="false" />
+    <Property Name="CodDestino" Type="bigint" Nullable="false" />
+    <Property Name="Pago" Type="bit" Nullable="false" />
+    <Property Name="Estado" Type="bit" Nullable="false" />
+  </EntityType>
   <EntityType Name="USUARIOS">
     <Key>
       <PropertyRef Name="ConsecutivoUsuario" />
@@ -37,6 +79,7 @@
     <Property Name="Nombre" Type="varchar" MaxLength="100" />
     <Property Name="Identificacion" Type="varchar" MaxLength="20" />
     <Property Name="CodProvincia" Type="tinyint" />
+    <Property Name="Telefono" Type="int" />
     <Property Name="Rol" Type="varchar" MaxLength="20" />
   </EntityType>
   <Association Name="FK_ERRORES_USUARIOS">
@@ -48,6 +91,18 @@
       </Principal>
       <Dependent Role="ERRORES">
         <PropertyRef Name="ConsecutivoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RESERVAS_USUARIOS">
+    <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="1" />
+    <End Role="RESERVAS" Type="Self.RESERVAS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIOS">
+        <PropertyRef Name="ConsecutivoUsuario" />
+      </Principal>
+      <Dependent Role="RESERVAS">
+        <PropertyRef Name="CodUsuario" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -72,13 +127,21 @@
     <Parameter Name="Contrasenna" Type="varchar" Mode="In" />
   </Function>
   <EntityContainer Name="ProyectoW_BDModelStoreContainer">
+    <EntitySet Name="BITACORA_CONTACTO" EntityType="Self.BITACORA_CONTACTO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BITACORAS" EntityType="Self.BITACORAS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CARRITO" EntityType="Self.CARRITO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DETALLE" EntityType="Self.DETALLE" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ERRORES" EntityType="Self.ERRORES" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PROVINCIAS" EntityType="Self.PROVINCIAS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RESERVAS" EntityType="Self.RESERVAS" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_ERRORES_USUARIOS" Association="Self.FK_ERRORES_USUARIOS">
       <End Role="USUARIOS" EntitySet="USUARIOS" />
       <End Role="ERRORES" EntitySet="ERRORES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RESERVAS_USUARIOS" Association="Self.FK_RESERVAS_USUARIOS">
+      <End Role="USUARIOS" EntitySet="USUARIOS" />
+      <End Role="RESERVAS" EntitySet="RESERVAS" />
     </AssociationSet>
     <AssociationSet Name="FK_USUARIOS_PROVINCIAS" Association="Self.FK_USUARIOS_PROVINCIAS">
       <End Role="PROVINCIAS" EntitySet="PROVINCIAS" />

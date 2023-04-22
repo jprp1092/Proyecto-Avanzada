@@ -27,9 +27,13 @@ namespace ProyectoApi_KN.ModelDB
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<BITACORA_CONTACTO> BITACORA_CONTACTO { get; set; }
         public virtual DbSet<BITACORAS> BITACORAS { get; set; }
+        public virtual DbSet<CARRITO> CARRITO { get; set; }
+        public virtual DbSet<DETALLE> DETALLE { get; set; }
         public virtual DbSet<ERRORES> ERRORES { get; set; }
         public virtual DbSet<PROVINCIAS> PROVINCIAS { get; set; }
+        public virtual DbSet<RESERVAS> RESERVAS { get; set; }
         public virtual DbSet<USUARIOS> USUARIOS { get; set; }
     
         public virtual int RegistrarBitacora(string descripcion, string origen)

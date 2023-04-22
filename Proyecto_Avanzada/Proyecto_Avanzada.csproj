@@ -172,6 +172,7 @@
     <Compile Include="App_Start\SessionFilterAttribute.cs" />
     <Compile Include="Controllers\ReservasController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
+    <Compile Include="Entities\CorreoEnt.cs" />
     <Compile Include="Entities\HospedajeEnt.cs" />
     <Compile Include="Entities\ReservasEnt.cs" />
     <Compile Include="Entities\LogsEnt.cs" />
@@ -180,6 +181,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ContactModel.cs" />
     <Compile Include="Models\ReservasModel.cs" />
     <Compile Include="Models\LogsModel.cs" />
     <Compile Include="Models\ProvinciaModel.cs" />
