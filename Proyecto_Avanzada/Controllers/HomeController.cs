@@ -3,6 +3,7 @@ using Proyecto_Avanzada.Entities;
 using Proyecto_Avanzada.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Web;
@@ -191,6 +192,7 @@ namespace ProyectoWeb_KN.Controllers
         {
             try
             {
+
                 var datos = hospedajeModel.ConsultarHospedaje();
 
                 return View("Packages",datos);
@@ -202,6 +204,34 @@ namespace ProyectoWeb_KN.Controllers
                 return View("Index");
             }
 
+        }
+
+        [HttpPost]
+        public ActionResult Packages(string date1, string date2)
+        {
+            try
+            {
+                var datos = hospedajeModel.ConsultarHospedaje();
+                ViewBag.Fecha1 = date1;
+                ViewBag.Fecha2 = date2;
+                DateTime fecha1 = DateTime.ParseExact(date1, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+                DateTime fecha2 = DateTime.ParseExact(date2, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+
+                TimeSpan duracion = fecha2 - fecha1;
+                int noches = (int)duracion.TotalDays;
+
+                ViewBag.Noches = noches;
+
+                return View(datos);
+
+            }
+            catch (Exception ex)
+            {
+
+                logsModel.RegistrarBitacora(ControllerContext, ex.Message);
+                ViewBag.mensajeError = "Sus credenciales no fueron validadas";
+                return View("Index");
+            }
         }
 
         [HttpGet]

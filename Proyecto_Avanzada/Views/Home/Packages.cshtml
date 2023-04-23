@@ -5,6 +5,8 @@
     Layout = "~/Views/Shared/_Layout_General.cshtml";
 }
 
+
+
 <!-- Header Start -->
 <div class="container-fluid page-header">
     <div class="container">
@@ -20,59 +22,57 @@
 </div>
 <!-- Header End -->
 <!-- Booking Start -->
-<div class="container-fluid booking mt-5 pb-5">
-    <div class="container pb-5">
-        <div class="bg-light shadow" style="padding: 30px;">
-            <div class="row align-items-center" style="min-height: 60px;">
-                <div class="col-md-10">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="mb-3 mb-md-0">
-                                <select class="custom-select px-4" style="height: 47px;">
-                                    <option selected>Destinos</option>
-                                    <option value="1">Puerto Viejo </option>
-                                    <option value="2">Jaco </option>
-                                    <option value="3">San Jose </option>
-                                    <option value="4">Guanacaste </option>
-                                    <option value="5">Fortuna </option>
-                                    <option value="6">Manuel Antonio </option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="mb-3 mb-md-0">
-                                <div class="date" id="date1" data-target-input="nearest">
-                                    <input type="text" class="form-control p-4 datetimepicker-input" placeholder="Fecha" data-target="#date1" data-toggle="datetimepicker" />
+<form method="post">
+
+
+    <div class="container-fluid booking mt-5 pb-5">
+        <div class="container pb-5">
+            <div class="bg-light shadow" style="padding: 30px;">
+                <div class="row align-items-center" style="min-height: 60px;">
+                    <div class="col-md-10">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="mb-3 mb-md-0">
+                                    <select class="custom-select px-4" style="height: 47px;">
+                                        <option selected>Destinos</option>
+                                        <option value="1">San José</option>
+                                        <option value="2">Alajuela </option>
+                                        <option value="3">Cartago </option>
+                                        <option value="4">Heredia </option>
+                                        <option value="5">Guanacaste </option>
+                                        <option value="6">Puntarenas </option>
+                                        <option value="7">Limon </option>
+                                    </select>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="mb-3 mb-md-0">
-                                <div class="date" id="date2" data-target-input="nearest">
-                                    <input type="text" class="form-control p-4 datetimepicker-input" placeholder="Fecha" data-target="#date2" data-toggle="datetimepicker" />
+
+                            <div class="col-md-3">
+                                <div class="mb-3 mb-md-0">
+                                    <div class="date" id="date1" data-target-input="nearest">
+                                        <input type="text" class="form-control p-4 datetimepicker-input" placeholder="Fecha" data-target="#date1" data-toggle="datetimepicker" name="date1" />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="mb-3 mb-md-0">
-                                <select class="custom-select px-4" style="height: 47px;">
-                                    <option selected>Tipos de alojamiento</option>
-                                    <option value="1">Hoteles </option>
-                                    <option value="2">Apartamentos </option>
-                                    <option value="3">Resorts </option>
-                                    <option value="3">Villas </option>
-                                </select>
+                            <div class="col-md-3">
+                                <div class="mb-3 mb-md-0">
+                                    <div class="date" id="date2" data-target-input="nearest">
+                                        <input type="text" class="form-control p-4 datetimepicker-input" placeholder="Fecha" data-target="#date2" data-toggle="datetimepicker" name="date2" />
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-3">
+                                <button class="btn btn-primary btn-block" type="submit" style="height: 47px; margin-top: -2px;">Buscar</button>
                             </div>
                         </div>
+                        
                     </div>
                 </div>
-                <div class="col-md-2">
-                    <button class="btn btn-primary btn-block" type="submit" style="height: 47px; margin-top: -2px;">Buscar</button>
-                </div>
+
             </div>
         </div>
     </div>
-</div>
+</form>
 <!-- Booking End -->
 <!-- Packages Start -->
 <div class="container-fluid py-5">
@@ -92,7 +92,8 @@
                             <div class="d-flex justify-content-between mb-3">
                                 <small class="m-0"><i class="fa fa-map-marker-alt text-primary mr-2"></i>@item.NombreProvincia</small>
                             </div>
-                            <a class="h5 text-decoration-none" href="">@item.Nombre</a>
+                            <a class="h5 text-decoration-none" href="" data-toggle="modal" data-target="#exampleModal"
+                               data-id=@item.ConsecutivoHospedaje data-backdrop="static" data-keyboard="false">@item.Nombre</a>
                             <div class="border-top mt-4 pt-4">
                                 <div class="d-flex justify-content-between">
                                     <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small></h6>
@@ -175,4 +176,30 @@
 </div>
 
 <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Reservar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Fecha de entrada: @ViewBag.Fecha1.</p>
+                <p>Fecha de salida: @ViewBag.Fecha2.</p>
+
+                <p>Usted reservó una estadía de @ViewBag.Noches noches.</p>
+
+                <input type="hidden" id="idModalHidden">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" onclick="CambiarEstado();" class="btn btn-primary">Procesar</button>
+            </div>
+        </div>
+    </div>
+</div>
 

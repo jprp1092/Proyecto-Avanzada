@@ -19,6 +19,10 @@ namespace Proyecto_Avanzada.Entities
 
         public float Precio { get; set; }
         public string Disponibilidad { get; set; }
+        public DateTime FechaEntrada { get; set; }
+        public DateTime FechaSalida { get; set; }
     }
 
 }
+
+
