@@ -810,10 +810,6 @@ C:\Users\joser\OneDrive\Documentos\Proyecto_Avanzada\Proyecto-Avanzada\Proyecto_
 C:\Users\joser\OneDrive\Documentos\Proyecto_Avanzada\Proyecto-Avanzada\Proyecto_Avanzada\bin\System.Text.Json.xml
 C:\Users\joser\OneDrive\Documentos\Proyecto_Avanzada\Proyecto-Avanzada\Proyecto_Avanzada\bin\System.Threading.Tasks.Extensions.xml
 C:\Users\joser\OneDrive\Documentos\Proyecto_Avanzada\Proyecto-Avanzada\Proyecto_Avanzada\bin\System.ValueTuple.xml
-C:\Users\joser\Downloads\Proyecto avanzada\Proyecto-Avanzada\Proyecto_Avanzada\obj\Debug\Proyecto_Avanzada.csproj.AssemblyReference.cache
-C:\Users\joser\Downloads\Proyecto avanzada\Proyecto-Avanzada\Proyecto_Avanzada\obj\Debug\Proyecto_Avanzada.csproj.CoreCompileInputs.cache
-C:\Users\joser\Downloads\Proyecto avanzada\Proyecto-Avanzada\Proyecto_Avanzada\obj\Debug\Proyecto_Avanzada.dll
-C:\Users\joser\Downloads\Proyecto avanzada\Proyecto-Avanzada\Proyecto_Avanzada\obj\Debug\Proyecto_Avanzada.pdb
 C:\Users\joser\Downloads\Proyecto avanzada\Proyecto-Avanzada\Proyecto_Avanzada\bin\Proyecto_Avanzada.dll.config
 C:\Users\joser\Downloads\Proyecto avanzada\Proyecto-Avanzada\Proyecto_Avanzada\bin\Proyecto_Avanzada.dll
 C:\Users\joser\Downloads\Proyecto avanzada\Proyecto-Avanzada\Proyecto_Avanzada\bin\Proyecto_Avanzada.pdb
@@ -925,4 +921,8 @@ C:\Users\joser\Downloads\Proyecto avanzada\Proyecto-Avanzada\Proyecto_Avanzada\b
 C:\Users\joser\Downloads\Proyecto avanzada\Proyecto-Avanzada\Proyecto_Avanzada\bin\es\System.Web.WebPages.resources.dll
 C:\Users\joser\Downloads\Proyecto avanzada\Proyecto-Avanzada\Proyecto_Avanzada\bin\es\System.Web.WebPages.Deployment.resources.dll
 C:\Users\joser\Downloads\Proyecto avanzada\Proyecto-Avanzada\Proyecto_Avanzada\bin\es\System.Web.WebPages.Razor.resources.dll
+C:\Users\joser\Downloads\Proyecto avanzada\Proyecto-Avanzada\Proyecto_Avanzada\obj\Debug\Proyecto_Avanzada.csproj.AssemblyReference.cache
+C:\Users\joser\Downloads\Proyecto avanzada\Proyecto-Avanzada\Proyecto_Avanzada\obj\Debug\Proyecto_Avanzada.csproj.CoreCompileInputs.cache
 C:\Users\joser\Downloads\Proyecto avanzada\Proyecto-Avanzada\Proyecto_Avanzada\obj\Debug\Proyecto_Avanzada.csproj.CopyComplete
+C:\Users\joser\Downloads\Proyecto avanzada\Proyecto-Avanzada\Proyecto_Avanzada\obj\Debug\Proyecto_Avanzada.dll
+C:\Users\joser\Downloads\Proyecto avanzada\Proyecto-Avanzada\Proyecto_Avanzada\obj\Debug\Proyecto_Avanzada.pdb

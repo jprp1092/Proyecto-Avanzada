@@ -10,18 +10,13 @@
 namespace ProyectoApi_KN.ModelDB
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class CARRITO
+    public partial class obtenerHospedajesConNombreProvincia_Result
     {
-        public long IdCarrito { get; set; }
-        public long ConsecutivoUsuario { get; set; }
-        public int ConsecutivoHospedaje { get; set; }
-        public int CantNoches { get; set; }
-        public System.DateTime FechaIngreso { get; set; }
-        public System.DateTime FechaSalida { get; set; }
-    
-        public virtual HOSPEDAJE HOSPEDAJE { get; set; }
-        public virtual USUARIOS USUARIOS { get; set; }
+        public string Nombre { get; set; }
+        public byte CodProvincia { get; set; }
+        public string NombreProvincia { get; set; }
+        public double Precio { get; set; }
+        public string Disponibilidad { get; set; }
     }
 }

@@ -16,8 +16,13 @@ namespace ProyectoApi_KN.ModelDB
     {
         public long IdDetalle { get; set; }
         public long IdMaestro { get; set; }
-        public int Cantidad { get; set; }
+        public int CantNoches { get; set; }
         public decimal Precio { get; set; }
-        public long IdProducto { get; set; }
+        public int ConsecutivoHospedaje { get; set; }
+    
+        public virtual DETALLE DETALLE1 { get; set; }
+        public virtual DETALLE DETALLE2 { get; set; }
+        public virtual HOSPEDAJE HOSPEDAJE { get; set; }
+        public virtual MAESTRO MAESTRO { get; set; }
     }
 }

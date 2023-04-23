@@ -26,19 +26,20 @@
     </Key>
     <Property Name="IdCarrito" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ConsecutivoUsuario" Type="bigint" Nullable="false" />
-    <Property Name="IdProducto" Type="bigint" Nullable="false" />
-    <Property Name="Cantidad" Type="int" Nullable="false" />
-    <Property Name="Fecha" Type="datetime" Nullable="false" />
+    <Property Name="ConsecutivoHospedaje" Type="int" Nullable="false" />
+    <Property Name="CantNoches" Type="int" Nullable="false" />
+    <Property Name="FechaIngreso" Type="datetime" Nullable="false" />
+    <Property Name="FechaSalida" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="DETALLE">
     <Key>
       <PropertyRef Name="IdDetalle" />
     </Key>
-    <Property Name="IdDetalle" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdDetalle" Type="bigint" Nullable="false" />
     <Property Name="IdMaestro" Type="bigint" Nullable="false" />
-    <Property Name="Cantidad" Type="int" Nullable="false" />
+    <Property Name="CantNoches" Type="int" Nullable="false" />
     <Property Name="Precio" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-    <Property Name="IdProducto" Type="bigint" Nullable="false" />
+    <Property Name="ConsecutivoHospedaje" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="ERRORES">
     <Key>
@@ -49,6 +50,27 @@
     <Property Name="FechaHora" Type="datetime" Nullable="false" />
     <Property Name="ConsecutivoUsuario" Type="bigint" Nullable="false" />
     <Property Name="Origen" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HOSPEDAJE">
+    <Key>
+      <PropertyRef Name="ConsecutivoHospedaje" />
+    </Key>
+    <Property Name="ConsecutivoHospedaje" Type="int" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CodProvincia" Type="tinyint" Nullable="false" />
+    <Property Name="Precio" Type="float" Nullable="false" />
+    <Property Name="Disponibilidad" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MAESTRO">
+    <Key>
+      <PropertyRef Name="IdMaestro" />
+    </Key>
+    <Property Name="IdMaestro" Type="bigint" Nullable="false" />
+    <Property Name="FechaCompra" Type="datetime" Nullable="false" />
+    <Property Name="Subtotal" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Impuestos" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Total" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="ConsecutivoUsuario" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="PROVINCIAS">
     <Key>
@@ -82,6 +104,66 @@
     <Property Name="Telefono" Type="int" />
     <Property Name="Rol" Type="varchar" MaxLength="20" />
   </EntityType>
+  <Association Name="FK_CARRITO_CARRITO">
+    <End Role="HOSPEDAJE" Type="Self.HOSPEDAJE" Multiplicity="1" />
+    <End Role="CARRITO" Type="Self.CARRITO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HOSPEDAJE">
+        <PropertyRef Name="ConsecutivoHospedaje" />
+      </Principal>
+      <Dependent Role="CARRITO">
+        <PropertyRef Name="ConsecutivoHospedaje" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CARRITO_USUARIOS">
+    <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="1" />
+    <End Role="CARRITO" Type="Self.CARRITO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIOS">
+        <PropertyRef Name="ConsecutivoUsuario" />
+      </Principal>
+      <Dependent Role="CARRITO">
+        <PropertyRef Name="ConsecutivoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DETALLE_DETALLE">
+    <End Role="DETALLE" Type="Self.DETALLE" Multiplicity="1" />
+    <End Role="DETALLE1" Type="Self.DETALLE" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="DETALLE">
+        <PropertyRef Name="IdDetalle" />
+      </Principal>
+      <Dependent Role="DETALLE1">
+        <PropertyRef Name="IdDetalle" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DETALLE_HOSPEDAJE">
+    <End Role="HOSPEDAJE" Type="Self.HOSPEDAJE" Multiplicity="1" />
+    <End Role="DETALLE" Type="Self.DETALLE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HOSPEDAJE">
+        <PropertyRef Name="ConsecutivoHospedaje" />
+      </Principal>
+      <Dependent Role="DETALLE">
+        <PropertyRef Name="ConsecutivoHospedaje" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DETALLE_MAESTRO">
+    <End Role="MAESTRO" Type="Self.MAESTRO" Multiplicity="1" />
+    <End Role="DETALLE" Type="Self.DETALLE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAESTRO">
+        <PropertyRef Name="IdMaestro" />
+      </Principal>
+      <Dependent Role="DETALLE">
+        <PropertyRef Name="IdMaestro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_ERRORES_USUARIOS">
     <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="1" />
     <End Role="ERRORES" Type="Self.ERRORES" Multiplicity="*" />
@@ -90,6 +172,30 @@
         <PropertyRef Name="ConsecutivoUsuario" />
       </Principal>
       <Dependent Role="ERRORES">
+        <PropertyRef Name="ConsecutivoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HOSPEDAJE_PROVINCIAS">
+    <End Role="PROVINCIAS" Type="Self.PROVINCIAS" Multiplicity="1" />
+    <End Role="HOSPEDAJE" Type="Self.HOSPEDAJE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROVINCIAS">
+        <PropertyRef Name="CodProvincia" />
+      </Principal>
+      <Dependent Role="HOSPEDAJE">
+        <PropertyRef Name="CodProvincia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MAESTRO_USUARIOS">
+    <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="1" />
+    <End Role="MAESTRO" Type="Self.MAESTRO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIOS">
+        <PropertyRef Name="ConsecutivoUsuario" />
+      </Principal>
+      <Dependent Role="MAESTRO">
         <PropertyRef Name="ConsecutivoUsuario" />
       </Dependent>
     </ReferentialConstraint>
@@ -118,6 +224,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="obtenerHospedajesConNombreProvincia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="RegistrarBitacora" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Descripcion" Type="varchar(max)" Mode="In" />
     <Parameter Name="Origen" Type="varchar" Mode="In" />
@@ -132,12 +239,42 @@
     <EntitySet Name="CARRITO" EntityType="Self.CARRITO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DETALLE" EntityType="Self.DETALLE" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ERRORES" EntityType="Self.ERRORES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HOSPEDAJE" EntityType="Self.HOSPEDAJE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MAESTRO" EntityType="Self.MAESTRO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PROVINCIAS" EntityType="Self.PROVINCIAS" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="RESERVAS" EntityType="Self.RESERVAS" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_CARRITO_CARRITO" Association="Self.FK_CARRITO_CARRITO">
+      <End Role="HOSPEDAJE" EntitySet="HOSPEDAJE" />
+      <End Role="CARRITO" EntitySet="CARRITO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CARRITO_USUARIOS" Association="Self.FK_CARRITO_USUARIOS">
+      <End Role="USUARIOS" EntitySet="USUARIOS" />
+      <End Role="CARRITO" EntitySet="CARRITO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DETALLE_DETALLE" Association="Self.FK_DETALLE_DETALLE">
+      <End Role="DETALLE" EntitySet="DETALLE" />
+      <End Role="DETALLE1" EntitySet="DETALLE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DETALLE_HOSPEDAJE" Association="Self.FK_DETALLE_HOSPEDAJE">
+      <End Role="HOSPEDAJE" EntitySet="HOSPEDAJE" />
+      <End Role="DETALLE" EntitySet="DETALLE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DETALLE_MAESTRO" Association="Self.FK_DETALLE_MAESTRO">
+      <End Role="MAESTRO" EntitySet="MAESTRO" />
+      <End Role="DETALLE" EntitySet="DETALLE" />
+    </AssociationSet>
     <AssociationSet Name="FK_ERRORES_USUARIOS" Association="Self.FK_ERRORES_USUARIOS">
       <End Role="USUARIOS" EntitySet="USUARIOS" />
       <End Role="ERRORES" EntitySet="ERRORES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HOSPEDAJE_PROVINCIAS" Association="Self.FK_HOSPEDAJE_PROVINCIAS">
+      <End Role="PROVINCIAS" EntitySet="PROVINCIAS" />
+      <End Role="HOSPEDAJE" EntitySet="HOSPEDAJE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MAESTRO_USUARIOS" Association="Self.FK_MAESTRO_USUARIOS">
+      <End Role="USUARIOS" EntitySet="USUARIOS" />
+      <End Role="MAESTRO" EntitySet="MAESTRO" />
     </AssociationSet>
     <AssociationSet Name="FK_RESERVAS_USUARIOS" Association="Self.FK_RESERVAS_USUARIOS">
       <End Role="USUARIOS" EntitySet="USUARIOS" />

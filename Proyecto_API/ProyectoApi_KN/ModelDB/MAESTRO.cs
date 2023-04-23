@@ -12,21 +12,23 @@ namespace ProyectoApi_KN.ModelDB
     using System;
     using System.Collections.Generic;
     
-    public partial class PROVINCIAS
+    public partial class MAESTRO
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PROVINCIAS()
+        public MAESTRO()
         {
-            this.HOSPEDAJE = new HashSet<HOSPEDAJE>();
-            this.USUARIOS = new HashSet<USUARIOS>();
+            this.DETALLE = new HashSet<DETALLE>();
         }
     
-        public byte CodProvincia { get; set; }
-        public string NombreProvincia { get; set; }
+        public long IdMaestro { get; set; }
+        public System.DateTime FechaCompra { get; set; }
+        public decimal Subtotal { get; set; }
+        public decimal Impuestos { get; set; }
+        public decimal Total { get; set; }
+        public long ConsecutivoUsuario { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HOSPEDAJE> HOSPEDAJE { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<USUARIOS> USUARIOS { get; set; }
+        public virtual ICollection<DETALLE> DETALLE { get; set; }
+        public virtual USUARIOS USUARIOS { get; set; }
     }
 }

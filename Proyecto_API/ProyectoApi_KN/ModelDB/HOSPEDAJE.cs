@@ -12,35 +12,25 @@ namespace ProyectoApi_KN.ModelDB
     using System;
     using System.Collections.Generic;
     
-    public partial class USUARIOS
+    public partial class HOSPEDAJE
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public USUARIOS()
+        public HOSPEDAJE()
         {
             this.CARRITO = new HashSet<CARRITO>();
-            this.ERRORES = new HashSet<ERRORES>();
-            this.MAESTRO = new HashSet<MAESTRO>();
-            this.RESERVAS = new HashSet<RESERVAS>();
+            this.DETALLE = new HashSet<DETALLE>();
         }
     
-        public long ConsecutivoUsuario { get; set; }
-        public string CorreoElectronico { get; set; }
-        public string Contrasenna { get; set; }
-        public bool Estado { get; set; }
+        public int ConsecutivoHospedaje { get; set; }
         public string Nombre { get; set; }
-        public string Identificacion { get; set; }
-        public Nullable<byte> CodProvincia { get; set; }
-        public Nullable<int> Telefono { get; set; }
-        public string Rol { get; set; }
+        public byte CodProvincia { get; set; }
+        public double Precio { get; set; }
+        public string Disponibilidad { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CARRITO> CARRITO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ERRORES> ERRORES { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MAESTRO> MAESTRO { get; set; }
+        public virtual ICollection<DETALLE> DETALLE { get; set; }
         public virtual PROVINCIAS PROVINCIAS { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RESERVAS> RESERVAS { get; set; }
     }
 }

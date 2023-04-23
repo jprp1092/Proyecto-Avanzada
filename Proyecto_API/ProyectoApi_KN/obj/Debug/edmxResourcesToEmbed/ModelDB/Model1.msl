@@ -28,9 +28,10 @@
         <MappingFragment StoreEntitySet="CARRITO">
           <ScalarProperty Name="IdCarrito" ColumnName="IdCarrito" />
           <ScalarProperty Name="ConsecutivoUsuario" ColumnName="ConsecutivoUsuario" />
-          <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
-          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
-          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="ConsecutivoHospedaje" ColumnName="ConsecutivoHospedaje" />
+          <ScalarProperty Name="CantNoches" ColumnName="CantNoches" />
+          <ScalarProperty Name="FechaIngreso" ColumnName="FechaIngreso" />
+          <ScalarProperty Name="FechaSalida" ColumnName="FechaSalida" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -39,9 +40,9 @@
         <MappingFragment StoreEntitySet="DETALLE">
           <ScalarProperty Name="IdDetalle" ColumnName="IdDetalle" />
           <ScalarProperty Name="IdMaestro" ColumnName="IdMaestro" />
-          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+          <ScalarProperty Name="CantNoches" ColumnName="CantNoches" />
           <ScalarProperty Name="Precio" ColumnName="Precio" />
-          <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+          <ScalarProperty Name="ConsecutivoHospedaje" ColumnName="ConsecutivoHospedaje" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -53,6 +54,29 @@
           <ScalarProperty Name="FechaHora" ColumnName="FechaHora" />
           <ScalarProperty Name="ConsecutivoUsuario" ColumnName="ConsecutivoUsuario" />
           <ScalarProperty Name="Origen" ColumnName="Origen" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HOSPEDAJE">
+      <EntityTypeMapping TypeName="ProyectoW_BDModel.HOSPEDAJE">
+        <MappingFragment StoreEntitySet="HOSPEDAJE">
+          <ScalarProperty Name="ConsecutivoHospedaje" ColumnName="ConsecutivoHospedaje" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="CodProvincia" ColumnName="CodProvincia" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+          <ScalarProperty Name="Disponibilidad" ColumnName="Disponibilidad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MAESTRO">
+      <EntityTypeMapping TypeName="ProyectoW_BDModel.MAESTRO">
+        <MappingFragment StoreEntitySet="MAESTRO">
+          <ScalarProperty Name="IdMaestro" ColumnName="IdMaestro" />
+          <ScalarProperty Name="FechaCompra" ColumnName="FechaCompra" />
+          <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
+          <ScalarProperty Name="Impuestos" ColumnName="Impuestos" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="ConsecutivoUsuario" ColumnName="ConsecutivoUsuario" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -91,6 +115,17 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="obtenerHospedajesConNombreProvincia" FunctionName="ProyectoW_BDModel.Store.obtenerHospedajesConNombreProvincia">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ProyectoW_BDModel.obtenerHospedajesConNombreProvincia_Result">
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="CodProvincia" ColumnName="CodProvincia" />
+          <ScalarProperty Name="NombreProvincia" ColumnName="NombreProvincia" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+          <ScalarProperty Name="Disponibilidad" ColumnName="Disponibilidad" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="RegistrarBitacora" FunctionName="ProyectoW_BDModel.Store.RegistrarBitacora" />
     <FunctionImportMapping FunctionImportName="ValidarUsuario" FunctionName="ProyectoW_BDModel.Store.ValidarUsuario">
       <ResultMapping>

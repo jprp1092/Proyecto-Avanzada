@@ -962,10 +962,6 @@ C:\Users\joser\OneDrive\Documentos\Proyecto_Avanzada\Proyecto-Avanzada\Proyecto_
 C:\Users\joser\OneDrive\Documentos\Proyecto_Avanzada\Proyecto-Avanzada\Proyecto_API\ProyectoApi_KN\obj\Debug\ProyectoApi_KN.csproj.CoreCompileInputs.cache
 C:\Users\joser\OneDrive\Documentos\Proyecto_Avanzada\Proyecto-Avanzada\Proyecto_API\ProyectoApi_KN\obj\Debug\ProyectoApi_KN.dll
 C:\Users\joser\OneDrive\Documentos\Proyecto_Avanzada\Proyecto-Avanzada\Proyecto_API\ProyectoApi_KN\obj\Debug\ProyectoApi_KN.pdb
-C:\Users\joser\Downloads\Proyecto avanzada\Proyecto-Avanzada\Proyecto_API\ProyectoApi_KN\obj\Debug\ProyectoApi_KN.csproj.AssemblyReference.cache
-C:\Users\joser\Downloads\Proyecto avanzada\Proyecto-Avanzada\Proyecto_API\ProyectoApi_KN\obj\Debug\ProyectoApi_KN.csproj.CoreCompileInputs.cache
-C:\Users\joser\Downloads\Proyecto avanzada\Proyecto-Avanzada\Proyecto_API\ProyectoApi_KN\obj\Debug\ProyectoApi_KN.dll
-C:\Users\joser\Downloads\Proyecto avanzada\Proyecto-Avanzada\Proyecto_API\ProyectoApi_KN\obj\Debug\ProyectoApi_KN.pdb
 C:\Users\joser\Downloads\Proyecto avanzada\Proyecto-Avanzada\Proyecto_API\ProyectoApi_KN\bin\ProyectoApi_KN.dll.config
 C:\Users\joser\Downloads\Proyecto avanzada\Proyecto-Avanzada\Proyecto_API\ProyectoApi_KN\bin\ProyectoApi_KN.dll
 C:\Users\joser\Downloads\Proyecto avanzada\Proyecto-Avanzada\Proyecto_API\ProyectoApi_KN\bin\ProyectoApi_KN.pdb
@@ -1088,4 +1084,8 @@ C:\Users\joser\Downloads\Proyecto avanzada\Proyecto-Avanzada\Proyecto_API\Proyec
 C:\Users\joser\Downloads\Proyecto avanzada\Proyecto-Avanzada\Proyecto_API\ProyectoApi_KN\bin\es\System.Web.WebPages.resources.dll
 C:\Users\joser\Downloads\Proyecto avanzada\Proyecto-Avanzada\Proyecto_API\ProyectoApi_KN\bin\es\System.Web.WebPages.Deployment.resources.dll
 C:\Users\joser\Downloads\Proyecto avanzada\Proyecto-Avanzada\Proyecto_API\ProyectoApi_KN\bin\es\System.Web.WebPages.Razor.resources.dll
+C:\Users\joser\Downloads\Proyecto avanzada\Proyecto-Avanzada\Proyecto_API\ProyectoApi_KN\obj\Debug\ProyectoApi_KN.csproj.AssemblyReference.cache
+C:\Users\joser\Downloads\Proyecto avanzada\Proyecto-Avanzada\Proyecto_API\ProyectoApi_KN\obj\Debug\ProyectoApi_KN.csproj.CoreCompileInputs.cache
 C:\Users\joser\Downloads\Proyecto avanzada\Proyecto-Avanzada\Proyecto_API\ProyectoApi_KN\obj\Debug\ProyectoApi_KN.csproj.CopyComplete
+C:\Users\joser\Downloads\Proyecto avanzada\Proyecto-Avanzada\Proyecto_API\ProyectoApi_KN\obj\Debug\ProyectoApi_KN.dll
+C:\Users\joser\Downloads\Proyecto avanzada\Proyecto-Avanzada\Proyecto_API\ProyectoApi_KN\obj\Debug\ProyectoApi_KN.pdb

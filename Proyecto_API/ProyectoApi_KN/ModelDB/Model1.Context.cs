@@ -32,9 +32,16 @@ namespace ProyectoApi_KN.ModelDB
         public virtual DbSet<CARRITO> CARRITO { get; set; }
         public virtual DbSet<DETALLE> DETALLE { get; set; }
         public virtual DbSet<ERRORES> ERRORES { get; set; }
+        public virtual DbSet<HOSPEDAJE> HOSPEDAJE { get; set; }
+        public virtual DbSet<MAESTRO> MAESTRO { get; set; }
         public virtual DbSet<PROVINCIAS> PROVINCIAS { get; set; }
         public virtual DbSet<RESERVAS> RESERVAS { get; set; }
         public virtual DbSet<USUARIOS> USUARIOS { get; set; }
+    
+        public virtual ObjectResult<obtenerHospedajesConNombreProvincia_Result> obtenerHospedajesConNombreProvincia()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<obtenerHospedajesConNombreProvincia_Result>("obtenerHospedajesConNombreProvincia");
+        }
     
         public virtual int RegistrarBitacora(string descripcion, string origen)
         {
