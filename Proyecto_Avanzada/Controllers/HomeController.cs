@@ -25,7 +25,7 @@ namespace ProyectoWeb_KN.Controllers
         ProvinciaModel provinciasModel = new ProvinciaModel();
         LogsModel logsModel = new LogsModel();
         ContactModel contactModel = new ContactModel();
-
+        HospedajeModel hospedajeModel = new HospedajeModel();
         //MÃ©todo de Iniciar SesiÃ³n
 
         [HttpGet]
@@ -156,6 +156,7 @@ namespace ProyectoWeb_KN.Controllers
         {
             try
             {
+
                 return View("Index");
             }
             catch (Exception ex)
@@ -183,9 +184,24 @@ namespace ProyectoWeb_KN.Controllers
         {
             return View();
         }
+
+
+        [HttpGet]
         public ActionResult Packages()
         {
-            return View();
+            try
+            {
+                var datos = hospedajeModel.ConsultarHospedaje();
+
+                return View("Packages",datos);
+            }
+            catch (Exception ex)
+            {
+                logsModel.RegistrarBitacora(ControllerContext, ex.Message);
+                ViewBag.mensajeError = "Sus credenciales no fueron validadas";
+                return View("Index");
+            }
+
         }
 
         [HttpGet]

@@ -1,3 +1,5 @@
+@model IEnumerable<Proyecto_Avanzada.Entities.HospedajeEnt>
+
 @{
     ViewBag.Title = "Home Page";
     Layout = "~/Views/Shared/_Layout_General.cshtml";
@@ -80,120 +82,28 @@
             <h1>Paquetes de Viaje Perfectos</h1>
         </div>
         <div class="row">
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="package-item bg-white mb-2">
-                    <img class="img-fluid" src="~/template/img/package-1.jpg" alt="">
-                    <div class="p-4">
-                        <div class="d-flex justify-content-between mb-3">
-                            <small class="m-0"><i class="fa fa-map-marker-alt text-primary mr-2"></i>Tailandia</small>
-                            <small class="m-0"><i class="fa fa-calendar-alt text-primary mr-2"></i>3 días</small>
-                            <small class="m-0"><i class="fa fa-user text-primary mr-2"></i>2 personas</small>
-                        </div>
-                        <a class="h5 text-decoration-none" href="">Descubre lugares increíbles del mundo con nosotros</a>
-                        <div class="border-top mt-4 pt-4">
-                            <div class="d-flex justify-content-between">
-                                <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small></h6>
-                                <h5 class="m-0">$350</h5>
+
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="package-item bg-white mb-2">
+                        <img class="img-fluid" src="~/template/img/package-1.jpg" alt="">
+                        <div class="p-4">
+                            <div class="d-flex justify-content-between mb-3">
+                                <small class="m-0"><i class="fa fa-map-marker-alt text-primary mr-2"></i>@item.NombreProvincia</small>
+                            </div>
+                            <a class="h5 text-decoration-none" href="">@item.Nombre</a>
+                            <div class="border-top mt-4 pt-4">
+                                <div class="d-flex justify-content-between">
+                                    <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small></h6>
+                                    <h5 class="m-0"> @string.Format("$" + "{0:#,##0.00}", @item.Precio)</h5>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="package-item bg-white mb-2">
-                    <img class="img-fluid" src="~/template/img/package-2.jpg" alt="">
-                    <div class="p-4">
-                        <div class="d-flex justify-content-between mb-3">
-                            <small class="m-0"><i class="fa fa-map-marker-alt text-primary mr-2"></i>Tailandia</small>
-                            <small class="m-0"><i class="fa fa-calendar-alt text-primary mr-2"></i>3 días</small>
-                            <small class="m-0"><i class="fa fa-user text-primary mr-2"></i>2 personas</small>
-                        </div>
-                        <a class="h5 text-decoration-none" href="">Descubre lugares increíbles del mundo con nosotros</a>
-                        <div class="border-top mt-4 pt-4">
-                            <div class="d-flex justify-content-between">
-                                <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small></h6>
-                                <h5 class="m-0">$350</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="package-item bg-white mb-2">
-                    <img class="img-fluid" src="~/template/img/package-3.jpg" alt="">
-                    <div class="p-4">
-                        <div class="d-flex justify-content-between mb-3">
-                            <small class="m-0"><i class="fa fa-map-marker-alt text-primary mr-2"></i>Tailandia</small>
-                            <small class="m-0"><i class="fa fa-calendar-alt text-primary mr-2"></i>3 días</small>
-                            <small class="m-0"><i class="fa fa-user text-primary mr-2"></i>2 personas</small>
-                        </div>
-                        <a class="h5 text-decoration-none" href="">Descubre lugares increíbles del mundo con nosotros</a>
-                        <div class="border-top mt-4 pt-4">
-                            <div class="d-flex justify-content-between">
-                                <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small></h6>
-                                <h5 class="m-0">$350</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="package-item bg-white mb-2">
-                    <img class="img-fluid" src="~/template/img/package-4.jpg" alt="">
-                    <div class="p-4">
-                        <div class="d-flex justify-content-between mb-3">
-                            <small class="m-0"><i class="fa fa-map-marker-alt text-primary mr-2"></i>Tailandia</small>
-                            <small class="m-0"><i class="fa fa-calendar-alt text-primary mr-2"></i>3 días</small>
-                            <small class="m-0"><i class="fa fa-user text-primary mr-2"></i>2 personas</small>
-                        </div>
-                        <a class="h5 text-decoration-none" href="">Descubre lugares increíbles del mundo con nosotros</a>
-                        <div class="border-top mt-4 pt-4">
-                            <div class="d-flex justify-content-between">
-                                <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small></h6>
-                                <h5 class="m-0">$350</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="package-item bg-white mb-2">
-                    <img class="img-fluid" src="~/template/img/package-5.jpg" alt="">
-                    <div class="p-4">
-                        <div class="d-flex justify-content-between mb-3">
-                            <small class="m-0"><i class="fa fa-map-marker-alt text-primary mr-2"></i>Tailandia</small>
-                            <small class="m-0"><i class="fa fa-calendar-alt text-primary mr-2"></i>3 días</small>
-                            <small class="m-0"><i class="fa fa-user text-primary mr-2"></i>2 personas</small>
-                        </div>
-                        <a class="h5 text-decoration-none" href="">Descubre lugares increíbles del mundo con nosotros</a>
-                        <div class="border-top mt-4 pt-4">
-                            <div class="d-flex justify-content-between">
-                                <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small></h6>
-                                <h5 class="m-0">$350</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="package-item bg-white mb-2">
-                    <img class="img-fluid" src="~/template/img/package-6.jpg" alt="">
-                    <div class="p-4">
-                        <div class="d-flex justify-content-between mb-3">
-                            <small class="m-0"><i class="fa fa-map-marker-alt text-primary mr-2"></i>Tailandia</small>
-                            <small class="m-0"><i class="fa fa-calendar-alt text-primary mr-2"></i>3 días</small>
-                            <small class="m-0"><i class="fa fa-user text-primary mr-2"></i>2 personas</small>
-                        </div>
-                        <a class="h5 text-decoration-none" href="">Descubre lugares increíbles del mundo con nosotros</a>
-                        <div class="border-top mt-4 pt-4">
-                            <div class="d-flex justify-content-between">
-                                <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small></h6>
-                                <h5 class="m-0">$350</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            }
+
         </div>
     </div>
 </div>

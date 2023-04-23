@@ -25,5 +25,34 @@ namespace ProyectoApi_KN.Models
                 return conexion.SaveChanges();
             }
         }
+
+        public List<HospedajeEnt> ConsultarHospedaje()
+        {
+            
+
+            using (var conexion = new ProyectoW_BDEntities())
+            {
+                var datos = conexion.obtenerHospedajesConNombreProvincia().ToList();
+
+                //var datos = (from x in conexion.HOSPEDAJE
+                //             select x).ToList();
+
+                List<HospedajeEnt> listaEntidadResultado = new List<HospedajeEnt>();
+                foreach (var item in datos)
+                {
+                    listaEntidadResultado.Add(new HospedajeEnt
+                    {
+                        Nombre = item.Nombre,
+                        NombreProvincia = item.NombreProvincia,
+                        Precio = (short)item.Precio,
+                        Disponibilidad = item.Disponibilidad
+
+                    });
+                }
+
+                return listaEntidadResultado;
+            }
+        }
+
     }
 }

@@ -14,7 +14,9 @@ namespace Proyecto_Avanzada.Entities
     {
         public long ConsecutivoHospedaje { get; set; }
         public string Nombre { get; set; }
-        public string Lugar { get; set; }
+        public byte CodProvincia { get; set; }
+        public string NombreProvincia { get; set; }
+
         public float Precio { get; set; }
         public string Disponibilidad { get; set; }
     }

@@ -60,5 +60,21 @@ namespace Proyecto_Avanzada.Models
             }
         }
 
+        public List<HospedajeEnt> ConsultarHospedaje()
+        {
+            using (var client = new HttpClient())
+            {
+                string url = "https://localhost:44398/api/ConsultarHospedaje";
+
+                HttpResponseMessage res = client.GetAsync(url).GetAwaiter().GetResult();
+
+                if (res.IsSuccessStatusCode)
+                    return res.Content.ReadFromJsonAsync<List<HospedajeEnt>>().Result;
+
+                return new List<HospedajeEnt>();
+            }
+        }
+
+
     }
 }
