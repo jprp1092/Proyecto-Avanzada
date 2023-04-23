@@ -244,3 +244,18 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
 
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[obtenerHospedajesConNombreProvincia]
+AS
+BEGIN
+    SELECT a.Nombre, a.CodProvincia, p.NombreProvincia, a.Precio, a.Disponibilidad 
+    FROM HOSPEDAJE a 
+    INNER JOIN PROVINCIAS p ON a.CodProvincia = p.CodProvincia
+END
+GO
+
+
