@@ -81,7 +81,7 @@ namespace ProyectoWeb_KN.Controllers
         {
             try
             {
-               // ViewBag.ListaProvincias = provinciasModel.ConsultarProvincias();
+               ViewBag.ListaProvincias = provinciasModel.ConsultarProvincias();
                 return View();
             }
             catch (Exception ex)

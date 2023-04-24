@@ -19,7 +19,8 @@ namespace ProyectoApi_KN.Models
                 hospedaje.Nombre = entidad.Nombre;
                 hospedaje.CodProvincia = entidad.CodProvincia;
                 hospedaje.Precio = entidad.Precio;
-                hospedaje.Disponibilidad = entidad.Disponibilidad;
+                hospedaje.Disponibilidad = "Disponible";
+                hospedaje.FechaRegistro = DateTime.Now;
 
                 conexion.HOSPEDAJE.Add(hospedaje);
                 return conexion.SaveChanges();

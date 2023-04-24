@@ -13,7 +13,7 @@
     <div class="col-md-10 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Actualizar Información</h4>
+                <h4 class="card-title">Ingresar nuevo hospedaje </h4>
 
                 <br />
 
@@ -26,22 +26,18 @@
 
                     <div class="form-group col-md-6">
                         <label>Nombre de hospedaje</label>
-                        @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control" })
+                        @Html.TextBoxFor(x => x.Nombre, new { @class = "form-control",
+                       @required = true
+                   })
                     </div>
-                    @*<div class="form-group col-md-6">
-                        <label>Provincia</label>
-                        @Html.DropDownListFor(m => m.CodProvincia, ViewBag.ListaProvincias as List<SelectListItem>
-                            ,
-                            new { @class = "form-control" })
-                    </div>*@
 
-
-                    @*<div class="form-group col-md-6">
+                    <div class="form-group col-md-6">
                         <label>Provincia</label>
-                        @Html.DropDownListFor(m => m.CodProvincia, ViewBag.listaProvincias as List<SelectListItem>
-                            ,
-                            "Seleccione una opción", new { @class = "form-control" })
-                    </div>*@
+                        @Html.DropDownListFor(x => x.CodProvincia, ViewBag.ListaProvincias as List<SelectListItem>,
+                           "Seleccione una opción", new { @class = "form-control",
+                               @required = true
+                           })
+                    </div>
 
                 </div>
 
@@ -49,11 +45,13 @@
 
                     <div class="form-group col-md-6">
                         <label>Precio</label>
-                        @Html.TextBoxFor(m => m.Precio, new { @class = "form-control" })
+                        @Html.TextBoxFor(x => x.Precio, new { @class = "form-control",
+                       @required = true
+                   })
                     </div>
                     <div class="form-group col-md-6">
                         <label>Disponibilidad</label>
-                        @Html.TextBoxFor(m => m.Disponibilidad, new { @class = "form-control", @readonly = "true", @value = "disponible" , @placeholder = "Disponible"})
+                        @Html.TextBoxFor(x => x.Disponibilidad, new { @class = "form-control", @readonly = "true", @value = "disponible" , @placeholder = "Disponible"})
                     </div>
 
                 </div>

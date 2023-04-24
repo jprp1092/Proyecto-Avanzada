@@ -22,6 +22,7 @@ namespace Proyecto_Avanzada.Controllers
         {
             try
             {
+                ViewBag.ListaProvincias = provinciasModel.ConsultarProvincias();
                 return View();
             }
             catch (Exception ex)
@@ -31,14 +32,30 @@ namespace Proyecto_Avanzada.Controllers
             }
         }
 
+        [HttpGet]
+        public ActionResult RegistrarHospedaje()
+        {
+            try
+            {
+                ViewBag.ListaProvincias = provinciasModel.ConsultarProvincias();
+                return View();
+            }
+            catch (Exception ex)
+            {
+                logsModel.RegistrarBitacora(ControllerContext, ex.Message);
+                return View("Index");
+            }
+        }
+
+
         [HttpPost]
         public ActionResult RegistrarHospedaje(HospedajeEnt entidad)
         {
             try
             {
-                var respuesta = hospedajeModel.RegistrarHospedaje(entidad);
-
                 ViewBag.ListaProvincias = provinciasModel.ConsultarProvincias();
+
+                var respuesta = hospedajeModel.RegistrarHospedaje(entidad);
 
                 if (respuesta > 0)
                     return View("Index");
