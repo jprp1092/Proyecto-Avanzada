@@ -1,6 +1,9 @@
+CREATE DATABASE ProyectoW_BD
+
+
 USE [ProyectoW_BD]
 GO
-/****** Object:  Table [dbo].[BITACORA_CONTACTO]    Script Date: 23/4/2023 03:33:55 ******/
+/****** Object:  Table [dbo].[BITACORA_CONTACTO]    Script Date: 23/4/2023 10:53:53 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -18,7 +21,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[BITACORAS]    Script Date: 23/4/2023 03:33:55 ******/
+/****** Object:  Table [dbo].[BITACORAS]    Script Date: 23/4/2023 10:53:53 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -34,7 +37,7 @@ CREATE TABLE [dbo].[BITACORAS](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CARRITO]    Script Date: 23/4/2023 03:33:55 ******/
+/****** Object:  Table [dbo].[CARRITO]    Script Date: 23/4/2023 10:53:53 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -52,7 +55,7 @@ CREATE TABLE [dbo].[CARRITO](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[DETALLE]    Script Date: 23/4/2023 03:33:55 ******/
+/****** Object:  Table [dbo].[DETALLE]    Script Date: 23/4/2023 10:53:53 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -69,7 +72,7 @@ CREATE TABLE [dbo].[DETALLE](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ERRORES]    Script Date: 23/4/2023 03:33:55 ******/
+/****** Object:  Table [dbo].[ERRORES]    Script Date: 23/4/2023 10:53:53 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -86,24 +89,25 @@ CREATE TABLE [dbo].[ERRORES](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[HOSPEDAJE]    Script Date: 23/4/2023 03:33:55 ******/
+/****** Object:  Table [dbo].[HOSPEDAJE]    Script Date: 23/4/2023 10:53:53 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[HOSPEDAJE](
-	[ConsecutivoHospedaje] [int] NOT NULL,
+	[ConsecutivoHospedaje] [int] IDENTITY(1,1) NOT NULL,
 	[Nombre] [varchar](50) NOT NULL,
 	[CodProvincia] [tinyint] NOT NULL,
 	[Precio] [float] NOT NULL,
 	[Disponibilidad] [varchar](50) NOT NULL,
+	[FechaRegistro] [datetime] NULL,
  CONSTRAINT [PK_HOSPEDAJE] PRIMARY KEY CLUSTERED 
 (
 	[ConsecutivoHospedaje] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[MAESTRO]    Script Date: 23/4/2023 03:33:55 ******/
+/****** Object:  Table [dbo].[MAESTRO]    Script Date: 23/4/2023 10:53:53 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -121,7 +125,7 @@ CREATE TABLE [dbo].[MAESTRO](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[PROVINCIAS]    Script Date: 23/4/2023 03:33:55 ******/
+/****** Object:  Table [dbo].[PROVINCIAS]    Script Date: 23/4/2023 10:53:53 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -135,7 +139,7 @@ CREATE TABLE [dbo].[PROVINCIAS](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[RESERVAS]    Script Date: 23/4/2023 03:33:55 ******/
+/****** Object:  Table [dbo].[RESERVAS]    Script Date: 23/4/2023 10:53:53 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -153,7 +157,7 @@ CREATE TABLE [dbo].[RESERVAS](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[USUARIOS]    Script Date: 23/4/2023 03:33:55 ******/
+/****** Object:  Table [dbo].[USUARIOS]    Script Date: 23/4/2023 10:53:53 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -174,29 +178,21 @@ CREATE TABLE [dbo].[USUARIOS](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-SET IDENTITY_INSERT [dbo].[BITACORAS] ON 
+SET IDENTITY_INSERT [dbo].[HOSPEDAJE] ON 
 GO
-INSERT [dbo].[BITACORAS] ([ConsecutivoError], [DescripcionError], [FechaHora], [Origen]) VALUES (28, N'No se puede reconocer la cadena como valor DateTime válido.', CAST(N'2023-04-23T14:45:08.853' AS DateTime), N'Home-Packages')
+INSERT [dbo].[HOSPEDAJE] ([ConsecutivoHospedaje], [Nombre], [CodProvincia], [Precio], [Disponibilidad], [FechaRegistro]) VALUES (1, N'Hotel Villa Prueba', 1, 20000, N'Disponible', NULL)
 GO
-INSERT [dbo].[BITACORAS] ([ConsecutivoError], [DescripcionError], [FechaHora], [Origen]) VALUES (29, N'La cadena representa un DateTime no admitido en el calendario System.Globalization.GregorianCalendar.', CAST(N'2023-04-23T14:53:36.093' AS DateTime), N'Home-Packages')
+INSERT [dbo].[HOSPEDAJE] ([ConsecutivoHospedaje], [Nombre], [CodProvincia], [Precio], [Disponibilidad], [FechaRegistro]) VALUES (2, N'Hotel Plata Dorada', 1, 500, N'Disponible', NULL)
 GO
-INSERT [dbo].[BITACORAS] ([ConsecutivoError], [DescripcionError], [FechaHora], [Origen]) VALUES (30, N'La cadena representa un DateTime no admitido en el calendario System.Globalization.GregorianCalendar.', CAST(N'2023-04-23T14:53:44.430' AS DateTime), N'Home-Packages')
+INSERT [dbo].[HOSPEDAJE] ([ConsecutivoHospedaje], [Nombre], [CodProvincia], [Precio], [Disponibilidad], [FechaRegistro]) VALUES (3, N'Cabañas El Sapo', 4, 200, N'Disponible', NULL)
 GO
-INSERT [dbo].[BITACORAS] ([ConsecutivoError], [DescripcionError], [FechaHora], [Origen]) VALUES (31, N'La cadena representa un DateTime no admitido en el calendario System.Globalization.GregorianCalendar.', CAST(N'2023-04-23T14:53:54.630' AS DateTime), N'Home-Packages')
+INSERT [dbo].[HOSPEDAJE] ([ConsecutivoHospedaje], [Nombre], [CodProvincia], [Precio], [Disponibilidad], [FechaRegistro]) VALUES (4, N'Hotel Miramar', 5, 100, N'Disponible', NULL)
 GO
-INSERT [dbo].[BITACORAS] ([ConsecutivoError], [DescripcionError], [FechaHora], [Origen]) VALUES (32, N'La cadena representa un DateTime no admitido en el calendario System.Globalization.GregorianCalendar.', CAST(N'2023-04-23T14:54:04.770' AS DateTime), N'Home-Packages')
+INSERT [dbo].[HOSPEDAJE] ([ConsecutivoHospedaje], [Nombre], [CodProvincia], [Precio], [Disponibilidad], [FechaRegistro]) VALUES (5, N'Hotel Paso Dorado', 7, 50, N'Disponible', NULL)
 GO
-SET IDENTITY_INSERT [dbo].[BITACORAS] OFF
+INSERT [dbo].[HOSPEDAJE] ([ConsecutivoHospedaje], [Nombre], [CodProvincia], [Precio], [Disponibilidad], [FechaRegistro]) VALUES (6, N'Hotel Prueba 2', 2, 130, N'Disponible', CAST(N'2023-04-23T22:34:37.433' AS DateTime))
 GO
-INSERT [dbo].[HOSPEDAJE] ([ConsecutivoHospedaje], [Nombre], [CodProvincia], [Precio], [Disponibilidad]) VALUES (1, N'Hotel Villa Prueba', 1, 20000, N'Disponible')
-GO
-INSERT [dbo].[HOSPEDAJE] ([ConsecutivoHospedaje], [Nombre], [CodProvincia], [Precio], [Disponibilidad]) VALUES (2, N'Hotel Plata Dorada', 1, 500, N'Disponible')
-GO
-INSERT [dbo].[HOSPEDAJE] ([ConsecutivoHospedaje], [Nombre], [CodProvincia], [Precio], [Disponibilidad]) VALUES (3, N'Cabañas El Sapo', 4, 200, N'Disponible')
-GO
-INSERT [dbo].[HOSPEDAJE] ([ConsecutivoHospedaje], [Nombre], [CodProvincia], [Precio], [Disponibilidad]) VALUES (4, N'Hotel Miramar', 5, 100, N'Disponible')
-GO
-INSERT [dbo].[HOSPEDAJE] ([ConsecutivoHospedaje], [Nombre], [CodProvincia], [Precio], [Disponibilidad]) VALUES (5, N'Hotel Paso Dorado', 7, 50, N'Disponible')
+SET IDENTITY_INSERT [dbo].[HOSPEDAJE] OFF
 GO
 INSERT [dbo].[PROVINCIAS] ([CodProvincia], [NombreProvincia]) VALUES (1, N'San José')
 GO
@@ -211,8 +207,6 @@ GO
 INSERT [dbo].[PROVINCIAS] ([CodProvincia], [NombreProvincia]) VALUES (6, N'Puntarenas')
 GO
 INSERT [dbo].[PROVINCIAS] ([CodProvincia], [NombreProvincia]) VALUES (7, N'Limón')
-GO
-INSERT [dbo].[RESERVAS] ([ConsecutivoReservas], [FechaReserva], [CodUsuario], [CodDestino], [Pago], [Estado]) VALUES (1, CAST(N'2023-05-12T00:00:00.000' AS DateTime), 1, 1, 0, 1)
 GO
 SET IDENTITY_INSERT [dbo].[USUARIOS] ON 
 GO
@@ -234,7 +228,7 @@ SET IDENTITY_INSERT [dbo].[USUARIOS] OFF
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [UK_CorreoElectronico]    Script Date: 23/4/2023 03:33:55 ******/
+/****** Object:  Index [UK_CorreoElectronico]    Script Date: 23/4/2023 10:53:53 ******/
 ALTER TABLE [dbo].[USUARIOS] ADD  CONSTRAINT [UK_CorreoElectronico] UNIQUE NONCLUSTERED 
 (
 	[CorreoElectronico] ASC
@@ -290,7 +284,7 @@ REFERENCES [dbo].[PROVINCIAS] ([CodProvincia])
 GO
 ALTER TABLE [dbo].[USUARIOS] CHECK CONSTRAINT [FK_USUARIOS_PROVINCIAS]
 GO
-/****** Object:  StoredProcedure [dbo].[obtenerHospedajesConNombreProvincia]    Script Date: 23/4/2023 03:33:55 ******/
+/****** Object:  StoredProcedure [dbo].[obtenerHospedajesConNombreProvincia]    Script Date: 23/4/2023 10:53:53 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -304,7 +298,7 @@ BEGIN
     INNER JOIN PROVINCIAS p ON a.CodProvincia = p.CodProvincia
 END
 GO
-/****** Object:  StoredProcedure [dbo].[RegistrarBitacora]    Script Date: 23/4/2023 03:33:55 ******/
+/****** Object:  StoredProcedure [dbo].[RegistrarBitacora]    Script Date: 23/4/2023 10:53:53 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -321,7 +315,7 @@ BEGIN
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[ValidarUsuario]    Script Date: 23/4/2023 03:33:55 ******/
+/****** Object:  StoredProcedure [dbo].[ValidarUsuario]    Script Date: 23/4/2023 10:53:53 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
