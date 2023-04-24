@@ -89,9 +89,8 @@
                         @if (Session["Rol"] == null)
                         {
                             <a class="nav-item nav-link">@Html.ActionLink("Inicio", "Index", "Home")</a>
-                            <a class="nav-item nav-link">@Html.ActionLink("Nosotros", "About", "Home")</a>
                             <a class="nav-item nav-link">@Html.ActionLink("Servicios", "Services", "Home")</a>
-                            <a class="nav-item nav-link">@Html.ActionLink("Paquetes de Viaje", "Packages", "Home")</a>
+                            <a class="nav-item nav-link">@Html.ActionLink("Hospedajes", "Packages", "Home")</a>
                             <a class="nav-item nav-link">@Html.ActionLink("Contacto", "Contact", "Home")</a>
                             <a class="nav-item nav-link">@Html.ActionLink("Ingresar", "Login", "Home")</a>
                         }
@@ -99,9 +98,8 @@
                         @if (Session["Rol"] != null && Session["Rol"].ToString() == "Usuario")
                         {
                             <a class="nav-item nav-link">@Html.ActionLink("Inicio", "Index", "Home")</a>
-                            <a class="nav-item nav-link">@Html.ActionLink("Nosotros", "About", "Home")</a>
                             <a class="nav-item nav-link">@Html.ActionLink("Servicios", "Services", "Home")</a>
-                            <a class="nav-item nav-link">@Html.ActionLink("Paquetes de Viaje", "Packages", "Home")</a>
+                            <a class="nav-item nav-link">@Html.ActionLink("Hospedajes", "Packages", "Home")</a>
                             <a class="nav-item nav-link">@Html.ActionLink("Contacto", "Contact", "Home")</a>
                             <a class="nav-item nav-link">@Html.ActionLink("Reservas", "Index", "Reservas")</a>
                             <a class="nav-item nav-link">@Html.ActionLink("Cerrar Sesión", "CerrarSesion", "Home")</a>
@@ -110,9 +108,8 @@
                         @if (Session["Rol"] != null && Session["Rol"].ToString() == "Afilidado")
                         {
                             <a class="nav-item nav-link">@Html.ActionLink("Inicio", "Index", "Home")</a>
-                            <a class="nav-item nav-link">@Html.ActionLink("Nosotros", "About", "Home")</a>
                             <a class="nav-item nav-link">@Html.ActionLink("Servicios", "Services", "Home")</a>
-                            <a class="nav-item nav-link">@Html.ActionLink("Paquetes de Viaje", "Packages", "Home")</a>
+                            <a class="nav-item nav-link">@Html.ActionLink("Hospedajes", "Packages", "Home")</a>
                             <a class="nav-item nav-link">@Html.ActionLink("Contacto", "Contact", "Home")</a>
                             <a class="nav-item nav-link">@Html.ActionLink("Nuevo Hospedaje", "Index", "Hospedaje")</a>
                             <a class="nav-item nav-link">@Html.ActionLink("Cerrar Sesión", "CerrarSesion", "Home")</a>
@@ -131,11 +128,10 @@
                                 </ul>
                             </div>
                             <a class="nav-item nav-link">@Html.ActionLink("Inicio", "Index", "Home")</a>
-                            <a class="nav-item nav-link">@Html.ActionLink("Nosotros", "About", "Home")</a>
                             <a class="nav-item nav-link">@Html.ActionLink("Servicios", "Services", "Home")</a>
                             <a class="nav-item nav-link">@Html.ActionLink("Paquetes de Viaje", "Packages", "Home")</a>
                             <a class="nav-item nav-link">@Html.ActionLink("Contacto", "Contact", "Home")</a>
-                            <a class="nav-item nav-link">@Html.ActionLink("Nuevo Hospedaje", "Index", "Hospedaje")</a>
+                            <a class="nav-item nav-link">@Html.ActionLink("Hospedajes", "Index", "Hospedaje")</a>
                             <a class="nav-item nav-link">@Html.ActionLink("Cerrar Sesión", "CerrarSesion", "Home")</a>
                         }
                     </div>
