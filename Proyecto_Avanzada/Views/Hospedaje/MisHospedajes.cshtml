@@ -13,7 +13,7 @@
             <h4 class="card-title">Mis hospedajes registrados</h4>
 
             <div class="table-responsive">
-                <table id="TablaReservas" class="table table-hover">
+                <table id="TablaReservas2" class="table table-hover">
 
                     <thead>
                         <tr>
@@ -28,23 +28,25 @@
                     <tbody>
                             @foreach (var item in Model)
                             {
-                                <tr>
-                                    <td>@item.FechaRegistro</td>
-                                    <td>@item.Nombre</td>
-                                    <td>@item.NombreProvincia</td>
-                                    <td>$ @item.Precio</td>
-                                    <td>@item.Disponibilidad</td>
+                        <tr>
+                            <td>@item.FechaRegistro</td>
+                            <td>@item.Nombre</td>
+                            <td>@item.NombreProvincia</td>
+                            <td>$ @item.Precio</td>
+                            <td>@item.Disponibilidad</td>
+                            <td>@item.Disponibilidad</td>
 
-                                    @*<td>
-            <a class="btn btn-primary" href="@Url.Action("ActualizarReserva","Reservas", new { q = item.ConsecutivoReservas })">Actualizar</a> |
-            <button type="button" id="idModalHidden" class="btn btn-primary openModal" data-toggle="modal" data-target="#exampleModal"
-                    data-id=@item.ConsecutivoReservas data-backdrop="static" data-keyboard="false">
-                Cambiar Estado
-            </button>
+                            @*
+                            <td>
+                                <a class="btn btn-primary" href="@Url.Action(" ActualizarReserva","Reservas", new { q=item.ConsecutivoReservas })">Actualizar</a> |
+                                <button type="button" id="idModalHidden" class="btn btn-outline-primary openModal" data-toggle="modal" data-target="#exampleModal"
+                                        data-id=@item.ConsecutivoReservas data-backdrop="static" data-keyboard="false">
+                                    Cambiar Estado
+                                </button>
 
-        </td>*@
+                            </td>*@
 
-                                </tr>
+                        </tr>
                             }
                         </tbody>
                 </table>
@@ -53,3 +55,14 @@
     </div>
 
 </div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#TablaReservas2').DataTable({
+            "language": {
+                "url": "https://cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json"
+            }
+        });
+    });
+</script>

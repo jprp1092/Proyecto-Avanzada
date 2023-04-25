@@ -293,6 +293,8 @@
     <Content Include="Views\Reservas\Index.cshtml" />
     <Content Include="Views\Reservas\ActualizarReserva.cshtml" />
     <Content Include="Views\Hospedaje\Index.cshtml" />
+    <Content Include="Views\Hospedaje\MisHospedajes.cshtml" />
+    <Content Include="Views\Home\Principal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -29,44 +29,44 @@
         <div class="container pb-5">
             <div class="bg-light shadow" style="padding: 30px;">
                 <div class="row align-items-center" style="min-height: 60px;">
-                    <div class="col-md-10">
+                    <div class="col-md-12">
                         <div class="row">
-                                <div class="col-md-3">
-                                    <div class="mb-3 mb-md-0">
-                                        <select class="custom-select px-4" style="height: 47px;">
-                                            <option selected>Destinos</option>
-                                            <option value="1">San José</option>
-                                            <option value="2">Alajuela </option>
-                                            <option value="3">Cartago </option>
-                                            <option value="4">Heredia </option>
-                                            <option value="5">Guanacaste </option>
-                                            <option value="6">Puntarenas </option>
-                                            <option value="7">Limon </option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-3">
-                                    <div class="mb-3 mb-md-0">
-                                        <div class="date" id="date1" data-target-input="nearest">
-                                            <input type="text" class="form-control p-4 datetimepicker-input" placeholder="Fecha ingreso" data-target="#date1" data-toggle="datetimepicker" name="date1" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="mb-3 mb-md-0">
-                                        <div class="date" id="date2" data-target-input="nearest">
-                                            <input type="text" class="form-control p-4 datetimepicker-input" placeholder="Fecha salida" data-target="#date2" data-toggle="datetimepicker" name="date2" />
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="col-md-3">
-                                    <button class="btn btn-primary btn-block" type="submit" style="height: 47px; margin-top: -2px;">Buscar</button>
+                            <div class="col-md-3">
+                                <div class="mb-3 mb-md-0">
+                                    <select class="custom-select px-4" style="height: 47px;">
+                                        <option selected>Destinos</option>
+                                        <option value="1">San José</option>
+                                        <option value="2">Alajuela </option>
+                                        <option value="3">Cartago </option>
+                                        <option value="4">Heredia </option>
+                                        <option value="5">Guanacaste </option>
+                                        <option value="6">Puntarenas </option>
+                                        <option value="7">Limon </option>
+                                    </select>
                                 </div>
                             </div>
 
+                            <div class="col-md-3">
+                                <div class="mb-3 mb-md-0">
+                                    <div class="date" id="date1" data-target-input="nearest">
+                                        <input type="text" class="form-control p-4 datetimepicker-input" placeholder="Fecha ingreso" data-target="#date1" data-toggle="datetimepicker" name="date1" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="mb-3 mb-md-0">
+                                    <div class="date" id="date2" data-target-input="nearest">
+                                        <input type="text" class="form-control p-4 datetimepicker-input" placeholder="Fecha salida" data-target="#date2" data-toggle="datetimepicker" name="date2" />
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-3">
+                                <button class="btn btn-primary btn-block" type="submit" style="height: 47px; margin-top: -2px;">Buscar</button>
+                            </div>
                         </div>
+
+                    </div>
                 </div>
 
             </div>
@@ -75,8 +75,8 @@
 </form>
 <!-- Booking End -->
 <!-- Packages Start -->
-<div class="container-fluid py-5">
-    <div class="container pt-5 pb-3">
+<div class="container-fluid py-4">
+    <div class="container pt-4 pb-3">
         <div class="text-center mb-3 pb-3">
             <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Hospedajes</h6>
             <h1>Hospedajes perfectos para tu estadia</h1>
@@ -85,9 +85,9 @@
 
             @foreach (var item in Model)
             {
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="package-item bg-white mb-2">
-                        <img class="img-fluid" src="~/template/img/package-1.jpg" alt="">
+                <div class="col-lg-4 col-md-4 mb-4">
+                    <div class="package-item bg-white mb-4">
+                        <img class="img-fluid" src="~/template/img/package-4.jpg" alt="">
                         <div class="p-4">
                             <div class="d-flex justify-content-between mb-3">
                                 <small class="m-0"><i class="fa fa-map-marker-alt text-primary mr-2"></i>@item.NombreProvincia</small>
@@ -223,3 +223,23 @@
     </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<script>
+    $(document).ready(function () {
+        $('form').submit(function (event) {
+            var destino = $('#destino').val();
+            var fecha_inicio = $('#fecha_inicio').val();
+            var fecha_fin = $('#fecha_fin').val();
+
+            if (destino === '' || fecha_inicio === '' || fecha_fin === '') {
+                event.preventDefault();
+                Swal.fire({
+                    title: 'Advertencia',
+                    text: 'Selecciona fechas y un destino',
+                    icon: 'warning'
+                });
+            }
+        });
+    });
+</script>
