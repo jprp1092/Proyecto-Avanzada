@@ -30,13 +30,13 @@ namespace ProyectoApi_KN.Models
             }
         }
 
-        public List<HospedajeEnt> ConsultarHospedaje()
+        public List<HospedajeEnt> ConsultarHospedaje(int q)
         {
             
 
             using (var conexion = new ProyectoW_BDEntities())
             {
-                var datos = conexion.obtenerHospedajesConNombreProvincia().ToList();
+                var datos = conexion.obtenerHospedajesConNombreProvincia(q).ToList();
 
                 //var datos = (from x in conexion.HOSPEDAJE
                 //             select x).ToList();
@@ -88,6 +88,38 @@ namespace ProyectoApi_KN.Models
                 return listaEntidadResultado;
             }
         }
+
+
+
+        public List<HospedajeEnt> FiltrarHospedaje(int q)
+        {
+
+            using (var conexion = new ProyectoW_BDEntities())
+            {
+                var datos = conexion.obtenerHospedajesConNombreProvincia(q).ToList();
+
+
+
+
+                List<HospedajeEnt> listaEntidadResultado = new List<HospedajeEnt>();
+                foreach (var item in datos)
+                {
+                    listaEntidadResultado.Add(new HospedajeEnt
+                    {
+
+                        Nombre = item.Nombre,
+                        NombreProvincia = item.NombreProvincia,
+                        Precio = (short)item.Precio,
+                        Disponibilidad = item.Disponibilidad
+
+
+                    });
+                }
+
+                return listaEntidadResultado;
+            }
+        }
+
 
     }
 }

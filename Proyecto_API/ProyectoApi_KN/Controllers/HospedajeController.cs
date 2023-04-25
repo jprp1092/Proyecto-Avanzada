@@ -25,13 +25,22 @@ namespace ProyectoApi_KN.Controllers
         [HttpGet]
         [AllowAnonymous]
         [Route("api/ConsultarHospedaje")]
-        public List<HospedajeEnt> ConsultarHospedaje()
+        public List<HospedajeEnt> ConsultarHospedaje(int q)
         {
-            return model.ConsultarHospedaje();
+            return model.ConsultarHospedaje(q);
         }
 
         [HttpGet]
         [AllowAnonymous]
+        [Route("api/FiltrarHospedaje")]
+        public List<HospedajeEnt> FiltrarHospedaje(int q)
+        {
+            return model.FiltrarHospedaje(q);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+
         [Route("api/ConsultarMisHospedaje")]
         public List<HospedajeEnt> ConsultarMisHospedaje(int q)
         {

@@ -74,7 +74,7 @@ namespace ProyectoApi_KN.ModelDB
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MostrarFacturas_Result>("MostrarFacturas", consecutivoUsuarioParameter);
         }
     
-        public virtual ObjectResult<obtenerHospedajesConNombreProvincia_Result> obtenerHospedajesConNombreProvincia()
+        public virtual ObjectResult<obtenerHospedajesConNombreProvincia_Result> obtenerHospedajesConNombreProvincia(int q)
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<obtenerHospedajesConNombreProvincia_Result>("obtenerHospedajesConNombreProvincia");
         }

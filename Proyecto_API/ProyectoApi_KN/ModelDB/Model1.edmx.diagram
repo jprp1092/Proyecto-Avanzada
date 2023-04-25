@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c9aee616e71440bd804093795cbe58c8" Name="Diagram1">
+      <Diagram DiagramId="3752010bf8b9482691b52464046f7bc9" Name="Diagram1">
         <EntityTypeShape EntityType="ProyectoW_BDModel.BITACORA_CONTACTO" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ProyectoW_BDModel.BITACORAS" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ProyectoW_BDModel.CARRITO" Width="1.5" PointX="10.5" PointY="11.375" IsExpanded="true" />

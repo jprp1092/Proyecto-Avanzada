@@ -193,7 +193,7 @@ namespace ProyectoWeb_KN.Controllers
             try
             {
                 var datos = hospedajeModel.ConsultarHospedaje();
-
+                ViewBag.ListaProvincias = provinciasModel.ConsultarProvincias();
                 return View("Packages", datos);
             }
             catch (Exception ex)
@@ -204,6 +204,21 @@ namespace ProyectoWeb_KN.Controllers
             }
 
         }
+        [HttpGet]
+        public ActionResult FiltrarHospedaje(int q)
+        {
+            try
+            {
+                var resultado = hospedajeModel.FiltrarHospedaje(q);
+                ViewBag.ListaProvincias = provinciasModel.ConsultarProvincias();
+                return View(resultado);
+            }
+            catch (Exception ex)
+            {
+                return View("Index");
+            }
+        }
+
 
         [HttpPost]
         public ActionResult Packages(string date1, string date2)

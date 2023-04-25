@@ -118,7 +118,7 @@
                             <a class="nav-item nav-link">@Html.ActionLink("Cerrar Sesión", "CerrarSesion", "Home")</a>
                         }
 
-                        @if (Session["Rol"] != null && Session["Rol"].ToString() == "Afilidado")
+                        @if (Session["Rol"] != null && Session["Rol"].ToString() == "Afiliado")
                         {
                             <a class="nav-item nav-link">@Html.ActionLink("Inicio", "Index", "Home")</a>
                             <a class="nav-item nav-link">@Html.ActionLink("Servicios", "Services", "Home")</a>
