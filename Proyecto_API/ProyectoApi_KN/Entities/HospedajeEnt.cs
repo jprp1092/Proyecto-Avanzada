@@ -15,6 +15,9 @@ namespace ProyectoApi_KN.Entities
         public string Disponibilidad { get; set; }
         public DateTime? FechaRegistro { get; set; }
         public long ConsecutivoUsuario { get; set; }
+        public int CantidadNoches { get; set; }
+        public DateTime FechaEntrada { get; set; }
+        public DateTime FechaSalida { get; set; }
 
     }
 }

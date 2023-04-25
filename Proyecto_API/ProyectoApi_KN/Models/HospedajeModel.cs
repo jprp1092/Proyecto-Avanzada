@@ -22,6 +22,7 @@ namespace ProyectoApi_KN.Models
                 hospedaje.CodProvincia = entidad.CodProvincia;
                 hospedaje.Precio = entidad.Precio;
                 hospedaje.Disponibilidad = "Disponible";
+                hospedaje.ConsecutivoUsuario = entidad.ConsecutivoUsuario;
                 hospedaje.FechaRegistro = DateTime.Now;
 
                 conexion.HOSPEDAJE.Add(hospedaje);
@@ -45,6 +46,7 @@ namespace ProyectoApi_KN.Models
                 {
                     listaEntidadResultado.Add(new HospedajeEnt
                     {
+                        ConsecutivoHospedaje = item.ConsecutivoHospedaje,
                         Nombre = item.Nombre,
                         NombreProvincia = item.NombreProvincia,
                         Precio = (short)item.Precio,

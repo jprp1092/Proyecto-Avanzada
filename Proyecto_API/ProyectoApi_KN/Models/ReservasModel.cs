@@ -104,7 +104,98 @@ namespace ProyectoApi_KN.Models
            }
         }
 
+        public void AgregarCarrito(HospedajeEnt entidad)
+        {
+
+            using (var conexion = new ProyectoW_BDEntities())
+            {
+                var datos = (from x in conexion.CARRITO
+                             where x.ConsecutivoUsuario == entidad.ConsecutivoUsuario
+                                && x.ConsecutivoHospedaje == entidad.ConsecutivoHospedaje
+                             select x).FirstOrDefault();
+
+                if (datos == null)
+                {
+                    if (entidad.CantidadNoches != 0)
+                    {
+                        //INSERT
+                        CARRITO carrito = new CARRITO();
+                        carrito.ConsecutivoHospedaje = Convert.ToInt32(entidad.ConsecutivoHospedaje);
+                        carrito.CantNoches = entidad.CantidadNoches;
+                        carrito.ConsecutivoUsuario = entidad.ConsecutivoUsuario;
+                        carrito.Precio = entidad.Precio;
+                        carrito.FechaIngreso = entidad.FechaEntrada;
+                        carrito.FechaSalida = entidad.FechaSalida;
+
+                        conexion.CARRITO.Add(carrito);
+                        conexion.SaveChanges();
+                    }
+                }
+                else
+                {
+                    if (entidad.CantidadNoches == 0)
+                    {
+                        //DELETE
+                        conexion.CARRITO.Remove(datos);
+                        conexion.SaveChanges();
+                    }
+                    else
+                    {
+                        //UPDATE
+                        datos.CantNoches = entidad.CantidadNoches;
+                        datos.FechaIngreso = entidad.FechaEntrada;
+                        datos.FechaSalida = entidad.FechaSalida;
+
+                        conexion.SaveChanges();
+                    }
+                }
+
+            }
+        }
+
+        public CarritoEnt MostrarCarritoTemporal(long ConsecutivoUsuario)
+        {
+            using (var conexion = new ProyectoW_BDEntities())
+            {
+                var datos = conexion.MostrarCarritoTemporal(ConsecutivoUsuario).FirstOrDefault();
+
+                CarritoEnt carrito = new CarritoEnt();
+                if (datos != null)
+                {
+                    carrito.CantidadNoches = datos.CantidadNoches;
+                    carrito.MontoCarrito = datos.MontoCarrito;
+                }
+
+                return carrito;
+            }
+        }
 
 
+        public List<CarritoDetalleEnt> MostrarCarritoTotal(long ConsecutivoUsuario)
+        {
+            using (var conexion = new ProyectoW_BDEntities())
+            {
+                var datos = conexion.MostrarCarritoTotal(ConsecutivoUsuario).ToList();
+
+                List<CarritoDetalleEnt> carrito = new List<CarritoDetalleEnt>();
+                if (datos.Count > 0)
+                {
+                    foreach (var item in datos)
+                    {
+                        carrito.Add(new CarritoDetalleEnt
+                        {
+                            NombreHospedaje = item.NombreHospedaje,
+                            CantidadNoches = item.CantidadNoches,
+                            Precio = item.Precio,
+                            SubTotal = item.SubTotal,
+                            Impuesto = item.Impuesto,
+                            Total = item.Total
+                        });
+                    }
+                }
+
+                return carrito;
+            }
+        }
     }
 }

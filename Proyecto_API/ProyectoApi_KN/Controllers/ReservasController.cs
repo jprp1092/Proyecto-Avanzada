@@ -44,5 +44,27 @@ namespace ProyectoApi_KN.Controllers
             model.CambiarEstado(q);
         }
 
+        [HttpPut]
+        [Authorize]
+        [Route("api/AgregarCarrito")]
+        public void AgregarCarrito(HospedajeEnt entidad)
+        {
+            model.AgregarCarrito(entidad);
+        }
+
+        [HttpGet]
+        [Route("api/MostrarCarritoTemporal")]
+        public CarritoEnt MostrarCarritoTemporal(long ConsecutivoUsuario)
+        {
+            return model.MostrarCarritoTemporal(ConsecutivoUsuario);
+        }
+
+        [HttpGet]
+        [Route("api/MostrarCarritoTotal")]
+        public List<CarritoDetalleEnt> MostrarCarritoTotal(long ConsecutivoUsuario)
+        {
+            return model.MostrarCarritoTotal(ConsecutivoUsuario);
+        }
+
     }
 }
