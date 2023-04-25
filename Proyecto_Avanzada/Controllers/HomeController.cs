@@ -192,10 +192,9 @@ namespace ProyectoWeb_KN.Controllers
         {
             try
             {
-
                 var datos = hospedajeModel.ConsultarHospedaje();
 
-                return View("Packages",datos);
+                return View("Packages", datos);
             }
             catch (Exception ex)
             {

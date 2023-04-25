@@ -13,7 +13,8 @@ namespace ProyectoApi_KN.Entities
         public string NombreProvincia { get; set; }
         public float Precio { get; set; }
         public string Disponibilidad { get; set; }
-        public DateTime FechaRegistro { get; set; }
+        public DateTime? FechaRegistro { get; set; }
+        public long ConsecutivoUsuario { get; set; }
 
     }
 }

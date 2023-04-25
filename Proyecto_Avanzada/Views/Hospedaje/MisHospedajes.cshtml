@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Proyecto_Avanzada.Entities.HospedajeEnt>
+
+@{
+    ViewBag.Title = "MisHospedajes";
+}
+
+<div class="row">
+
+    <div class="col-md-1">
+    </div>
+    <div class="card col-md-10">
+        <div class="card-body">
+            <h4 class="card-title">Mis hospedajes registrados</h4>
+
+            <div class="table-responsive">
+                <table id="TablaReservas" class="table table-hover">
+
+                    <thead>
+                        <tr>
+                            <th>Fecha de registro</th>
+                            <th>Nombre</th>
+                            <th>Provincia</th>
+                            <th>Precio</th>
+                            <th>Disponibilidad</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.FechaRegistro</td>
+                                    <td>@item.Nombre</td>
+                                    <td>@item.NombreProvincia</td>
+                                    <td>$ @item.Precio</td>
+                                    <td>@item.Disponibilidad</td>
+
+                                    @*<td>
+            <a class="btn btn-primary" href="@Url.Action("ActualizarReserva","Reservas", new { q = item.ConsecutivoReservas })">Actualizar</a> |
+            <button type="button" id="idModalHidden" class="btn btn-primary openModal" data-toggle="modal" data-target="#exampleModal"
+                    data-id=@item.ConsecutivoReservas data-backdrop="static" data-keyboard="false">
+                Cambiar Estado
+            </button>
+
+        </td>*@
+
+                                </tr>
+                            }
+                        </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

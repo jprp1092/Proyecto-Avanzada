@@ -16,6 +16,7 @@ namespace Proyecto_Avanzada.Controllers
         LogsModel logsModel = new LogsModel();
         ProvinciaModel provinciasModel = new ProvinciaModel();
         HospedajeModel hospedajeModel = new HospedajeModel();
+        UsuarioModel usuariosModel = new UsuarioModel();
 
         [HttpGet]
         public ActionResult Index()
@@ -58,7 +59,7 @@ namespace Proyecto_Avanzada.Controllers
                 var respuesta = hospedajeModel.RegistrarHospedaje(entidad);
 
                 if (respuesta > 0)
-                    return View("Index");
+                    return RedirectToAction("Packages", "Home");
                 else
                 {
                     ViewBag.mensajeError = "El hospedaje no se pudo registrar";
@@ -71,5 +72,25 @@ namespace Proyecto_Avanzada.Controllers
                 return View("Index");
             }
         }
+
+        [HttpGet]
+        public ActionResult MisHospedajes()
+        {
+            try
+            {
+
+                string consecutivoUsuario = Session["CodigoUsuario"].ToString();
+                int q = int.Parse(consecutivoUsuario);
+                var datos = hospedajeModel.ConsultarMisHospedaje(q);
+                return View(datos);
+
+            }
+            catch (Exception ex )
+            {              
+                  logsModel.RegistrarBitacora(ControllerContext, ex.Message);
+                    return View("MisHospedajes");
+                }
+        }
+
     }
 }
