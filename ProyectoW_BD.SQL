@@ -1,7 +1,9 @@
-CREATE DATABASE ProyectoW_BD
-USE [ProyectoW_BD]
+CREATE DATABASE [ProyectoW_BD]
+
+USE ProyectoW_BD
+
 GO
-/****** Object:  Table [dbo].[BITACORA_CONTACTO]    Script Date: 24/4/2023 07:28:55 ******/
+/****** Object:  Table [dbo].[BITACORA_CONTACTO]    Script Date: 25/4/2023 01:38:02 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -19,7 +21,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[BITACORAS]    Script Date: 24/4/2023 07:28:55 ******/
+/****** Object:  Table [dbo].[BITACORAS]    Script Date: 25/4/2023 01:38:02 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -35,7 +37,7 @@ CREATE TABLE [dbo].[BITACORAS](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CARRITO]    Script Date: 24/4/2023 07:28:55 ******/
+/****** Object:  Table [dbo].[CARRITO]    Script Date: 25/4/2023 01:38:02 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -45,6 +47,7 @@ CREATE TABLE [dbo].[CARRITO](
 	[ConsecutivoUsuario] [bigint] NOT NULL,
 	[ConsecutivoHospedaje] [int] NOT NULL,
 	[CantNoches] [int] NOT NULL,
+	[Precio] [float] NOT NULL,
 	[FechaIngreso] [datetime] NOT NULL,
 	[FechaSalida] [datetime] NOT NULL,
  CONSTRAINT [PK_CARRITO] PRIMARY KEY CLUSTERED 
@@ -53,7 +56,7 @@ CREATE TABLE [dbo].[CARRITO](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[DETALLE]    Script Date: 24/4/2023 07:28:55 ******/
+/****** Object:  Table [dbo].[DETALLE]    Script Date: 25/4/2023 01:38:02 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -70,7 +73,7 @@ CREATE TABLE [dbo].[DETALLE](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ERRORES]    Script Date: 24/4/2023 07:28:55 ******/
+/****** Object:  Table [dbo].[ERRORES]    Script Date: 25/4/2023 01:38:02 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -87,7 +90,7 @@ CREATE TABLE [dbo].[ERRORES](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[HOSPEDAJE]    Script Date: 24/4/2023 07:28:55 ******/
+/****** Object:  Table [dbo].[HOSPEDAJE]    Script Date: 25/4/2023 01:38:02 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -106,13 +109,13 @@ CREATE TABLE [dbo].[HOSPEDAJE](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[MAESTRO]    Script Date: 24/4/2023 07:28:55 ******/
+/****** Object:  Table [dbo].[MAESTRO]    Script Date: 25/4/2023 01:38:02 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[MAESTRO](
-	[IdMaestro] [bigint] NOT NULL,
+	[IdMaestro] [bigint] IDENTITY NOT NULL,
 	[FechaCompra] [datetime] NOT NULL,
 	[Subtotal] [decimal](10, 2) NOT NULL,
 	[Impuestos] [decimal](10, 2) NOT NULL,
@@ -124,7 +127,7 @@ CREATE TABLE [dbo].[MAESTRO](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[PROVINCIAS]    Script Date: 24/4/2023 07:28:55 ******/
+/****** Object:  Table [dbo].[PROVINCIAS]    Script Date: 25/4/2023 01:38:02 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -138,7 +141,7 @@ CREATE TABLE [dbo].[PROVINCIAS](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[RESERVAS]    Script Date: 24/4/2023 07:28:55 ******/
+/****** Object:  Table [dbo].[RESERVAS]    Script Date: 25/4/2023 01:38:02 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -156,7 +159,7 @@ CREATE TABLE [dbo].[RESERVAS](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[USUARIOS]    Script Date: 24/4/2023 07:28:55 ******/
+/****** Object:  Table [dbo].[USUARIOS]    Script Date: 25/4/2023 01:38:02 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -177,101 +180,17 @@ CREATE TABLE [dbo].[USUARIOS](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-SET IDENTITY_INSERT [dbo].[BITACORAS] ON 
+SET IDENTITY_INSERT [dbo].[BITACORA_CONTACTO] ON 
 GO
-INSERT [dbo].[BITACORAS] ([ConsecutivoError], [DescripcionError], [FechaHora], [Origen]) VALUES (1, N'Se han producido uno o varios errores.', CAST(N'2023-04-24T00:57:28.053' AS DateTime), N'Hospedaje-MisHospedajes')
+INSERT [dbo].[BITACORA_CONTACTO] ([ID_MENSAJE], [TIPO_MENSAJE], [EMISOR], [CORREO_EMISOR], [CUERPO_CORREO], [FECHA_REGISTRO]) VALUES (1, N'Consulta General', N'Jostin', N'jsegura90582@ufide.ac.cr', N'Correo de prueba.', CAST(N'2023-04-24T19:38:30.727' AS DateTime))
 GO
-INSERT [dbo].[BITACORAS] ([ConsecutivoError], [DescripcionError], [FechaHora], [Origen]) VALUES (2, N'Se han producido uno o varios errores.', CAST(N'2023-04-24T00:58:22.913' AS DateTime), N'Hospedaje-MisHospedajes')
+SET IDENTITY_INSERT [dbo].[BITACORA_CONTACTO] OFF
 GO
-INSERT [dbo].[BITACORAS] ([ConsecutivoError], [DescripcionError], [FechaHora], [Origen]) VALUES (3, N'Se han producido uno o varios errores.', CAST(N'2023-04-24T00:59:06.987' AS DateTime), N'Hospedaje-MisHospedajes')
+SET IDENTITY_INSERT [dbo].[CARRITO] ON 
 GO
-INSERT [dbo].[BITACORAS] ([ConsecutivoError], [DescripcionError], [FechaHora], [Origen]) VALUES (4, N'Se han producido uno o varios errores.', CAST(N'2023-04-24T00:59:13.293' AS DateTime), N'Hospedaje-MisHospedajes')
+INSERT [dbo].[CARRITO] ([IdCarrito], [ConsecutivoUsuario], [ConsecutivoHospedaje], [CantNoches], [Precio], [FechaIngreso], [FechaSalida]) VALUES (4, 7, 25, 6, 25000, CAST(N'2023-04-25T00:00:00.000' AS DateTime), CAST(N'2023-05-01T00:00:00.000' AS DateTime))
 GO
-INSERT [dbo].[BITACORAS] ([ConsecutivoError], [DescripcionError], [FechaHora], [Origen]) VALUES (5, N'Se han producido uno o varios errores.', CAST(N'2023-04-24T00:59:14.363' AS DateTime), N'Hospedaje-MisHospedajes')
-GO
-INSERT [dbo].[BITACORAS] ([ConsecutivoError], [DescripcionError], [FechaHora], [Origen]) VALUES (6, N'Se han producido uno o varios errores.', CAST(N'2023-04-24T01:01:07.250' AS DateTime), N'Hospedaje-MisHospedajes')
-GO
-INSERT [dbo].[BITACORAS] ([ConsecutivoError], [DescripcionError], [FechaHora], [Origen]) VALUES (7, N'Se han producido uno o varios errores.', CAST(N'2023-04-24T01:06:39.450' AS DateTime), N'Hospedaje-MisHospedajes')
-GO
-INSERT [dbo].[BITACORAS] ([ConsecutivoError], [DescripcionError], [FechaHora], [Origen]) VALUES (8, N'Se han producido uno o varios errores.', CAST(N'2023-04-24T01:10:54.363' AS DateTime), N'Hospedaje-MisHospedajes')
-GO
-INSERT [dbo].[BITACORAS] ([ConsecutivoError], [DescripcionError], [FechaHora], [Origen]) VALUES (9, N'Se han producido uno o varios errores.', CAST(N'2023-04-24T01:13:08.103' AS DateTime), N'Hospedaje-MisHospedajes')
-GO
-INSERT [dbo].[BITACORAS] ([ConsecutivoError], [DescripcionError], [FechaHora], [Origen]) VALUES (10, N'Se han producido uno o varios errores.', CAST(N'2023-04-24T01:14:28.827' AS DateTime), N'Hospedaje-MisHospedajes')
-GO
-INSERT [dbo].[BITACORAS] ([ConsecutivoError], [DescripcionError], [FechaHora], [Origen]) VALUES (11, N'Se han producido uno o varios errores.', CAST(N'2023-04-24T01:16:47.460' AS DateTime), N'Home-Packages')
-GO
-INSERT [dbo].[BITACORAS] ([ConsecutivoError], [DescripcionError], [FechaHora], [Origen]) VALUES (12, N'Se han producido uno o varios errores.', CAST(N'2023-04-24T01:16:54.690' AS DateTime), N'Home-Packages')
-GO
-INSERT [dbo].[BITACORAS] ([ConsecutivoError], [DescripcionError], [FechaHora], [Origen]) VALUES (13, N'Se han producido uno o varios errores.', CAST(N'2023-04-24T01:17:41.380' AS DateTime), N'Home-Packages')
-GO
-INSERT [dbo].[BITACORAS] ([ConsecutivoError], [DescripcionError], [FechaHora], [Origen]) VALUES (14, N'Se han producido uno o varios errores.', CAST(N'2023-04-24T01:17:42.517' AS DateTime), N'Home-Packages')
-GO
-INSERT [dbo].[BITACORAS] ([ConsecutivoError], [DescripcionError], [FechaHora], [Origen]) VALUES (15, N'Se han producido uno o varios errores.', CAST(N'2023-04-24T01:18:05.377' AS DateTime), N'Home-Packages')
-GO
-INSERT [dbo].[BITACORAS] ([ConsecutivoError], [DescripcionError], [FechaHora], [Origen]) VALUES (16, N'Se han producido uno o varios errores.', CAST(N'2023-04-24T01:18:06.443' AS DateTime), N'Home-Packages')
-GO
-INSERT [dbo].[BITACORAS] ([ConsecutivoError], [DescripcionError], [FechaHora], [Origen]) VALUES (17, N'Se han producido uno o varios errores.', CAST(N'2023-04-24T01:18:07.310' AS DateTime), N'Home-Packages')
-GO
-INSERT [dbo].[BITACORAS] ([ConsecutivoError], [DescripcionError], [FechaHora], [Origen]) VALUES (18, N'Se han producido uno o varios errores.', CAST(N'2023-04-24T19:04:16.390' AS DateTime), N'Home-Packages')
-GO
-INSERT [dbo].[BITACORAS] ([ConsecutivoError], [DescripcionError], [FechaHora], [Origen]) VALUES (19, N'Se han producido uno o varios errores.', CAST(N'2023-04-24T19:04:18.180' AS DateTime), N'Home-Packages')
-GO
-INSERT [dbo].[BITACORAS] ([ConsecutivoError], [DescripcionError], [FechaHora], [Origen]) VALUES (20, N'Se han producido uno o varios errores.', CAST(N'2023-04-24T19:04:18.827' AS DateTime), N'Home-Packages')
-GO
-INSERT [dbo].[BITACORAS] ([ConsecutivoError], [DescripcionError], [FechaHora], [Origen]) VALUES (21, N'Se han producido uno o varios errores.', CAST(N'2023-04-24T19:07:10.143' AS DateTime), N'Home-Packages')
-GO
-INSERT [dbo].[BITACORAS] ([ConsecutivoError], [DescripcionError], [FechaHora], [Origen]) VALUES (22, N'Se han producido uno o varios errores.', CAST(N'2023-04-24T19:07:11.033' AS DateTime), N'Home-Packages')
-GO
-INSERT [dbo].[BITACORAS] ([ConsecutivoError], [DescripcionError], [FechaHora], [Origen]) VALUES (23, N'Se han producido uno o varios errores.', CAST(N'2023-04-24T19:07:31.817' AS DateTime), N'Home-Packages')
-GO
-INSERT [dbo].[BITACORAS] ([ConsecutivoError], [DescripcionError], [FechaHora], [Origen]) VALUES (24, N'Se han producido uno o varios errores.', CAST(N'2023-04-24T19:07:32.617' AS DateTime), N'Home-Packages')
-GO
-INSERT [dbo].[BITACORAS] ([ConsecutivoError], [DescripcionError], [FechaHora], [Origen]) VALUES (25, N'Se han producido uno o varios errores.', CAST(N'2023-04-24T19:07:43.087' AS DateTime), N'Home-Packages')
-GO
-INSERT [dbo].[BITACORAS] ([ConsecutivoError], [DescripcionError], [FechaHora], [Origen]) VALUES (26, N'Se han producido uno o varios errores.', CAST(N'2023-04-24T19:07:43.773' AS DateTime), N'Home-Packages')
-GO
-INSERT [dbo].[BITACORAS] ([ConsecutivoError], [DescripcionError], [FechaHora], [Origen]) VALUES (27, N'Se han producido uno o varios errores.', CAST(N'2023-04-24T19:07:45.913' AS DateTime), N'Home-Packages')
-GO
-INSERT [dbo].[BITACORAS] ([ConsecutivoError], [DescripcionError], [FechaHora], [Origen]) VALUES (28, N'Se han producido uno o varios errores.', CAST(N'2023-04-24T19:07:46.587' AS DateTime), N'Home-Packages')
-GO
-INSERT [dbo].[BITACORAS] ([ConsecutivoError], [DescripcionError], [FechaHora], [Origen]) VALUES (29, N'Se han producido uno o varios errores.', CAST(N'2023-04-24T19:07:47.203' AS DateTime), N'Home-Packages')
-GO
-INSERT [dbo].[BITACORAS] ([ConsecutivoError], [DescripcionError], [FechaHora], [Origen]) VALUES (30, N'Se han producido uno o varios errores.', CAST(N'2023-04-24T19:07:47.917' AS DateTime), N'Home-Packages')
-GO
-INSERT [dbo].[BITACORAS] ([ConsecutivoError], [DescripcionError], [FechaHora], [Origen]) VALUES (31, N'Se han producido uno o varios errores.', CAST(N'2023-04-24T19:07:49.230' AS DateTime), N'Home-Packages')
-GO
-INSERT [dbo].[BITACORAS] ([ConsecutivoError], [DescripcionError], [FechaHora], [Origen]) VALUES (32, N'Se han producido uno o varios errores.', CAST(N'2023-04-24T19:07:49.963' AS DateTime), N'Home-Packages')
-GO
-INSERT [dbo].[BITACORAS] ([ConsecutivoError], [DescripcionError], [FechaHora], [Origen]) VALUES (33, N'Se han producido uno o varios errores.', CAST(N'2023-04-24T19:07:59.213' AS DateTime), N'Home-Packages')
-GO
-INSERT [dbo].[BITACORAS] ([ConsecutivoError], [DescripcionError], [FechaHora], [Origen]) VALUES (34, N'Se han producido uno o varios errores.', CAST(N'2023-04-24T19:08:00.100' AS DateTime), N'Home-Packages')
-GO
-INSERT [dbo].[BITACORAS] ([ConsecutivoError], [DescripcionError], [FechaHora], [Origen]) VALUES (35, N'Se han producido uno o varios errores.', CAST(N'2023-04-24T19:08:00.613' AS DateTime), N'Home-Packages')
-GO
-INSERT [dbo].[BITACORAS] ([ConsecutivoError], [DescripcionError], [FechaHora], [Origen]) VALUES (36, N'Se han producido uno o varios errores.', CAST(N'2023-04-24T19:08:01.247' AS DateTime), N'Home-Packages')
-GO
-INSERT [dbo].[BITACORAS] ([ConsecutivoError], [DescripcionError], [FechaHora], [Origen]) VALUES (37, N'Se han producido uno o varios errores.', CAST(N'2023-04-24T19:08:02.020' AS DateTime), N'Home-Packages')
-GO
-INSERT [dbo].[BITACORAS] ([ConsecutivoError], [DescripcionError], [FechaHora], [Origen]) VALUES (38, N'Se han producido uno o varios errores.', CAST(N'2023-04-24T19:08:03.117' AS DateTime), N'Home-Packages')
-GO
-INSERT [dbo].[BITACORAS] ([ConsecutivoError], [DescripcionError], [FechaHora], [Origen]) VALUES (39, N'Se han producido uno o varios errores.', CAST(N'2023-04-24T19:08:04.003' AS DateTime), N'Home-Packages')
-GO
-INSERT [dbo].[BITACORAS] ([ConsecutivoError], [DescripcionError], [FechaHora], [Origen]) VALUES (40, N'Se han producido uno o varios errores.', CAST(N'2023-04-24T19:08:48.410' AS DateTime), N'Home-Packages')
-GO
-INSERT [dbo].[BITACORAS] ([ConsecutivoError], [DescripcionError], [FechaHora], [Origen]) VALUES (41, N'Se han producido uno o varios errores.', CAST(N'2023-04-24T19:08:55.977' AS DateTime), N'Home-Packages')
-GO
-INSERT [dbo].[BITACORAS] ([ConsecutivoError], [DescripcionError], [FechaHora], [Origen]) VALUES (42, N'Se han producido uno o varios errores.', CAST(N'2023-04-24T19:08:57.653' AS DateTime), N'Home-Packages')
-GO
-INSERT [dbo].[BITACORAS] ([ConsecutivoError], [DescripcionError], [FechaHora], [Origen]) VALUES (43, N'Se han producido uno o varios errores.', CAST(N'2023-04-24T19:08:59.920' AS DateTime), N'Home-Packages')
-GO
-INSERT [dbo].[BITACORAS] ([ConsecutivoError], [DescripcionError], [FechaHora], [Origen]) VALUES (44, N'Se han producido uno o varios errores.', CAST(N'2023-04-24T19:09:24.163' AS DateTime), N'Home-Packages')
-GO
-INSERT [dbo].[BITACORAS] ([ConsecutivoError], [DescripcionError], [FechaHora], [Origen]) VALUES (45, N'Se han producido uno o varios errores.', CAST(N'2023-04-24T19:09:25.470' AS DateTime), N'Home-Packages')
-GO
-INSERT [dbo].[BITACORAS] ([ConsecutivoError], [DescripcionError], [FechaHora], [Origen]) VALUES (46, N'Se han producido uno o varios errores.', CAST(N'2023-04-24T19:10:32.380' AS DateTime), N'Home-Packages')
-GO
-SET IDENTITY_INSERT [dbo].[BITACORAS] OFF
+SET IDENTITY_INSERT [dbo].[CARRITO] OFF
 GO
 SET IDENTITY_INSERT [dbo].[HOSPEDAJE] ON 
 GO
@@ -287,7 +206,17 @@ INSERT [dbo].[HOSPEDAJE] ([ConsecutivoHospedaje], [Nombre], [CodProvincia], [Pre
 GO
 INSERT [dbo].[HOSPEDAJE] ([ConsecutivoHospedaje], [Nombre], [CodProvincia], [Precio], [Disponibilidad], [FechaRegistro], [ConsecutivoUsuario]) VALUES (21, N'Prueba de Hotel', 3, 1302, N'Disponible', CAST(N'2023-04-24T01:16:47.357' AS DateTime), 3)
 GO
+INSERT [dbo].[HOSPEDAJE] ([ConsecutivoHospedaje], [Nombre], [CodProvincia], [Precio], [Disponibilidad], [FechaRegistro], [ConsecutivoUsuario]) VALUES (24, N'Prueba de Hotel', 3, 85, N'Disponible', CAST(N'2023-04-24T19:32:48.833' AS DateTime), NULL)
+GO
+INSERT [dbo].[HOSPEDAJE] ([ConsecutivoHospedaje], [Nombre], [CodProvincia], [Precio], [Disponibilidad], [FechaRegistro], [ConsecutivoUsuario]) VALUES (25, N'Hotel Noche Prueba', 3, 25000, N'Disponible', CAST(N'2023-04-25T02:25:16.557' AS DateTime), NULL)
+GO
+INSERT [dbo].[HOSPEDAJE] ([ConsecutivoHospedaje], [Nombre], [CodProvincia], [Precio], [Disponibilidad], [FechaRegistro], [ConsecutivoUsuario]) VALUES (26, N'Prueba de Hotel', 5, 25000, N'Disponible', CAST(N'2023-04-25T02:33:33.920' AS DateTime), 7)
+GO
+INSERT [dbo].[HOSPEDAJE] ([ConsecutivoHospedaje], [Nombre], [CodProvincia], [Precio], [Disponibilidad], [FechaRegistro], [ConsecutivoUsuario]) VALUES (27, N'Prueba de Hotel', 6, 50000, N'Disponible', CAST(N'2023-04-25T13:30:25.140' AS DateTime), 2)
+GO
 SET IDENTITY_INSERT [dbo].[HOSPEDAJE] OFF
+GO
+INSERT [dbo].[MAESTRO] ([FechaCompra], [Subtotal], [Impuestos], [Total], [ConsecutivoUsuario]) VALUES (CAST(N'2023-04-25T00:00:00.000' AS DateTime), CAST(10000.00 AS Decimal(10, 2)), CAST(300.00 AS Decimal(10, 2)), CAST(10300.00 AS Decimal(10, 2)), 2)
 GO
 INSERT [dbo].[PROVINCIAS] ([CodProvincia], [NombreProvincia]) VALUES (1, N'San José')
 GO
@@ -303,11 +232,13 @@ INSERT [dbo].[PROVINCIAS] ([CodProvincia], [NombreProvincia]) VALUES (6, N'Punta
 GO
 INSERT [dbo].[PROVINCIAS] ([CodProvincia], [NombreProvincia]) VALUES (7, N'Limón')
 GO
+INSERT [dbo].[RESERVAS] ([ConsecutivoReservas], [FechaReserva], [CodUsuario], [CodDestino], [Pago], [Estado]) VALUES (1, CAST(N'2022-02-10T00:00:00.000' AS DateTime), 2, 1, 1, 1)
+GO
 SET IDENTITY_INSERT [dbo].[USUARIOS] ON 
 GO
 INSERT [dbo].[USUARIOS] ([ConsecutivoUsuario], [CorreoElectronico], [Contrasenna], [Estado], [Nombre], [Identificacion], [CodProvincia], [Telefono], [Rol]) VALUES (1, N'jretana80675@ufide.ac.cr', N'80675', 1, N'Jose Pablo Retana Pereira', N'305380675', 1, 88888888, N'Administrador')
 GO
-INSERT [dbo].[USUARIOS] ([ConsecutivoUsuario], [CorreoElectronico], [Contrasenna], [Estado], [Nombre], [Identificacion], [CodProvincia], [Telefono], [Rol]) VALUES (2, N'jsegura90582@ufide.ac.cr', N'90582', 1, N'Jostin Segura Noguera', N'116290582', 1, 88888888, N'Administrador')
+INSERT [dbo].[USUARIOS] ([ConsecutivoUsuario], [CorreoElectronico], [Contrasenna], [Estado], [Nombre], [Identificacion], [CodProvincia], [Telefono], [Rol]) VALUES (2, N'jsegura90582@ufide.ac.cr', N'90582', 1, N'Jostin Segura Noguera', N'116290582', 1, 88888888, N'Usuario')
 GO
 INSERT [dbo].[USUARIOS] ([ConsecutivoUsuario], [CorreoElectronico], [Contrasenna], [Estado], [Nombre], [Identificacion], [CodProvincia], [Telefono], [Rol]) VALUES (3, N'jquiros90650@ufide.ac.cr', N'90650', 1, N'Jason Quiros Fonseca', N'112790650', 1, 88888888, N'Administrador')
 GO
@@ -323,7 +254,7 @@ SET IDENTITY_INSERT [dbo].[USUARIOS] OFF
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [UK_CorreoElectronico]    Script Date: 24/4/2023 07:28:56 ******/
+/****** Object:  Index [UK_CorreoElectronico]    Script Date: 25/4/2023 01:38:02 ******/
 ALTER TABLE [dbo].[USUARIOS] ADD  CONSTRAINT [UK_CorreoElectronico] UNIQUE NONCLUSTERED 
 (
 	[CorreoElectronico] ASC
@@ -384,7 +315,130 @@ REFERENCES [dbo].[PROVINCIAS] ([CodProvincia])
 GO
 ALTER TABLE [dbo].[USUARIOS] CHECK CONSTRAINT [FK_USUARIOS_PROVINCIAS]
 GO
-/****** Object:  StoredProcedure [dbo].[obtenerHospedajesConNombreProvincia]    Script Date: 24/4/2023 07:28:56 ******/
+/****** Object:  StoredProcedure [dbo].[ConfirmarPago]    Script Date: 25/4/2023 01:38:02 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[ConfirmarPago]
+	@ConsecutivoUsuario BIGINT
+AS
+BEGIN
+
+	IF NOT EXISTS(	SELECT	C.ConsecutivoHospedaje 
+					FROM	CARRITO C
+					INNER JOIN HOSPEDAJE P ON C.ConsecutivoHospedaje = P.ConsecutivoHospedaje
+					WHERE C.ConsecutivoUsuario = @ConsecutivoUsuario)
+						
+	BEGIN
+	
+		DECLARE @IVA DECIMAL(10,2) = 0.13
+
+		--ENCABEZADO FACTURA
+		INSERT INTO dbo.MAESTRO(FechaCompra,SubTotal,Impuestos,Total,ConsecutivoUsuario)
+		SELECT	GETDATE(), 
+				SUM(C.CantNoches * P.Precio),
+				SUM((C.CantNoches * P.Precio) * @IVA),
+				SUM(C.CantNoches * P.Precio + ((C.CantNoches * P.Precio) * @IVA)),
+				C.ConsecutivoUsuario
+		FROM	CARRITO C
+		INNER JOIN HOSPEDAJE P ON C.ConsecutivoHospedaje = P.ConsecutivoHospedaje
+		WHERE C.ConsecutivoUsuario = @ConsecutivoUsuario
+		GROUP BY C.ConsecutivoUsuario
+
+		--DETALLE FACTURA
+		INSERT INTO dbo.DETALLE(IdMaestro,CantNoches,Precio,ConsecutivoHospedaje)
+		SELECT	@@Identity, 
+				C.CantNoches,
+				C.CantNoches * P.Precio,
+				C.ConsecutivoHospedaje
+		FROM	CARRITO C
+		INNER JOIN HOSPEDAJE P ON C.ConsecutivoHospedaje = P.ConsecutivoHospedaje
+		WHERE C.ConsecutivoUsuario = @ConsecutivoUsuario
+	
+
+		--SE LIMPIA EL CARRITO
+		DELETE FROM CARRITO WHERE ConsecutivoUsuario = @ConsecutivoUsuario
+
+	END
+	ELSE
+	BEGIN
+
+		DELETE  C
+		FROM    CARRITO C
+		INNER   JOIN HOSPEDAJE P ON C.ConsecutivoHospedaje = P.ConsecutivoHospedaje
+		WHERE	C.ConsecutivoUsuario = @ConsecutivoUsuario
+			AND C.CantNoches > 1
+
+	END
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[MostrarCarritoTemporal]    Script Date: 25/4/2023 01:38:02 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[MostrarCarritoTemporal]
+	@ConsecutivoUsuario BIGINT
+AS
+BEGIN
+
+	DECLARE @IVA DECIMAL(10,2) = 0.13
+
+	SELECT	ISNULL(SUM(C.CantNoches),0)													CantidadNoches,
+			ISNULL(SUM(C.CantNoches * P.Precio) + (SUM(C.CantNoches * P.Precio) * @IVA),0)	MontoCarrito
+	FROM	CARRITO	C
+	INNER JOIN HOSPEDAJE P ON C.ConsecutivoHospedaje = P.ConsecutivoHospedaje
+	WHERE C.ConsecutivoUsuario = @ConsecutivoUsuario
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[MostrarCarritoTotal]    Script Date: 25/4/2023 01:38:02 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[MostrarCarritoTotal]
+	@ConsecutivoUsuario BIGINT
+AS
+BEGIN
+
+	DECLARE @IVA DECIMAL(10,2) = 0.13
+
+	SELECT	CONVERT(VARCHAR,P.ConsecutivoHospedaje) + ' - ' +  P.Nombre		 NombreHospedaje,
+			C.CantNoches												 CantidadNoches,
+			P.Precio												    Precio,
+			C.CantNoches * P.Precio									    SubTotal,
+			(C.CantNoches * P.Precio) * @IVA							Impuesto,
+			C.CantNoches * P.Precio + ((C.CantNoches * P.Precio) * @IVA) Total
+	FROM	CARRITO	C
+	INNER JOIN HOSPEDAJE P ON C.ConsecutivoHospedaje = P.ConsecutivoHospedaje
+	WHERE C.ConsecutivoUsuario = @ConsecutivoUsuario
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[MostrarFacturas]    Script Date: 25/4/2023 01:38:02 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[MostrarFacturas]
+	@ConsecutivoUsuario BIGINT
+AS
+BEGIN
+
+	SELECT	M.IdMaestro,
+			M.FechaCompra,
+			M.SubTotal,
+			M.Impuestos,
+			M.Total
+	FROM	MAESTRO		M
+	WHERE ConsecutivoUsuario = @ConsecutivoUsuario
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[obtenerHospedajesConNombreProvincia]    Script Date: 25/4/2023 01:38:02 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -393,13 +447,13 @@ GO
 CREATE PROCEDURE [dbo].[obtenerHospedajesConNombreProvincia]
 AS
 BEGIN
-SELECT a.Nombre, a.CodProvincia, p.NombreProvincia, a.Precio, a.Disponibilidad
+SELECT a.ConsecutivoHospedaje,a.Nombre, a.CodProvincia, p.NombreProvincia, a.Precio, a.Disponibilidad
 FROM HOSPEDAJE a
 INNER JOIN PROVINCIAS p ON a.CodProvincia = p.CodProvincia
 WHERE a.Disponibilidad = 'Disponible'
 END
 GO
-/****** Object:  StoredProcedure [dbo].[obtenerHospedajesPorUsuario]    Script Date: 24/4/2023 07:28:56 ******/
+/****** Object:  StoredProcedure [dbo].[obtenerHospedajesPorUsuario]    Script Date: 25/4/2023 01:38:02 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -414,7 +468,7 @@ BEGIN
     WHERE h.Disponibilidad = 'Disponible' AND h.ConsecutivoUsuario = @ConsecutivoUsuario
 END
 GO
-/****** Object:  StoredProcedure [dbo].[RegistrarBitacora]    Script Date: 24/4/2023 07:28:56 ******/
+/****** Object:  StoredProcedure [dbo].[RegistrarBitacora]    Script Date: 25/4/2023 01:38:02 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -431,7 +485,7 @@ BEGIN
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[ValidarUsuario]    Script Date: 24/4/2023 07:28:56 ******/
+/****** Object:  StoredProcedure [dbo].[ValidarUsuario]    Script Date: 25/4/2023 01:38:02 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
