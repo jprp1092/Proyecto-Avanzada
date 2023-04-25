@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "MostrarFacturas";
+}
+
+<div class="row">
+
+    <div class="col-md-1">
+    </div>
+    <div class="card col-md-10">
+        <div class="card-body">
+            <h4 class="card-title">Facturas del Usuario</h4>
+
+            <div class="table-responsive">
+                <table id="TablaFacturas" class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th># Factura</th>
+                            <th>Fecha Compra</th>
+                            <th>Sub Total</th>
+                            <th>Impuesto</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.IdMaestro</td>
+                                <td>@item.FechaCompra.ToString("dd/MM/yyyy")</td>
+                                <td>¢@string.Format("{0:n2}", @item.SubTotal)</td>
+                                <td>¢@string.Format("{0:n2}", @item.Impuesto)</td>
+                                <td>¢@string.Format("{0:n2}", @item.Total)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <br />
+                <br />
+
+                @if (Session["CantidadCarritoTemporal"] != null && int.Parse(Session["CantidadCarritoTemporal"].ToString()) > 0)
+                {
+
+                    using (Html.BeginForm("ConfirmarPago", "Facturas", FormMethod.Post))
+                    {
+                        <input type="submit" value="Realizar Pago" class="btn btn-warning">
+                    }
+
+                }
+
+            </div>
+        </div>
+    </div>
+
+</div>

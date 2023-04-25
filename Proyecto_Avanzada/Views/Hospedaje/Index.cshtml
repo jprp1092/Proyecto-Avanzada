@@ -52,9 +52,11 @@
                         <div class="form-group col-md-6">
                             <label>Precio</label>
                             @Html.TextBoxFor(x => x.Precio, new
-                            {
-                                @class = "form-control",
-                           @required = true
+                       {
+                           @class = "form-control",
+                           @required = true,
+                           @onkeypress = "return isNumberKey(event);"
+
                        })
                         </div>
                         <div class="form-group col-md-6">
@@ -80,6 +82,14 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
+
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : evt.keyCode
+        return !(charCode > 31 && (charCode < 48 || charCode > 57));
+    }
+</script>
+<script>
+
     $(document).ready(function () {
         $('.forms-sample').submit(function (event) {
             event.preventDefault();

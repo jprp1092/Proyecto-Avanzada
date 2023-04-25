@@ -16,6 +16,8 @@ namespace Proyecto_Avanzada.Models
         {
             using (var client = new HttpClient())
             {
+                entidad.ConsecutivoUsuario = int.Parse(HttpContext.Current.Session["CodigoUsuario"].ToString());
+
                 JsonContent body = JsonContent.Create(entidad);
                 string url = "https://localhost:44398/api/RegistrarHospedaje";
 

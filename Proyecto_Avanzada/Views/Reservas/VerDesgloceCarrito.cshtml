@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Proyecto_Avanzada.Entities.CarritoDetalleEnt>
+
+@{
+    ViewBag.Title = "VerDesgloceCarrito";
+}
+
+<div class="row">
+
+    <div class="col-md-1">
+    </div>
+    <div class="card col-md-10">
+        <div class="card-body">
+            <h4 class="card-title">Hospedajes por procesar</h4>
+
+            <div class="table-responsive">
+                <table id="TablaReservas" class="table table-hover">
+
+                    <thead>
+                        <tr>
+                            <th>Nombre Hospedaje</th>
+                            <th>Cantidad Noches</th>
+                            <th>Precio</th>
+                            <th>SubTotal</th>
+                            <th>Impuesto</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.NombreHospedaje</td>
+                                <td>@item.CantidadNoches</td>
+                                <td>¢@string.Format("{0:n2}", @item.Precio)</td>
+                                <td>¢@string.Format("{0:n2}", @item.SubTotal)</td>
+                                <td>¢@string.Format("{0:n2}", @item.Impuesto)</td>
+                                <td>¢@string.Format("{0:n2}", @item.Total)</td>
+
+
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <br />
+                <br />
+                @using (Html.BeginForm("ConfirmarPago", "Facturas", FormMethod.Post))
+                {
+                    <input type="submit" value="Realizar Pago" class="btn btn-warning" />
+
+                }
+            </div>
+        </div>
+    </div>
+
+</div>

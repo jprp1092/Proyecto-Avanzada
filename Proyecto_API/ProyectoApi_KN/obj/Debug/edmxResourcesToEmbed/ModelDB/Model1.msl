@@ -30,6 +30,7 @@
           <ScalarProperty Name="ConsecutivoUsuario" ColumnName="ConsecutivoUsuario" />
           <ScalarProperty Name="ConsecutivoHospedaje" ColumnName="ConsecutivoHospedaje" />
           <ScalarProperty Name="CantNoches" ColumnName="CantNoches" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
           <ScalarProperty Name="FechaIngreso" ColumnName="FechaIngreso" />
           <ScalarProperty Name="FechaSalida" ColumnName="FechaSalida" />
         </MappingFragment>
@@ -65,6 +66,8 @@
           <ScalarProperty Name="CodProvincia" ColumnName="CodProvincia" />
           <ScalarProperty Name="Precio" ColumnName="Precio" />
           <ScalarProperty Name="Disponibilidad" ColumnName="Disponibilidad" />
+          <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+          <ScalarProperty Name="ConsecutivoUsuario" ColumnName="ConsecutivoUsuario" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -115,14 +118,59 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="ConfirmarPago" FunctionName="ProyectoW_BDModel.Store.ConfirmarPago" />
+    <FunctionImportMapping FunctionImportName="MostrarCarritoTemporal" FunctionName="ProyectoW_BDModel.Store.MostrarCarritoTemporal">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ProyectoW_BDModel.MostrarCarritoTemporal_Result">
+          <ScalarProperty Name="CantidadNoches" ColumnName="CantidadNoches" />
+          <ScalarProperty Name="MontoCarrito" ColumnName="MontoCarrito" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="MostrarCarritoTotal" FunctionName="ProyectoW_BDModel.Store.MostrarCarritoTotal">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ProyectoW_BDModel.MostrarCarritoTotal_Result">
+          <ScalarProperty Name="NombreHospedaje" ColumnName="NombreHospedaje" />
+          <ScalarProperty Name="CantidadNoches" ColumnName="CantidadNoches" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+          <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+          <ScalarProperty Name="Impuesto" ColumnName="Impuesto" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="MostrarFacturas" FunctionName="ProyectoW_BDModel.Store.MostrarFacturas">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ProyectoW_BDModel.MostrarFacturas_Result">
+          <ScalarProperty Name="IdMaestro" ColumnName="IdMaestro" />
+          <ScalarProperty Name="FechaCompra" ColumnName="FechaCompra" />
+          <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+          <ScalarProperty Name="Impuestos" ColumnName="Impuestos" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="obtenerHospedajesConNombreProvincia" FunctionName="ProyectoW_BDModel.Store.obtenerHospedajesConNombreProvincia">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ProyectoW_BDModel.obtenerHospedajesConNombreProvincia_Result">
+          <ScalarProperty Name="ConsecutivoHospedaje" ColumnName="ConsecutivoHospedaje" />
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
           <ScalarProperty Name="CodProvincia" ColumnName="CodProvincia" />
           <ScalarProperty Name="NombreProvincia" ColumnName="NombreProvincia" />
           <ScalarProperty Name="Precio" ColumnName="Precio" />
           <ScalarProperty Name="Disponibilidad" ColumnName="Disponibilidad" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="obtenerHospedajesPorUsuario" FunctionName="ProyectoW_BDModel.Store.obtenerHospedajesPorUsuario">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ProyectoW_BDModel.obtenerHospedajesPorUsuario_Result">
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="CodProvincia" ColumnName="CodProvincia" />
+          <ScalarProperty Name="NombreProvincia" ColumnName="NombreProvincia" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+          <ScalarProperty Name="Disponibilidad" ColumnName="Disponibilidad" />
+          <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

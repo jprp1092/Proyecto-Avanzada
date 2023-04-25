@@ -28,6 +28,7 @@
     <Property Name="ConsecutivoUsuario" Type="Int64" Nullable="false" />
     <Property Name="ConsecutivoHospedaje" Type="Int32" Nullable="false" />
     <Property Name="CantNoches" Type="Int32" Nullable="false" />
+    <Property Name="Precio" Type="Double" Nullable="false" />
     <Property Name="FechaIngreso" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="FechaSalida" Type="DateTime" Nullable="false" Precision="3" />
     <NavigationProperty Name="HOSPEDAJE" Relationship="Self.FK_CARRITO_CARRITO" FromRole="CARRITO" ToRole="HOSPEDAJE" />
@@ -62,14 +63,17 @@
     <Key>
       <PropertyRef Name="ConsecutivoHospedaje" />
     </Key>
-    <Property Name="ConsecutivoHospedaje" Type="Int32" Nullable="false" />
+    <Property Name="ConsecutivoHospedaje" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="CodProvincia" Type="Byte" Nullable="false" />
     <Property Name="Precio" Type="Double" Nullable="false" />
     <Property Name="Disponibilidad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FechaRegistro" Type="DateTime" Precision="3" />
+    <Property Name="ConsecutivoUsuario" Type="Int64" />
     <NavigationProperty Name="CARRITO" Relationship="Self.FK_CARRITO_CARRITO" FromRole="HOSPEDAJE" ToRole="CARRITO" />
     <NavigationProperty Name="DETALLE" Relationship="Self.FK_DETALLE_HOSPEDAJE" FromRole="HOSPEDAJE" ToRole="DETALLE" />
     <NavigationProperty Name="PROVINCIAS" Relationship="Self.FK_HOSPEDAJE_PROVINCIAS" FromRole="HOSPEDAJE" ToRole="PROVINCIAS" />
+    <NavigationProperty Name="USUARIOS" Relationship="Self.FK_HOSPEDAJE_USUARIOS" FromRole="HOSPEDAJE" ToRole="USUARIOS" />
   </EntityType>
   <EntityType Name="MAESTRO">
     <Key>
@@ -120,6 +124,7 @@
     <Property Name="Rol" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="CARRITO" Relationship="Self.FK_CARRITO_USUARIOS" FromRole="USUARIOS" ToRole="CARRITO" />
     <NavigationProperty Name="ERRORES" Relationship="Self.FK_ERRORES_USUARIOS" FromRole="USUARIOS" ToRole="ERRORES" />
+    <NavigationProperty Name="HOSPEDAJE" Relationship="Self.FK_HOSPEDAJE_USUARIOS" FromRole="USUARIOS" ToRole="HOSPEDAJE" />
     <NavigationProperty Name="MAESTRO" Relationship="Self.FK_MAESTRO_USUARIOS" FromRole="USUARIOS" ToRole="MAESTRO" />
     <NavigationProperty Name="PROVINCIAS" Relationship="Self.FK_USUARIOS_PROVINCIAS" FromRole="USUARIOS" ToRole="PROVINCIAS" />
     <NavigationProperty Name="RESERVAS" Relationship="Self.FK_RESERVAS_USUARIOS" FromRole="USUARIOS" ToRole="RESERVAS" />
@@ -208,6 +213,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_HOSPEDAJE_USUARIOS">
+    <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="0..1" />
+    <End Role="HOSPEDAJE" Type="Self.HOSPEDAJE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIOS">
+        <PropertyRef Name="ConsecutivoUsuario" />
+      </Principal>
+      <Dependent Role="HOSPEDAJE">
+        <PropertyRef Name="ConsecutivoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_MAESTRO_USUARIOS">
     <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="1" />
     <End Role="MAESTRO" Type="Self.MAESTRO" Multiplicity="*" />
@@ -283,6 +300,10 @@
       <End Role="PROVINCIAS" EntitySet="PROVINCIAS" />
       <End Role="HOSPEDAJE" EntitySet="HOSPEDAJE" />
     </AssociationSet>
+    <AssociationSet Name="FK_HOSPEDAJE_USUARIOS" Association="Self.FK_HOSPEDAJE_USUARIOS">
+      <End Role="USUARIOS" EntitySet="USUARIOS" />
+      <End Role="HOSPEDAJE" EntitySet="HOSPEDAJE" />
+    </AssociationSet>
     <AssociationSet Name="FK_MAESTRO_USUARIOS" Association="Self.FK_MAESTRO_USUARIOS">
       <End Role="USUARIOS" EntitySet="USUARIOS" />
       <End Role="MAESTRO" EntitySet="MAESTRO" />
@@ -295,7 +316,22 @@
       <End Role="USUARIOS" EntitySet="USUARIOS" />
       <End Role="RESERVAS" EntitySet="RESERVAS" />
     </AssociationSet>
+    <FunctionImport Name="ConfirmarPago">
+      <Parameter Name="ConsecutivoUsuario" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="MostrarCarritoTemporal" ReturnType="Collection(ProyectoW_BDModel.MostrarCarritoTemporal_Result)">
+      <Parameter Name="ConsecutivoUsuario" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="MostrarCarritoTotal" ReturnType="Collection(ProyectoW_BDModel.MostrarCarritoTotal_Result)">
+      <Parameter Name="ConsecutivoUsuario" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="MostrarFacturas" ReturnType="Collection(ProyectoW_BDModel.MostrarFacturas_Result)">
+      <Parameter Name="ConsecutivoUsuario" Mode="In" Type="Int64" />
+    </FunctionImport>
     <FunctionImport Name="obtenerHospedajesConNombreProvincia" ReturnType="Collection(ProyectoW_BDModel.obtenerHospedajesConNombreProvincia_Result)" />
+    <FunctionImport Name="obtenerHospedajesPorUsuario" ReturnType="Collection(ProyectoW_BDModel.obtenerHospedajesPorUsuario_Result)">
+      <Parameter Name="ConsecutivoUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="RegistrarBitacora">
       <Parameter Name="Descripcion" Mode="In" Type="String" />
       <Parameter Name="Origen" Mode="In" Type="String" />
@@ -305,12 +341,40 @@
       <Parameter Name="Contrasenna" Mode="In" Type="String" />
     </FunctionImport>
   </EntityContainer>
+  <ComplexType Name="MostrarCarritoTemporal_Result">
+    <Property Type="Int32" Name="CantidadNoches" Nullable="false" />
+    <Property Type="Double" Name="MontoCarrito" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="MostrarCarritoTotal_Result">
+    <Property Type="String" Name="NombreHospedaje" Nullable="true" MaxLength="83" />
+    <Property Type="Int32" Name="CantidadNoches" Nullable="false" />
+    <Property Type="Double" Name="Precio" Nullable="false" />
+    <Property Type="Double" Name="SubTotal" Nullable="false" />
+    <Property Type="Double" Name="Impuesto" Nullable="true" />
+    <Property Type="Double" Name="Total" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="MostrarFacturas_Result">
+    <Property Type="Int64" Name="IdMaestro" Nullable="false" />
+    <Property Type="DateTime" Name="FechaCompra" Nullable="false" Precision="23" />
+    <Property Type="Decimal" Name="SubTotal" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="Impuestos" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="Total" Nullable="false" Precision="10" Scale="2" />
+  </ComplexType>
   <ComplexType Name="obtenerHospedajesConNombreProvincia_Result">
+    <Property Type="Int32" Name="ConsecutivoHospedaje" Nullable="false" />
     <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
     <Property Type="Byte" Name="CodProvincia" Nullable="false" />
     <Property Type="String" Name="NombreProvincia" Nullable="false" MaxLength="20" />
     <Property Type="Double" Name="Precio" Nullable="false" />
     <Property Type="String" Name="Disponibilidad" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="obtenerHospedajesPorUsuario_Result">
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+    <Property Type="Byte" Name="CodProvincia" Nullable="false" />
+    <Property Type="String" Name="NombreProvincia" Nullable="false" MaxLength="20" />
+    <Property Type="Double" Name="Precio" Nullable="false" />
+    <Property Type="String" Name="Disponibilidad" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="FechaRegistro" Nullable="true" Precision="23" />
   </ComplexType>
   <ComplexType Name="ValidarUsuario_Result">
     <Property Type="Int64" Name="ConsecutivoUsuario" Nullable="false" />

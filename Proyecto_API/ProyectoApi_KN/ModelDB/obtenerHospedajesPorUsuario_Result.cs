@@ -10,13 +10,14 @@
 namespace ProyectoApi_KN.ModelDB
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class BITACORAS
+    public partial class obtenerHospedajesPorUsuario_Result
     {
-        public long ConsecutivoError { get; set; }
-        public string DescripcionError { get; set; }
-        public System.DateTime FechaHora { get; set; }
-        public string Origen { get; set; }
+        public string Nombre { get; set; }
+        public byte CodProvincia { get; set; }
+        public string NombreProvincia { get; set; }
+        public double Precio { get; set; }
+        public string Disponibilidad { get; set; }
+        public Nullable<System.DateTime> FechaRegistro { get; set; }
     }
 }

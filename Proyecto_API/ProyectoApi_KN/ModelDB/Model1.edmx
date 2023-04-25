@@ -33,6 +33,7 @@
           <Property Name="ConsecutivoUsuario" Type="bigint" Nullable="false" />
           <Property Name="ConsecutivoHospedaje" Type="int" Nullable="false" />
           <Property Name="CantNoches" Type="int" Nullable="false" />
+          <Property Name="Precio" Type="float" Nullable="false" />
           <Property Name="FechaIngreso" Type="datetime" Nullable="false" />
           <Property Name="FechaSalida" Type="datetime" Nullable="false" />
         </EntityType>
@@ -60,11 +61,13 @@
           <Key>
             <PropertyRef Name="ConsecutivoHospedaje" />
           </Key>
-          <Property Name="ConsecutivoHospedaje" Type="int" Nullable="false" />
+          <Property Name="ConsecutivoHospedaje" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="CodProvincia" Type="tinyint" Nullable="false" />
           <Property Name="Precio" Type="float" Nullable="false" />
           <Property Name="Disponibilidad" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FechaRegistro" Type="datetime" />
+          <Property Name="ConsecutivoUsuario" Type="bigint" />
         </EntityType>
         <EntityType Name="MAESTRO">
           <Key>
@@ -193,6 +196,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_HOSPEDAJE_USUARIOS">
+          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="0..1" />
+          <End Role="HOSPEDAJE" Type="Self.HOSPEDAJE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIOS">
+              <PropertyRef Name="ConsecutivoUsuario" />
+            </Principal>
+            <Dependent Role="HOSPEDAJE">
+              <PropertyRef Name="ConsecutivoUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_MAESTRO_USUARIOS">
           <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="1" />
           <End Role="MAESTRO" Type="Self.MAESTRO" Multiplicity="*" />
@@ -229,7 +244,22 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="ConfirmarPago" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ConsecutivoUsuario" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="MostrarCarritoTemporal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ConsecutivoUsuario" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="MostrarCarritoTotal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ConsecutivoUsuario" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="MostrarFacturas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ConsecutivoUsuario" Type="bigint" Mode="In" />
+        </Function>
         <Function Name="obtenerHospedajesConNombreProvincia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="obtenerHospedajesPorUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ConsecutivoUsuario" Type="int" Mode="In" />
+        </Function>
         <Function Name="RegistrarBitacora" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Descripcion" Type="varchar(max)" Mode="In" />
           <Parameter Name="Origen" Type="varchar" Mode="In" />
@@ -275,6 +305,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_HOSPEDAJE_PROVINCIAS" Association="Self.FK_HOSPEDAJE_PROVINCIAS">
             <End Role="PROVINCIAS" EntitySet="PROVINCIAS" />
+            <End Role="HOSPEDAJE" EntitySet="HOSPEDAJE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HOSPEDAJE_USUARIOS" Association="Self.FK_HOSPEDAJE_USUARIOS">
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
             <End Role="HOSPEDAJE" EntitySet="HOSPEDAJE" />
           </AssociationSet>
           <AssociationSet Name="FK_MAESTRO_USUARIOS" Association="Self.FK_MAESTRO_USUARIOS">
@@ -323,6 +357,7 @@
           <Property Name="ConsecutivoUsuario" Type="Int64" Nullable="false" />
           <Property Name="ConsecutivoHospedaje" Type="Int32" Nullable="false" />
           <Property Name="CantNoches" Type="Int32" Nullable="false" />
+          <Property Name="Precio" Type="Double" Nullable="false" />
           <Property Name="FechaIngreso" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="FechaSalida" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="HOSPEDAJE" Relationship="Self.FK_CARRITO_CARRITO" FromRole="CARRITO" ToRole="HOSPEDAJE" />
@@ -357,14 +392,17 @@
           <Key>
             <PropertyRef Name="ConsecutivoHospedaje" />
           </Key>
-          <Property Name="ConsecutivoHospedaje" Type="Int32" Nullable="false" />
+          <Property Name="ConsecutivoHospedaje" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CodProvincia" Type="Byte" Nullable="false" />
           <Property Name="Precio" Type="Double" Nullable="false" />
           <Property Name="Disponibilidad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Precision="3" />
+          <Property Name="ConsecutivoUsuario" Type="Int64" />
           <NavigationProperty Name="CARRITO" Relationship="Self.FK_CARRITO_CARRITO" FromRole="HOSPEDAJE" ToRole="CARRITO" />
           <NavigationProperty Name="DETALLE" Relationship="Self.FK_DETALLE_HOSPEDAJE" FromRole="HOSPEDAJE" ToRole="DETALLE" />
           <NavigationProperty Name="PROVINCIAS" Relationship="Self.FK_HOSPEDAJE_PROVINCIAS" FromRole="HOSPEDAJE" ToRole="PROVINCIAS" />
+          <NavigationProperty Name="USUARIOS" Relationship="Self.FK_HOSPEDAJE_USUARIOS" FromRole="HOSPEDAJE" ToRole="USUARIOS" />
         </EntityType>
         <EntityType Name="MAESTRO">
           <Key>
@@ -415,6 +453,7 @@
           <Property Name="Rol" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="CARRITO" Relationship="Self.FK_CARRITO_USUARIOS" FromRole="USUARIOS" ToRole="CARRITO" />
           <NavigationProperty Name="ERRORES" Relationship="Self.FK_ERRORES_USUARIOS" FromRole="USUARIOS" ToRole="ERRORES" />
+          <NavigationProperty Name="HOSPEDAJE" Relationship="Self.FK_HOSPEDAJE_USUARIOS" FromRole="USUARIOS" ToRole="HOSPEDAJE" />
           <NavigationProperty Name="MAESTRO" Relationship="Self.FK_MAESTRO_USUARIOS" FromRole="USUARIOS" ToRole="MAESTRO" />
           <NavigationProperty Name="PROVINCIAS" Relationship="Self.FK_USUARIOS_PROVINCIAS" FromRole="USUARIOS" ToRole="PROVINCIAS" />
           <NavigationProperty Name="RESERVAS" Relationship="Self.FK_RESERVAS_USUARIOS" FromRole="USUARIOS" ToRole="RESERVAS" />
@@ -503,6 +542,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_HOSPEDAJE_USUARIOS">
+          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="0..1" />
+          <End Role="HOSPEDAJE" Type="Self.HOSPEDAJE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIOS">
+              <PropertyRef Name="ConsecutivoUsuario" />
+            </Principal>
+            <Dependent Role="HOSPEDAJE">
+              <PropertyRef Name="ConsecutivoUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_MAESTRO_USUARIOS">
           <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="1" />
           <End Role="MAESTRO" Type="Self.MAESTRO" Multiplicity="*" />
@@ -578,6 +629,10 @@
             <End Role="PROVINCIAS" EntitySet="PROVINCIAS" />
             <End Role="HOSPEDAJE" EntitySet="HOSPEDAJE" />
           </AssociationSet>
+          <AssociationSet Name="FK_HOSPEDAJE_USUARIOS" Association="Self.FK_HOSPEDAJE_USUARIOS">
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+            <End Role="HOSPEDAJE" EntitySet="HOSPEDAJE" />
+          </AssociationSet>
           <AssociationSet Name="FK_MAESTRO_USUARIOS" Association="Self.FK_MAESTRO_USUARIOS">
             <End Role="USUARIOS" EntitySet="USUARIOS" />
             <End Role="MAESTRO" EntitySet="MAESTRO" />
@@ -590,7 +645,22 @@
             <End Role="USUARIOS" EntitySet="USUARIOS" />
             <End Role="RESERVAS" EntitySet="RESERVAS" />
           </AssociationSet>
+          <FunctionImport Name="ConfirmarPago">
+            <Parameter Name="ConsecutivoUsuario" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="MostrarCarritoTemporal" ReturnType="Collection(ProyectoW_BDModel.MostrarCarritoTemporal_Result)">
+            <Parameter Name="ConsecutivoUsuario" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="MostrarCarritoTotal" ReturnType="Collection(ProyectoW_BDModel.MostrarCarritoTotal_Result)">
+            <Parameter Name="ConsecutivoUsuario" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="MostrarFacturas" ReturnType="Collection(ProyectoW_BDModel.MostrarFacturas_Result)">
+            <Parameter Name="ConsecutivoUsuario" Mode="In" Type="Int64" />
+          </FunctionImport>
           <FunctionImport Name="obtenerHospedajesConNombreProvincia" ReturnType="Collection(ProyectoW_BDModel.obtenerHospedajesConNombreProvincia_Result)" />
+          <FunctionImport Name="obtenerHospedajesPorUsuario" ReturnType="Collection(ProyectoW_BDModel.obtenerHospedajesPorUsuario_Result)">
+            <Parameter Name="ConsecutivoUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="RegistrarBitacora">
             <Parameter Name="Descripcion" Mode="In" Type="String" />
             <Parameter Name="Origen" Mode="In" Type="String" />
@@ -600,12 +670,40 @@
             <Parameter Name="Contrasenna" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="MostrarCarritoTemporal_Result">
+          <Property Type="Int32" Name="CantidadNoches" Nullable="false" />
+          <Property Type="Double" Name="MontoCarrito" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="MostrarCarritoTotal_Result">
+          <Property Type="String" Name="NombreHospedaje" Nullable="true" MaxLength="83" />
+          <Property Type="Int32" Name="CantidadNoches" Nullable="false" />
+          <Property Type="Double" Name="Precio" Nullable="false" />
+          <Property Type="Double" Name="SubTotal" Nullable="false" />
+          <Property Type="Double" Name="Impuesto" Nullable="true" />
+          <Property Type="Double" Name="Total" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="MostrarFacturas_Result">
+          <Property Type="Int64" Name="IdMaestro" Nullable="false" />
+          <Property Type="DateTime" Name="FechaCompra" Nullable="false" Precision="23" />
+          <Property Type="Decimal" Name="SubTotal" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="Impuestos" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="Total" Nullable="false" Precision="10" Scale="2" />
+        </ComplexType>
         <ComplexType Name="obtenerHospedajesConNombreProvincia_Result">
+          <Property Type="Int32" Name="ConsecutivoHospedaje" Nullable="false" />
           <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
           <Property Type="Byte" Name="CodProvincia" Nullable="false" />
           <Property Type="String" Name="NombreProvincia" Nullable="false" MaxLength="20" />
           <Property Type="Double" Name="Precio" Nullable="false" />
           <Property Type="String" Name="Disponibilidad" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="obtenerHospedajesPorUsuario_Result">
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+          <Property Type="Byte" Name="CodProvincia" Nullable="false" />
+          <Property Type="String" Name="NombreProvincia" Nullable="false" MaxLength="20" />
+          <Property Type="Double" Name="Precio" Nullable="false" />
+          <Property Type="String" Name="Disponibilidad" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="FechaRegistro" Nullable="true" Precision="23" />
         </ComplexType>
         <ComplexType Name="ValidarUsuario_Result">
           <Property Type="Int64" Name="ConsecutivoUsuario" Nullable="false" />
@@ -647,6 +745,7 @@
                 <ScalarProperty Name="ConsecutivoUsuario" ColumnName="ConsecutivoUsuario" />
                 <ScalarProperty Name="ConsecutivoHospedaje" ColumnName="ConsecutivoHospedaje" />
                 <ScalarProperty Name="CantNoches" ColumnName="CantNoches" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
                 <ScalarProperty Name="FechaIngreso" ColumnName="FechaIngreso" />
                 <ScalarProperty Name="FechaSalida" ColumnName="FechaSalida" />
               </MappingFragment>
@@ -682,6 +781,8 @@
                 <ScalarProperty Name="CodProvincia" ColumnName="CodProvincia" />
                 <ScalarProperty Name="Precio" ColumnName="Precio" />
                 <ScalarProperty Name="Disponibilidad" ColumnName="Disponibilidad" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="ConsecutivoUsuario" ColumnName="ConsecutivoUsuario" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -732,14 +833,59 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="ConfirmarPago" FunctionName="ProyectoW_BDModel.Store.ConfirmarPago" />
+          <FunctionImportMapping FunctionImportName="MostrarCarritoTemporal" FunctionName="ProyectoW_BDModel.Store.MostrarCarritoTemporal">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProyectoW_BDModel.MostrarCarritoTemporal_Result">
+                <ScalarProperty Name="CantidadNoches" ColumnName="CantidadNoches" />
+                <ScalarProperty Name="MontoCarrito" ColumnName="MontoCarrito" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="MostrarCarritoTotal" FunctionName="ProyectoW_BDModel.Store.MostrarCarritoTotal">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProyectoW_BDModel.MostrarCarritoTotal_Result">
+                <ScalarProperty Name="NombreHospedaje" ColumnName="NombreHospedaje" />
+                <ScalarProperty Name="CantidadNoches" ColumnName="CantidadNoches" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+                <ScalarProperty Name="Impuesto" ColumnName="Impuesto" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="MostrarFacturas" FunctionName="ProyectoW_BDModel.Store.MostrarFacturas">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProyectoW_BDModel.MostrarFacturas_Result">
+                <ScalarProperty Name="IdMaestro" ColumnName="IdMaestro" />
+                <ScalarProperty Name="FechaCompra" ColumnName="FechaCompra" />
+                <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+                <ScalarProperty Name="Impuestos" ColumnName="Impuestos" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="obtenerHospedajesConNombreProvincia" FunctionName="ProyectoW_BDModel.Store.obtenerHospedajesConNombreProvincia">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ProyectoW_BDModel.obtenerHospedajesConNombreProvincia_Result">
+                <ScalarProperty Name="ConsecutivoHospedaje" ColumnName="ConsecutivoHospedaje" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="CodProvincia" ColumnName="CodProvincia" />
                 <ScalarProperty Name="NombreProvincia" ColumnName="NombreProvincia" />
                 <ScalarProperty Name="Precio" ColumnName="Precio" />
                 <ScalarProperty Name="Disponibilidad" ColumnName="Disponibilidad" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="obtenerHospedajesPorUsuario" FunctionName="ProyectoW_BDModel.Store.obtenerHospedajesPorUsuario">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProyectoW_BDModel.obtenerHospedajesPorUsuario_Result">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="CodProvincia" ColumnName="CodProvincia" />
+                <ScalarProperty Name="NombreProvincia" ColumnName="NombreProvincia" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Disponibilidad" ColumnName="Disponibilidad" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -770,7 +916,7 @@
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

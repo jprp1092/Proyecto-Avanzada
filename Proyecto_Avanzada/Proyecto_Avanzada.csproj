@@ -167,12 +167,15 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\FacturasController.cs" />
     <Compile Include="Controllers\HospedajeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="App_Start\SessionFilterAttribute.cs" />
     <Compile Include="Controllers\ReservasController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
+    <Compile Include="Entities\CarritoEnt.cs" />
     <Compile Include="Entities\CorreoEnt.cs" />
+    <Compile Include="Entities\FacturasEnt.cs" />
     <Compile Include="Entities\HospedajeEnt.cs" />
     <Compile Include="Entities\ReservasEnt.cs" />
     <Compile Include="Entities\LogsEnt.cs" />
@@ -182,6 +185,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ContactModel.cs" />
+    <Compile Include="Models\FacturasModel.cs" />
     <Compile Include="Models\HospedajeModel.cs" />
     <Compile Include="Models\ReservasModel.cs" />
     <Compile Include="Models\LogsModel.cs" />
@@ -295,6 +299,8 @@
     <Content Include="Views\Hospedaje\Index.cshtml" />
     <Content Include="Views\Hospedaje\MisHospedajes.cshtml" />
     <Content Include="Views\Home\Principal.cshtml" />
+    <Content Include="Views\Facturas\MostrarFacturas.cshtml" />
+    <Content Include="Views\Reservas\VerDesgloceCarrito.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

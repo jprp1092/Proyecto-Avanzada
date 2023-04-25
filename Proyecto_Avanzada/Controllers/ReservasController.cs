@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Globalization;
+
 
 
 namespace Proyecto_Avanzada.Controllers
@@ -71,6 +73,23 @@ namespace Proyecto_Avanzada.Controllers
             reservasModel.CambiarEstado(id);
             return Json("ok", JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        public ActionResult AgregarCarrito(long ConsecutivoHospedaje, int CantidadNoches, float precio, string FechaEntrada, string FechaSalida)
+        {
+
+            reservasModel.AgregarCarrito(ConsecutivoHospedaje, CantidadNoches, precio, FechaEntrada, FechaSalida);
+            return Json("Ok", JsonRequestBehavior.AllowGet);
+        }
+
+
+        [HttpGet]
+        public ActionResult VerDesgloceCarrito()
+        {
+            var datosCarritoTotal = reservasModel.MostrarCarritoTotal();
+            return View(datosCarritoTotal);
+        }
+
 
     }
 }

@@ -99,6 +99,17 @@
 
                         @if (Session["Rol"] != null && Session["Rol"].ToString() == "Usuario")
                         {
+                            <div class="dropdown">
+                                <a class="btn btn-primary :hover " dropdown-toggle nav-item" id="administrar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    Realizar Pago
+                                    <span class=""></span>
+                                </a>
+                                <ul class="dropdown-menu " aria-labelledby="administrar">
+                                    <li><a class="">@Html.ActionLink("Procesar Pagos", "VerDesgloceCarrito", "Reservas")</a></li>
+                                    <li><a class="">@Html.ActionLink("Ver Facturas", "MostrarFacturas", "Facturas")</a></li>
+                                </ul>
+                            </div>
+
                             <a class="nav-item nav-link">@Html.ActionLink("Inicio", "Index", "Home")</a>
                             <a class="nav-item nav-link">@Html.ActionLink("Servicios", "Services", "Home")</a>
                             <a class="nav-item nav-link">@Html.ActionLink("Hospedajes", "Packages", "Home")</a>

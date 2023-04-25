@@ -10,13 +10,13 @@
 namespace ProyectoApi_KN.ModelDB
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class BITACORAS
+    public partial class MostrarFacturas_Result
     {
-        public long ConsecutivoError { get; set; }
-        public string DescripcionError { get; set; }
-        public System.DateTime FechaHora { get; set; }
-        public string Origen { get; set; }
+        public long IdMaestro { get; set; }
+        public System.DateTime FechaCompra { get; set; }
+        public decimal SubTotal { get; set; }
+        public decimal Impuestos { get; set; }
+        public decimal Total { get; set; }
     }
 }

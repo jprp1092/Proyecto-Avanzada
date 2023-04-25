@@ -26,29 +26,30 @@
                         </tr>
                     </thead>
                     <tbody>
-                            @foreach (var item in Model)
-                            {
-                        <tr>
-                            <td>@item.FechaRegistro</td>
-                            <td>@item.Nombre</td>
-                            <td>@item.NombreProvincia</td>
-                            <td>$ @item.Precio</td>
-                            <td>@item.Disponibilidad</td>
-                            <td>@item.Disponibilidad</td>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.FechaRegistro</td>
+                                <td>@item.Nombre</td>
+                                <td>@item.NombreProvincia</td>
+                                <td>¢@string.Format("{0:n2}", item.Precio)</td>
+                                <td>@item.Disponibilidad</td>
 
-                            @*
-                            <td>
-                                <a class="btn btn-primary" href="@Url.Action(" ActualizarReserva","Reservas", new { q=item.ConsecutivoReservas })">Actualizar</a> |
-                                <button type="button" id="idModalHidden" class="btn btn-outline-primary openModal" data-toggle="modal" data-target="#exampleModal"
-                                        data-id=@item.ConsecutivoReservas data-backdrop="static" data-keyboard="false">
-                                    Cambiar Estado
-                                </button>
+                                @*<td>
+                <a class="btn btn-primary" href="@Url.Action("ActualizarReserva","Reservas", new { q = item.ConsecutivoReservas })">Actualizar</a> |
+                <button type="button" id="idModalHidden" class="btn btn-primary openModal" data-toggle="modal" data-target="#exampleModal"
 
-                            </td>*@
 
-                        </tr>
-                            }
-                        </tbody>
+                        data-id=@item.ConsecutivoReservas data-backdrop="static" data-keyboard="false">
+                    Cambiar Estado
+
+                                    </button>
+
+                                </td>*@
+
+                            </tr>
+                        }
+                    </tbody>
                 </table>
             </div>
         </div>

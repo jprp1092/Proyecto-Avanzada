@@ -10,13 +10,10 @@
 namespace ProyectoApi_KN.ModelDB
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class BITACORAS
+    public partial class MostrarCarritoTemporal_Result
     {
-        public long ConsecutivoError { get; set; }
-        public string DescripcionError { get; set; }
-        public System.DateTime FechaHora { get; set; }
-        public string Origen { get; set; }
+        public int CantidadNoches { get; set; }
+        public double MontoCarrito { get; set; }
     }
 }
