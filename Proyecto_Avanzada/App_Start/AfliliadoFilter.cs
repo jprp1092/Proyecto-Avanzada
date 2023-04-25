@@ -12,7 +12,7 @@ namespace Proyecto_Avanzada.App_Start
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            if (filterContext.HttpContext.Session["Rol"].ToString() == "afiliado")
+            if (filterContext.HttpContext.Session["Rol"].ToString() == "Afiliado")
             {
                 filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary
                 {

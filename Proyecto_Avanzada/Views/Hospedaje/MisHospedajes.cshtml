@@ -35,17 +35,17 @@
                                 <td>¢@string.Format("{0:n2}", item.Precio)</td>
                                 <td>@item.Disponibilidad</td>
 
-                                @*<td>
-                <a class="btn btn-primary" href="@Url.Action("ActualizarReserva","Reservas", new { q = item.ConsecutivoReservas })">Actualizar</a> |
-                <button type="button" id="idModalHidden" class="btn btn-primary openModal" data-toggle="modal" data-target="#exampleModal"
+                                <td>
+                <a class="btn btn-primary" href="@Url.Action("ActualizarReserva","Reservas", new { q = item.ConsecutivoHospedaje})">Actualizar</a> |
+                <button type="button" id="idModalHidden" class="btn btn-outline-primary openModal" data-toggle="modal" data-target="#exampleModal"
 
 
-                        data-id=@item.ConsecutivoReservas data-backdrop="static" data-keyboard="false">
+                        data-id=@item.ConsecutivoHospedaje data-backdrop="static" data-keyboard="false">
                     Cambiar Estado
 
                                     </button>
 
-                                </td>*@
+                                </td>
 
                             </tr>
                         }
